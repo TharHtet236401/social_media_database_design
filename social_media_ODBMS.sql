@@ -238,3 +238,49 @@ TREAT(VALUE(u) AS AdminType).admin_level
 FROM Users u;
 
 
+INSERT INTO Users VALUES (
+    RegularUserType(
+        user_id_seq.NEXTVAL,
+        'regularuser1',
+        'user1@example.com',
+        'hashed_password_4',
+        TO_DATE('15-DEC-2005','DD-MM-YYYY'),
+        'profile_picture_url',
+        'bio_text',
+        'user_status',
+        100,
+        100
+    )
+);
+
+INSERT INTO Users VALUES (
+    RegularUserType(
+        user_id_seq.NEXTVAL,
+        'regularuser2', 
+        'user2@example.com',
+        'hashed_password_5',
+        TO_DATE('16-DEC-2005','DD-MM-YYYY'),
+        'profile_picture_url',
+        'bio_text',
+        'user_status',
+        200,
+        150
+    )
+);
+
+INSERT INTO Users VALUES (
+    RegularUserType(
+        user_id_seq.NEXTVAL,
+        'regularuser3',
+        'user3@example.com',
+        'hashed_password_6',
+        TO_DATE('17-DEC-2005','DD-MM-YYYY'),
+        'profile_picture_url',
+        'bio_text',
+        'user_status',
+        300,
+        250
+    )
+);
+
+
