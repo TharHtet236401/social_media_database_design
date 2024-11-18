@@ -226,3 +226,15 @@ INSERT INTO Users VALUES (
 
 SELECT VALUE(u) FROM Users u;
 
+Select 
+u.username,
+u.email,
+u.created_at,
+u.password_hash,
+TREAT(VALUE(u) AS AdminType).admin_id,
+TREAT(VALUE(u) AS AdminType).reports_viewed,
+TREAT(VALUE(u) AS AdminType).last_login,
+TREAT(VALUE(u) AS AdminType).admin_level
+FROM Users u;
+
+
