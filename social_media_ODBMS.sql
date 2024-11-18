@@ -101,7 +101,7 @@ CREATE TABLE Users OF UserType (
     username UNIQUE NOT NULL,
     email UNIQUE NOT NULL,
     password_hash NOT NULL
-) 
+);
 
 -- Posts table (Object table of PostType)
 CREATE TABLE Posts OF PostType (
@@ -109,7 +109,7 @@ CREATE TABLE Posts OF PostType (
     content NOT NULL,
     created_at NOT NULL,
     user_ref SCOPE IS Users NOT NULL
-) 
+);
 
 -- Comments table (Object table of CommentType)
 CREATE TABLE Comments OF CommentType (
@@ -118,7 +118,7 @@ CREATE TABLE Comments OF CommentType (
     created_at NOT NULL,
     user_ref SCOPE IS Users NOT NULL,
     post_ref SCOPE IS Posts NOT NULL
-) 
+);
 
 -- Likes table (Object table of LikeType)
 CREATE TABLE Likes OF LikeType (
@@ -126,7 +126,7 @@ CREATE TABLE Likes OF LikeType (
     created_at NOT NULL,
     user_ref SCOPE IS Users NOT NULL,
     post_ref SCOPE IS Posts NOT NULL
-)
+);
 
 -- Messages table (Object table of MessageType)
 CREATE TABLE Messages OF MessageType (
@@ -135,7 +135,7 @@ CREATE TABLE Messages OF MessageType (
     sent_at NOT NULL,
     sender_ref SCOPE IS Users NOT NULL,
     receiver_ref SCOPE IS Users NOT NULL
-) 
+); 
 
 -- Create sequences for generating IDs
 CREATE SEQUENCE user_id_seq START WITH 1 INCREMENT BY 1;
