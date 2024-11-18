@@ -338,5 +338,96 @@ INSERT INTO Posts VALUES (
     )
 );
 
+-- Insert sample likes
+INSERT INTO Likes VALUES (
+    LikeType(
+        like_id_seq.NEXTVAL,
+        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser1'),
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 2),
+        TO_DATE('16-DEC-2005','DD-MM-YYYY')
+    )
+);
+
+INSERT INTO Likes VALUES (
+    LikeType(
+        like_id_seq.NEXTVAL,
+        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser2'),
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 1),
+        TO_DATE('16-DEC-2005','DD-MM-YYYY')
+    )
+);
+
+INSERT INTO Likes VALUES (
+    LikeType(
+        like_id_seq.NEXTVAL,
+        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser3'),
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 1),
+        TO_DATE('17-DEC-2005','DD-MM-YYYY')
+    )
+);
+
+INSERT INTO Likes VALUES (
+    LikeType(
+        like_id_seq.NEXTVAL,
+        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser1'),
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 4),
+        TO_DATE('17-DEC-2005','DD-MM-YYYY')
+    )
+);
+
+INSERT INTO Likes VALUES (
+    LikeType(
+        like_id_seq.NEXTVAL,
+        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser2'),
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 3),
+        TO_DATE('18-DEC-2005','DD-MM-YYYY')
+    )
+);
+
+INSERT INTO Likes VALUES (
+    LikeType(
+        like_id_seq.NEXTVAL,
+        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser3'),
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 5),
+        TO_DATE('18-DEC-2005','DD-MM-YYYY')
+    )
+);
+
+INSERT INTO Likes VALUES (
+    LikeType(
+        like_id_seq.NEXTVAL,
+        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser1'),
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 6),
+        TO_DATE('19-DEC-2005','DD-MM-YYYY')
+    )
+);
+
+INSERT INTO Likes VALUES (
+    LikeType(
+        like_id_seq.NEXTVAL,
+        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser2'),
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 5),
+        TO_DATE('19-DEC-2005','DD-MM-YYYY')
+    )
+);
+
+INSERT INTO Likes VALUES (
+    LikeType(
+        like_id_seq.NEXTVAL,
+        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser3'),
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 4),
+        TO_DATE('20-DEC-2005','DD-MM-YYYY')
+    )
+);
+
+INSERT INTO Likes VALUES (
+    LikeType(
+        like_id_seq.NEXTVAL,
+        (SELECT REF(u) FROM Users u WHERE u.username = 'admin1'),
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 1),
+        TO_DATE('20-DEC-2005','DD-MM-YYYY')
+    )
+);
+
 
 
