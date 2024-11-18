@@ -297,57 +297,57 @@ SELECT
 FROM Users u;
 
 INSERT INTO Posts VALUES (
-    PostType(
+    
         post_id_seq.NEXTVAL,
         'This is my first post! Hello social media world!',
         TO_DATE('15-DEC-2005','DD-MM-YYYY'),
         (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser1')
-    )
+    
 );
 
 INSERT INTO Posts VALUES (
-    PostType(
+    
         post_id_seq.NEXTVAL,
         'Sharing some thoughts about technology and social media...',
         TO_DATE('16-DEC-2005','DD-MM-YYYY'),
         (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser1')
-    )
+    
 );
 
 INSERT INTO Posts VALUES (
-    PostType(
+   
         post_id_seq.NEXTVAL,
         'Just had an amazing day! Wanted to share with everyone.',
         TO_DATE('15-DEC-2005','DD-MM-YYYY'),
         (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser2')
-    )
+    
 );
 
 INSERT INTO Posts VALUES (
-    PostType(
+    
         post_id_seq.NEXTVAL,
         'Check out this awesome new project I''m working on!',
         TO_DATE('16-DEC-2005','DD-MM-YYYY'),
         (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser2')
-    )
+    
 );
 
 INSERT INTO Posts VALUES (
-    PostType(
+    
         post_id_seq.NEXTVAL,
         'Happy to join this platform! Looking forward to connecting with everyone.',
         TO_DATE('17-DEC-2005','DD-MM-YYYY'),
         (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser3')
-    )
+    
 );
 
 INSERT INTO Posts VALUES (
-    PostType(
+    
         post_id_seq.NEXTVAL,
         'Sharing some interesting insights about my recent experiences...',
         TO_DATE('18-DEC-2005','DD-MM-YYYY'),
         (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser3')
-    )
+    
 );
 
 --insert likes 
