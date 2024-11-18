@@ -59,6 +59,7 @@ CREATE OR REPLACE TYPE PostType AS OBJECT (
     created_at DATE,        
     user_ref REF UserType
 );
+/
 
 -- Like object type
 CREATE OR REPLACE TYPE LikeType AS OBJECT (
@@ -67,6 +68,7 @@ CREATE OR REPLACE TYPE LikeType AS OBJECT (
     post_ref REF PostType,
     created_at DATE
 );
+/
 
 -- Comment object type
 CREATE OR REPLACE TYPE CommentType AS OBJECT (
@@ -76,6 +78,7 @@ CREATE OR REPLACE TYPE CommentType AS OBJECT (
     user_ref REF UserType,
     post_ref REF PostType
 );
+/
 
 
 -- Message object type for private communication
@@ -86,6 +89,7 @@ CREATE OR REPLACE TYPE MessageType AS OBJECT (
     sender_ref REF UserType,
     receiver_ref REF UserType
 );
+/
 
 -- Finished creating types for the database
 
