@@ -492,3 +492,216 @@ INSERT INTO Comments VALUES (
         (SELECT REF(p) FROM Posts p WHERE p.post_id = 3)
     )
 );
+
+
+--insert messages
+
+INSERT INTO Messages VALUES (
+    MessageType(
+        message_id_seq.NEXTVAL,
+        'Hey, how are you doing?',
+        TO_DATE('15-DEC-2005','DD-MM-YYYY'),
+        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser1'),
+        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser2')
+    )
+);
+
+INSERT INTO Messages VALUES (
+    MessageType(
+        message_id_seq.NEXTVAL,
+        'I''m good! Thanks for asking. How about you?',
+        TO_DATE('15-DEC-2005','DD-MM-YYYY'),
+        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser2'),
+        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser1')
+    )
+);
+
+INSERT INTO Messages VALUES (
+    MessageType(
+        message_id_seq.NEXTVAL,
+        'Did you see my latest post about the project?',
+        TO_DATE('16-DEC-2005','DD-MM-YYYY'),
+        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser2'),
+        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser3')
+    )
+);
+
+INSERT INTO Messages VALUES (
+    MessageType(
+        message_id_seq.NEXTVAL,
+        'Yes, it looks amazing! Would love to collaborate',
+        TO_DATE('16-DEC-2005','DD-MM-YYYY'),
+        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser3'),
+        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser2')
+    )
+);
+
+INSERT INTO Messages VALUES (
+    MessageType(
+        message_id_seq.NEXTVAL,
+        'Can we schedule a meeting to discuss the details?',
+        TO_DATE('16-DEC-2005','DD-MM-YYYY'),
+        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser2'),
+        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser3')
+    )
+);
+
+INSERT INTO Messages VALUES (
+    MessageType(
+        message_id_seq.NEXTVAL,
+        'Hey! Long time no chat!',
+        TO_DATE('17-DEC-2005','DD-MM-YYYY'),
+        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser1'),
+        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser3')
+    )
+);
+
+INSERT INTO Messages VALUES (
+    MessageType(
+        message_id_seq.NEXTVAL,
+        'Indeed! We should catch up soon',
+        TO_DATE('17-DEC-2005','DD-MM-YYYY'),
+        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser3'),
+        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser1')
+    )
+);
+
+INSERT INTO Messages VALUES (
+    MessageType(
+        message_id_seq.NEXTVAL,
+        'Are you free this weekend?',
+        TO_DATE('17-DEC-2005','DD-MM-YYYY'),
+        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser1'),
+        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser3')
+    )
+);
+
+INSERT INTO Messages VALUES (
+    MessageType(
+        message_id_seq.NEXTVAL,
+        'Yes, Saturday afternoon works for me!',
+        TO_DATE('17-DEC-2005','DD-MM-YYYY'),
+        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser3'),
+        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser1')
+    )
+);
+
+INSERT INTO Messages VALUES (
+    MessageType(
+        message_id_seq.NEXTVAL,
+        'Have you started working on the new feature?',
+        TO_DATE('18-DEC-2005','DD-MM-YYYY'),
+        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser2'),
+        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser1')
+    )
+);
+
+INSERT INTO Messages VALUES (
+    MessageType(
+        message_id_seq.NEXTVAL,
+        'Just getting started. Need any help?',
+        TO_DATE('18-DEC-2005','DD-MM-YYYY'),
+        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser1'),
+        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser2')
+    )
+);
+
+INSERT INTO Messages VALUES (
+    MessageType(
+        message_id_seq.NEXTVAL,
+        'Could you review my code when you have time?',
+        TO_DATE('18-DEC-2005','DD-MM-YYYY'),
+        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser2'),
+        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser1')
+    )
+);
+
+INSERT INTO Messages VALUES (
+    MessageType(
+        message_id_seq.NEXTVAL,
+        'Sure, send it over!',
+        TO_DATE('18-DEC-2005','DD-MM-YYYY'),
+        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser1'),
+        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser2')
+    )
+);
+
+INSERT INTO Messages VALUES (
+    MessageType(
+        message_id_seq.NEXTVAL,
+        'Are we still meeting tomorrow?',
+        TO_DATE('19-DEC-2005','DD-MM-YYYY'),
+        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser3'),
+        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser2')
+    )
+);
+
+INSERT INTO Messages VALUES (
+    MessageType(
+        message_id_seq.NEXTVAL,
+        'Yes, 2 PM at the usual place',
+        TO_DATE('19-DEC-2005','DD-MM-YYYY'),
+        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser2'),
+        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser3')
+    )
+);
+
+INSERT INTO Messages VALUES (
+    MessageType(
+        message_id_seq.NEXTVAL,
+        'Don''t forget about the team meeting today!',
+        TO_DATE('19-DEC-2005','DD-MM-YYYY'),
+        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser1'),
+        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser2')
+    )
+);
+
+INSERT INTO Messages VALUES (
+    MessageType(
+        message_id_seq.NEXTVAL,
+        'Thanks for the reminder!',
+        TO_DATE('19-DEC-2005','DD-MM-YYYY'),
+        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser2'),
+        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser1')
+    )
+);
+
+INSERT INTO Messages VALUES (
+    MessageType(
+        message_id_seq.NEXTVAL,
+        'How''s the project coming along?',
+        TO_DATE('20-DEC-2005','DD-MM-YYYY'),
+        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser3'),
+        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser1')
+    )
+);
+
+INSERT INTO Messages VALUES (
+    MessageType(
+        message_id_seq.NEXTVAL,
+        'Making good progress! Will share updates soon',
+        TO_DATE('20-DEC-2005','DD-MM-YYYY'),
+        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser1'),
+        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser3')
+    )
+);
+
+INSERT INTO Messages VALUES (
+    MessageType(
+        message_id_seq.NEXTVAL,
+        'Let''s grab coffee sometime this week!',
+        TO_DATE('20-DEC-2005','DD-MM-YYYY'),
+        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser2'),
+        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser3')
+    )
+);
+
+INSERT INTO Messages VALUES (
+    MessageType(
+        message_id_seq.NEXTVAL,
+        'Definitely! How about Wednesday?',
+        TO_DATE('20-DEC-2005','DD-MM-YYYY'),
+        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser3'),
+        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser2')
+    )
+);
