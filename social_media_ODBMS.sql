@@ -90,7 +90,7 @@ CREATE OR REPLACE TYPE MessageType AS OBJECT (
     receiver_ref REF UserType
 );
 /
-
+COMMIT;
 -- Finished creating types for the database
 
 -- Creating tables for the database
@@ -125,8 +125,8 @@ CREATE TABLE Likes OF LikeType (
     like_id PRIMARY KEY,
     created_at NOT NULL,
     user_ref SCOPE IS Users NOT NULL,
-    post_ref SCOPE IS Posts NOT NULL,
-) 
+    post_ref SCOPE IS Posts NOT NULL
+)
 
 -- Messages table (Object table of MessageType)
 CREATE TABLE Messages OF MessageType (
