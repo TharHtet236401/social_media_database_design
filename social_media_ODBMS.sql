@@ -283,7 +283,19 @@ INSERT INTO Users VALUES (
     )
 );
 
--- Insert posts for regular users
+
+-- Query to see all data from Users table
+SELECT
+    u.*,
+    CASE
+        WHEN VALUE(u) IS OF TYPE (AdminType) 
+        THEN 'Admin'
+        WHEN VALUE(u) IS OF TYPE (RegularUserType)
+        THEN 'Regular User'
+        ELSE 'Base User'
+    END AS user_type
+FROM Users u;
+
 INSERT INTO Posts VALUES (
     PostType(
         post_id_seq.NEXTVAL,
@@ -338,7 +350,7 @@ INSERT INTO Posts VALUES (
     )
 );
 
--- Insert sample likes
+--insert likes 
 INSERT INTO Likes VALUES (
     LikeType(
         like_id_seq.NEXTVAL,
@@ -420,14 +432,63 @@ INSERT INTO Likes VALUES (
     )
 );
 
-INSERT INTO Likes VALUES (
-    LikeType(
-        like_id_seq.NEXTVAL,
-        (SELECT REF(u) FROM Users u WHERE u.username = 'admin1'),
-        (SELECT REF(p) FROM Posts p WHERE p.post_id = 1),
-        TO_DATE('20-DEC-2005','DD-MM-YYYY')
+-- add comments
+INSERT INTO Comments VALUES (
+    CommentType(
+        comment_id_seq.NEXTVAL,
+        'Great first post! Welcome to the platform!',
+        TO_DATE('15-DEC-2005','DD-MM-YYYY'),
+        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser2'),
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 1)
     )
 );
 
+INSERT INTO Comments VALUES (
+    CommentType(
+        comment_id_seq.NEXTVAL,
+        'Thanks for sharing! Looking forward to more posts.',
+        TO_DATE('15-DEC-2005','DD-MM-YYYY'), 
+        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser3'),
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 1)
+    )
+);
 
+INSERT INTO Comments VALUES (
+    CommentType(
+        comment_id_seq.NEXTVAL,
+        'Interesting thoughts! Would love to discuss more.',
+        TO_DATE('16-DEC-2005','DD-MM-YYYY'),
+        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser2'),
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 2)
+    )
+);
 
+INSERT INTO Comments VALUES (
+    CommentType(
+        comment_id_seq.NEXTVAL,
+        'Could you elaborate more on your thoughts about social media?',
+        TO_DATE('16-DEC-2005','DD-MM-YYYY'),
+        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser3'),
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 2)
+    )
+);
+
+INSERT INTO Comments VALUES (
+    CommentType(
+        comment_id_seq.NEXTVAL,
+        'Glad you had a great day! Share more details!',
+        TO_DATE('15-DEC-2005','DD-MM-YYYY'),
+        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser1'),
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 3)
+    )
+);
+
+INSERT INTO Comments VALUES (
+    CommentType(
+        comment_id_seq.NEXTVAL,
+        'Your positive energy is contagious!',
+        TO_DATE('15-DEC-2005','DD-MM-YYYY'),
+        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser3'),
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 3)
+    )
+);
