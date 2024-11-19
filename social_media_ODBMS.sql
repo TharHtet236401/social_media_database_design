@@ -42,7 +42,7 @@ OR REPLACE TYPE UserType AS OBJECT (
     username VARCHAR2 (50),
     email VARCHAR2 (100),
     password_hash VARCHAR2 (255),
-    created_at DATE
+    created_at TIMESTAMP
 ) NOT FINAL;
 
 /
@@ -51,7 +51,7 @@ CREATE
 OR REPLACE TYPE AdminType UNDER UserType (
     admin_id NUMBER,
     reports_viewed NUMBER,
-    last_login DATE,
+    last_login TIMESTAMP,
     admin_level NUMBER
 );
 
@@ -72,7 +72,7 @@ CREATE
 OR REPLACE TYPE PostType AS OBJECT (
     post_id NUMBER,
     content CLOB,
-    created_at DATE,
+    created_at TIMESTAMP,
     user_ref REF UserType
 );
 
@@ -83,7 +83,7 @@ OR REPLACE TYPE LikeType AS OBJECT (
     like_id NUMBER,
     user_ref REF UserType,
     post_ref REF PostType,
-    created_at DATE
+    created_at TIMESTAMP
 );
 
 /
@@ -92,7 +92,7 @@ CREATE
 OR REPLACE TYPE CommentType AS OBJECT (
     comment_id NUMBER,
     content CLOB,
-    created_at DATE,
+    created_at TIMESTAMP,
     user_ref REF UserType,
     post_ref REF PostType
 );
@@ -103,7 +103,7 @@ CREATE
 OR REPLACE TYPE MessageType AS OBJECT (
     message_id NUMBER,
     content CLOB,
-    sent_at DATE,
+    sent_at TIMESTAMP,
     sender_ref REF UserType,
     receiver_ref REF UserType
 );
