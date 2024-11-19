@@ -460,6 +460,141 @@ INSERT INTO Posts VALUES (
     
 );
 
+-- Posts from techie_sarah
+INSERT INTO Posts VALUES (
+    post_id_seq.NEXTVAL,
+    'Just deployed my first machine learning model! The possibilities are endless! #AI #coding',
+    TO_DATE('18-DEC-2005','DD-MM-YYYY'),
+    (SELECT REF(u) FROM Users u WHERE u.username = 'techie_sarah')
+);
+
+INSERT INTO Posts VALUES (
+    post_id_seq.NEXTVAL,
+    'My favorite VS Code extensions for productivity boost - thread 🧵',
+    TO_DATE('19-DEC-2005','DD-MM-YYYY'),
+    (SELECT REF(u) FROM Users u WHERE u.username = 'techie_sarah')
+);
+
+-- Posts from adventure_mike
+INSERT INTO Posts VALUES (
+    post_id_seq.NEXTVAL,
+    'Sunrise at Mount Fuji - worth every step of the climb! 🗻 #Travel #Adventure',
+    TO_DATE('19-DEC-2005','DD-MM-YYYY'),
+    (SELECT REF(u) FROM Users u WHERE u.username = 'adventure_mike')
+);
+
+INSERT INTO Posts VALUES (
+    post_id_seq.NEXTVAL,
+    'Planning my next backpacking trip through South America. Any recommendations?',
+    TO_DATE('20-DEC-2005','DD-MM-YYYY'),
+    (SELECT REF(u) FROM Users u WHERE u.username = 'adventure_mike')
+);
+
+-- Posts from foodie_emma
+INSERT INTO Posts VALUES (
+    post_id_seq.NEXTVAL,
+    'New recipe alert! 🍝 The perfect homemade pasta sauce - recipe in comments!',
+    TO_DATE('20-DEC-2005','DD-MM-YYYY'),
+    (SELECT REF(u) FROM Users u WHERE u.username = 'foodie_emma')
+);
+
+INSERT INTO Posts VALUES (
+    post_id_seq.NEXTVAL,
+    'Visited this amazing hidden gem restaurant in the city. Their sushi is to die for! 🍣',
+    TO_DATE('21-DEC-2005','DD-MM-YYYY'),
+    (SELECT REF(u) FROM Users u WHERE u.username = 'foodie_emma')
+);
+
+-- Posts from fitness_alex
+INSERT INTO Posts VALUES (
+    post_id_seq.NEXTVAL,
+    'Quick 15-minute HIIT workout for busy professionals - swipe for exercises! 💪',
+    TO_DATE('21-DEC-2005','DD-MM-YYYY'),
+    (SELECT REF(u) FROM Users u WHERE u.username = 'fitness_alex')
+);
+
+INSERT INTO Posts VALUES (
+    post_id_seq.NEXTVAL,
+    'The importance of proper form in weightlifting - common mistakes to avoid',
+    TO_DATE('22-DEC-2005','DD-MM-YYYY'),
+    (SELECT REF(u) FROM Users u WHERE u.username = 'fitness_alex')
+);
+
+-- Posts from artist_lisa
+INSERT INTO Posts VALUES (
+    post_id_seq.NEXTVAL,
+    'Just finished this digital portrait commission! Love how it turned out 🎨',
+    TO_DATE('22-DEC-2005','DD-MM-YYYY'),
+    (SELECT REF(u) FROM Users u WHERE u.username = 'artist_lisa')
+);
+
+INSERT INTO Posts VALUES (
+    post_id_seq.NEXTVAL,
+    'My creative process: from sketch to final piece - a timelapse',
+    TO_DATE('23-DEC-2005','DD-MM-YYYY'),
+    (SELECT REF(u) FROM Users u WHERE u.username = 'artist_lisa')
+);
+
+-- Posts from gamer_dave
+INSERT INTO Posts VALUES (
+    post_id_seq.NEXTVAL,
+    'Epic win in today''s tournament! Thanks for all the support on the stream 🎮',
+    TO_DATE('23-DEC-2005','DD-MM-YYYY'),
+    (SELECT REF(u) FROM Users u WHERE u.username = 'gamer_dave')
+);
+
+INSERT INTO Posts VALUES (
+    post_id_seq.NEXTVAL,
+    'My thoughts on the latest game patch - what it means for competitive play',
+    TO_DATE('24-DEC-2005','DD-MM-YYYY'),
+    (SELECT REF(u) FROM Users u WHERE u.username = 'gamer_dave')
+);
+
+-- Posts from bookworm_nina
+INSERT INTO Posts VALUES (
+    post_id_seq.NEXTVAL,
+    'Monthly book review: "The Midnight Library" - a journey through parallel lives 📚',
+    TO_DATE('24-DEC-2005','DD-MM-YYYY'),
+    (SELECT REF(u) FROM Users u WHERE u.username = 'bookworm_nina')
+);
+
+INSERT INTO Posts VALUES (
+    post_id_seq.NEXTVAL,
+    'My top 5 must-read books for personal development',
+    TO_DATE('25-DEC-2005','DD-MM-YYYY'),
+    (SELECT REF(u) FROM Users u WHERE u.username = 'bookworm_nina')
+);
+
+-- Posts from music_tom
+INSERT INTO Posts VALUES (
+    post_id_seq.NEXTVAL,
+    'Just dropped my new track! Link in bio 🎵 #NewMusic',
+    TO_DATE('25-DEC-2005','DD-MM-YYYY'),
+    (SELECT REF(u) FROM Users u WHERE u.username = 'music_tom')
+);
+
+INSERT INTO Posts VALUES (
+    post_id_seq.NEXTVAL,
+    'Behind the scenes of my latest studio session - creating magic! 🎹',
+    TO_DATE('26-DEC-2005','DD-MM-YYYY'),
+    (SELECT REF(u) FROM Users u WHERE u.username = 'music_tom')
+);
+
+-- Posts from eco_julia
+INSERT INTO Posts VALUES (
+    post_id_seq.NEXTVAL,
+    'Simple ways to reduce your plastic waste - start your eco-journey today! 🌱',
+    TO_DATE('26-DEC-2005','DD-MM-YYYY'),
+    (SELECT REF(u) FROM Users u WHERE u.username = 'eco_julia')
+);
+
+INSERT INTO Posts VALUES (
+    post_id_seq.NEXTVAL,
+    'Join us for this weekend''s beach cleanup! Together we can make a difference 🌊',
+    TO_DATE('27-DEC-2005','DD-MM-YYYY'),
+    (SELECT REF(u) FROM Users u WHERE u.username = 'eco_julia')
+);
+
 --insert likes 
 INSERT INTO Likes VALUES (
     LikeType(
@@ -815,3 +950,4 @@ INSERT INTO Messages VALUES (
         (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser2')
     )
 );
+
