@@ -270,6 +270,141 @@ INSERT INTO Users VALUES (
     )
 );
 
+INSERT INTO Users VALUES (
+    RegularUserType(
+        user_id_seq.NEXTVAL,
+        'techie_sarah',
+        'sarah@example.com',
+        'hashed_password_7',
+        TO_DATE('18-DEC-2005','DD-MM-YYYY'),
+        'profile_pic_sarah.jpg',
+        'Tech enthusiast | Coffee lover | Code warrior',
+        'Coding away...',
+        150,
+        120
+    )
+);
+
+INSERT INTO Users VALUES (
+    RegularUserType(
+        user_id_seq.NEXTVAL,
+        'adventure_mike',
+        'mike@example.com',
+        'hashed_password_8',
+        TO_DATE('19-DEC-2005','DD-MM-YYYY'),
+        'profile_pic_mike.jpg',
+        'Travel | Photography | Nature',
+        'Exploring the world',
+        280,
+        200
+    )
+);
+
+INSERT INTO Users VALUES (
+    RegularUserType(
+        user_id_seq.NEXTVAL,
+        'foodie_emma',
+        'emma@example.com',
+        'hashed_password_9',
+        TO_DATE('20-DEC-2005','DD-MM-YYYY'),
+        'profile_pic_emma.jpg',
+        'Food blogger | Recipe developer',
+        'Cooking up something delicious',
+        450,
+        380
+    )
+);
+
+INSERT INTO Users VALUES (
+    RegularUserType(
+        user_id_seq.NEXTVAL,
+        'fitness_alex',
+        'alex@example.com',
+        'hashed_password_10',
+        TO_DATE('21-DEC-2005','DD-MM-YYYY'),
+        'profile_pic_alex.jpg',
+        'Personal trainer | Wellness coach',
+        'At the gym',
+        600,
+        520
+    )
+);
+
+INSERT INTO Users VALUES (
+    RegularUserType(
+        user_id_seq.NEXTVAL,
+        'artist_lisa',
+        'lisa@example.com',
+        'hashed_password_11',
+        TO_DATE('22-DEC-2005','DD-MM-YYYY'),
+        'profile_pic_lisa.jpg',
+        'Digital artist | Illustrator',
+        'Creating new artwork',
+        750,
+        680
+    )
+);
+
+INSERT INTO Users VALUES (
+    RegularUserType(
+        user_id_seq.NEXTVAL,
+        'gamer_dave',
+        'dave@example.com',
+        'hashed_password_12',
+        TO_DATE('23-DEC-2005','DD-MM-YYYY'),
+        'profile_pic_dave.jpg',
+        'Professional gamer | Streamer',
+        'Live streaming',
+        1200,
+        800
+    )
+);
+
+INSERT INTO Users VALUES (
+    RegularUserType(
+        user_id_seq.NEXTVAL,
+        'bookworm_nina',
+        'nina@example.com',
+        'hashed_password_13',
+        TO_DATE('24-DEC-2005','DD-MM-YYYY'),
+        'profile_pic_nina.jpg',
+        'Book reviewer | Literature lover',
+        'Reading my next book',
+        320,
+        290
+    )
+);
+
+INSERT INTO Users VALUES (
+    RegularUserType(
+        user_id_seq.NEXTVAL,
+        'music_tom',
+        'tom@example.com',
+        'hashed_password_14',
+        TO_DATE('25-DEC-2005','DD-MM-YYYY'),
+        'profile_pic_tom.jpg',
+        'Musician | Producer',
+        'Making music',
+        890,
+        760
+    )
+);
+
+INSERT INTO Users VALUES (
+    RegularUserType(
+        user_id_seq.NEXTVAL,
+        'eco_julia',
+        'julia@example.com',
+        'hashed_password_15',
+        TO_DATE('26-DEC-2005','DD-MM-YYYY'),
+        'profile_pic_julia.jpg',
+        'Environmental activist | Sustainable living',
+        'Saving the planet',
+        420,
+        380
+    )
+);
+
 --insert posts
 INSERT INTO Posts VALUES (
     
