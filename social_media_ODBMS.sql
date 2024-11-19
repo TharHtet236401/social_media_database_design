@@ -50,7 +50,7 @@ OR REPLACE TYPE UserType AS OBJECT (
 CREATE
 OR REPLACE TYPE AdminType UNDER UserType (
     admin_id NUMBER,
-    reports_viewed NUMBER,
+    report_viewed NUMBER,
     last_login TIMESTAMP,
     admin_level NUMBER
 );
@@ -71,7 +71,7 @@ OR REPLACE TYPE RegularUserType UNDER UserType (
 CREATE
 OR REPLACE TYPE PostType AS OBJECT (
     post_id NUMBER,
-    content CLOB,
+    content VARCHAR2(4000),
     created_at TIMESTAMP,
     user_ref REF UserType
 );
@@ -91,7 +91,7 @@ OR REPLACE TYPE LikeType AS OBJECT (
 CREATE
 OR REPLACE TYPE CommentType AS OBJECT (
     comment_id NUMBER,
-    content CLOB,
+    content VARCHAR2(4000),
     created_at TIMESTAMP,
     user_ref REF UserType,
     post_ref REF PostType
@@ -102,7 +102,7 @@ OR REPLACE TYPE CommentType AS OBJECT (
 CREATE
 OR REPLACE TYPE MessageType AS OBJECT (
     message_id NUMBER,
-    content CLOB,
+    content VARCHAR2(4000),
     sent_at TIMESTAMP,
     sender_ref REF UserType,
     receiver_ref REF UserType
