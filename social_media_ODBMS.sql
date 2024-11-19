@@ -224,20 +224,7 @@ INSERT INTO Users VALUES (
     )
 );
 
-SELECT VALUE(u) FROM Users u;
-
-Select 
-u.username,
-u.email,
-u.created_at,
-u.password_hash,
-TREAT(VALUE(u) AS AdminType).admin_id,
-TREAT(VALUE(u) AS AdminType).reports_viewed,
-TREAT(VALUE(u) AS AdminType).last_login,
-TREAT(VALUE(u) AS AdminType).admin_level
-FROM Users u;
-
-
+-- Insert regular users
 INSERT INTO Users VALUES (
     RegularUserType(
         user_id_seq.NEXTVAL,
@@ -283,19 +270,7 @@ INSERT INTO Users VALUES (
     )
 );
 
-
--- Query to see all data from Users table
-SELECT
-    u.*,
-    CASE
-        WHEN VALUE(u) IS OF TYPE (AdminType) 
-        THEN 'Admin'
-        WHEN VALUE(u) IS OF TYPE (RegularUserType)
-        THEN 'Regular User'
-        ELSE 'Base User'
-    END AS user_type
-FROM Users u;
-
+--insert posts
 INSERT INTO Posts VALUES (
     
         post_id_seq.NEXTVAL,
@@ -432,7 +407,7 @@ INSERT INTO Likes VALUES (
     )
 );
 
--- add comments
+-- insert comments
 INSERT INTO Comments VALUES (
     CommentType(
         comment_id_seq.NEXTVAL,
