@@ -1955,6 +1955,455 @@ VALUES (
 
 COMMIT;
 
+INSERT INTO Comments
+VALUES (
+    CommentType(
+        comment_id_seq.NEXTVAL,
+        'This AI project looks amazing! Would love to contribute.',
+        TIMESTAMP '2024-03-15 09:30:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1016),
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 1)
+    )
+);
+
+INSERT INTO Comments
+VALUES (
+    CommentType(
+        comment_id_seq.NEXTVAL,
+        'Have you considered implementing neural networks for this?',
+        TIMESTAMP '2024-03-15 09:45:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1014),
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 1)
+    )
+);
+
+INSERT INTO Comments
+VALUES (
+    CommentType(
+        comment_id_seq.NEXTVAL,
+        'That ramen looks incredible! Which restaurant is this?',
+        TIMESTAMP '2024-03-15 12:30:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1015),
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 4)
+    )
+);
+
+INSERT INTO Comments
+VALUES (
+    CommentType(
+        comment_id_seq.NEXTVAL,
+        'Your food photography skills are getting better every day!',
+        TIMESTAMP '2024-03-15 12:45:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1012),
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 4)
+    )
+);
+
+INSERT INTO Comments
+VALUES (
+    CommentType(
+        comment_id_seq.NEXTVAL,
+        'Thanks for sharing these VS Code tips! The Python extension is a game-changer.',
+        TIMESTAMP '2024-03-15 14:30:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1006),
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 3)
+    )
+);
+
+INSERT INTO Comments
+VALUES (
+    CommentType(
+        comment_id_seq.NEXTVAL,
+        'Which theme are you using? It looks clean!',
+        TIMESTAMP '2024-03-15 14:45:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1016),
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 3)
+    )
+);
+
+INSERT INTO Comments
+VALUES (
+    CommentType(
+        comment_id_seq.NEXTVAL,
+        'Great workout routine! Could you share more about your warm-up?',
+        TIMESTAMP '2024-03-15 07:30:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1020),
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 7)
+    )
+);
+
+INSERT INTO Comments
+VALUES (
+    CommentType(
+        comment_id_seq.NEXTVAL,
+        'Love these sustainable fashion choices! Where did you get that eco-friendly bag?',
+        TIMESTAMP '2024-03-15 11:15:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1013),
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 14)
+    )
+);
+
+INSERT INTO Comments
+VALUES (
+    CommentType(
+        comment_id_seq.NEXTVAL,
+        'That Mount Fuji shot is breathtaking! What camera settings did you use?',
+        TIMESTAMP '2024-03-15 06:15:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1012),
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 35)
+    )
+);
+
+INSERT INTO Comments
+VALUES (
+    CommentType(
+        comment_id_seq.NEXTVAL,
+        'The lighting in this photo is perfect! Golden hour magic ✨',
+        TIMESTAMP '2024-03-15 06:30:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1014),
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 35)
+    )
+);
+
+INSERT INTO Comments
+VALUES (
+    CommentType(
+        comment_id_seq.NEXTVAL,
+        'Such a heartwarming adoption day! Those pets look so happy 🐾',
+        TIMESTAMP '2024-03-15 18:45:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1019),
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 41)
+    )
+);
+
+INSERT INTO Comments
+VALUES (
+    CommentType(
+        comment_id_seq.NEXTVAL,
+        'Your DIY skills are incredible! Tutorial please! 🙏',
+        TIMESTAMP '2024-03-15 13:45:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1017),
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 37)
+    )
+);
+
+INSERT INTO Comments
+VALUES (
+    CommentType(
+        comment_id_seq.NEXTVAL,
+        'This comedy show was hilarious! When is your next performance?',
+        TIMESTAMP '2024-03-16 00:00:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1011),
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 40)
+    )
+);
+
+INSERT INTO Comments
+VALUES (
+    CommentType(
+        comment_id_seq.NEXTVAL,
+        'Your dance choreography is so innovative! Love the fusion elements.',
+        TIMESTAMP '2024-03-15 19:30:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1015),
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 29)
+    )
+);
+
+INSERT INTO Comments
+VALUES (
+    CommentType(
+        comment_id_seq.NEXTVAL,
+        'This startup journey is inspiring! Any advice for new entrepreneurs?',
+        TIMESTAMP '2024-03-15 11:00:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1014),
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 33)
+    )
+);
+
+INSERT INTO Comments
+VALUES (
+    CommentType(
+        comment_id_seq.NEXTVAL,
+        'Just tried your recipe and it turned out amazing! The secret ingredient really makes a difference 👨‍🍳',
+        TIMESTAMP '2024-03-15 17:00:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1010),
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 5)
+    )
+);
+
+INSERT INTO Comments
+VALUES (
+    CommentType(
+        comment_id_seq.NEXTVAL,
+        'Could you do a beginner-friendly version of this workout? Looking to start my fitness journey!',
+        TIMESTAMP '2024-03-15 08:15:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1008),
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 7)
+    )
+);
+
+INSERT INTO Comments
+VALUES (
+    CommentType(
+        comment_id_seq.NEXTVAL,
+        'The way you explained these Python features makes it so much clearer. Especially the new pattern matching!',
+        TIMESTAMP '2024-03-15 11:45:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1016),
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 2)
+    )
+);
+
+INSERT INTO Comments
+VALUES (
+    CommentType(
+        comment_id_seq.NEXTVAL,
+        'Been following your gaming streams for months now. Your commentary always makes my day! 🎮',
+        TIMESTAMP '2024-03-15 20:30:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1019),
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 11)
+    )
+);
+
+INSERT INTO Comments
+VALUES (
+    CommentType(
+        comment_id_seq.NEXTVAL,
+        'These beach cleanup initiatives are so important! Count me in for the next one! 🌊',
+        TIMESTAMP '2024-03-15 16:30:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1017),
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 9)
+    )
+);
+
+INSERT INTO Comments
+VALUES (
+    CommentType(
+        comment_id_seq.NEXTVAL,
+        'The quantum computing implications here are fascinating. Have you considered the potential impact on blockchain?',
+        TIMESTAMP '2024-03-15 14:30:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1006),
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 10)
+    )
+);
+
+INSERT INTO Comments
+VALUES (
+    CommentType(
+        comment_id_seq.NEXTVAL,
+        'Your style evolution this year has been incredible! Love how you mix vintage with modern pieces 👗',
+        TIMESTAMP '2024-03-15 15:15:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1015),
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 14)
+    )
+);
+
+INSERT INTO Comments
+VALUES (
+    CommentType(
+        comment_id_seq.NEXTVAL,
+        'This series of photos tells such a beautiful story. The progression from dawn to dusk is masterful 📸',
+        TIMESTAMP '2024-03-15 07:00:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1014),
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 35)
+    )
+);
+
+INSERT INTO Comments
+VALUES (
+    CommentType(
+        comment_id_seq.NEXTVAL,
+        'As a fellow entrepreneur, I resonate with these challenges. Building a startup is definitely a roller coaster!',
+        TIMESTAMP '2024-03-15 11:30:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1006),
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 33)
+    )
+);
+
+INSERT INTO Comments
+VALUES (
+    CommentType(
+        comment_id_seq.NEXTVAL,
+        'The way you blend different dance styles is so unique. Would love to collaborate on a fusion piece! 💃',
+        TIMESTAMP '2024-03-15 20:00:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1007),
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 29)
+    )
+);
+
+-- Adding high engagement to tech tutorial posts
+INSERT INTO Comments
+VALUES (
+    CommentType(
+        comment_id_seq.NEXTVAL,
+        'This Python tutorial series is exactly what I needed! The examples are so practical 🐍',
+        TIMESTAMP '2024-03-15 12:00:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1007),
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 2)
+    )
+);
+
+INSERT INTO Comments
+VALUES (
+    CommentType(
+        comment_id_seq.NEXTVAL,
+        'Could you make a follow-up video on advanced pattern matching cases?',
+        TIMESTAMP '2024-03-15 12:15:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1020),
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 2)
+    )
+);
+
+INSERT INTO Comments
+VALUES (
+    CommentType(
+        comment_id_seq.NEXTVAL,
+        'The error handling section was particularly helpful. Fixed my project issues! 💻',
+        TIMESTAMP '2024-03-15 12:30:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1013),
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 2)
+    )
+);
+
+-- High engagement on viral food post
+INSERT INTO Comments
+VALUES (
+    CommentType(
+        comment_id_seq.NEXTVAL,
+        'This ramen spot is now my weekend favorite! The broth is incredible 🍜',
+        TIMESTAMP '2024-03-15 13:00:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1016),
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 4)
+    )
+);
+
+INSERT INTO Comments
+VALUES (
+    CommentType(
+        comment_id_seq.NEXTVAL,
+        'Went there today because of your post - the line was worth it!',
+        TIMESTAMP '2024-03-15 19:45:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1019),
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 4)
+    )
+);
+
+INSERT INTO Comments
+VALUES (
+    CommentType(
+        comment_id_seq.NEXTVAL,
+        'Their vegetarian option is amazing too! Great recommendation 🌱',
+        TIMESTAMP '2024-03-15 20:15:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1013),
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 4)
+    )
+);
+
+-- Trending workout post engagement
+INSERT INTO Comments
+VALUES (
+    CommentType(
+        comment_id_seq.NEXTVAL,
+        'This HIIT routine is intense but effective! Lost 5kg following your workouts 💪',
+        TIMESTAMP '2024-03-15 08:30:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1014),
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 7)
+    )
+);
+
+INSERT INTO Comments
+VALUES (
+    CommentType(
+        comment_id_seq.NEXTVAL,
+        'The modified versions for beginners are so thoughtful! Thank you! 🏃‍♀️',
+        TIMESTAMP '2024-03-15 09:15:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1019),
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 7)
+    )
+);
+
+INSERT INTO Comments
+VALUES (
+    CommentType(
+        comment_id_seq.NEXTVAL,
+        'Been doing this routine for a month - my endurance has improved significantly!',
+        TIMESTAMP '2024-03-15 10:00:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1015),
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 7)
+    )
+);
+
+-- Popular AI project discussion
+INSERT INTO Comments
+VALUES (
+    CommentType(
+        comment_id_seq.NEXTVAL,
+        'The integration with TensorFlow is brilliant! Mind sharing your model architecture?',
+        TIMESTAMP '2024-03-15 10:30:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1016),
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 1)
+    )
+);
+
+INSERT INTO Comments
+VALUES (
+    CommentType(
+        comment_id_seq.NEXTVAL,
+        'Impressive accuracy rates! How did you handle the data preprocessing? 🤖',
+        TIMESTAMP '2024-03-15 11:00:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1020),
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 1)
+    )
+);
+
+-- Viral photography post engagement
+INSERT INTO Comments
+VALUES (
+    CommentType(
+        comment_id_seq.NEXTVAL,
+        'This Mount Fuji series belongs in a gallery! The composition is perfect 🗻',
+        TIMESTAMP '2024-03-15 07:30:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1008),
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 35)
+    )
+);
+
+INSERT INTO Comments
+VALUES (
+    CommentType(
+        comment_id_seq.NEXTVAL,
+        'The way you captured the morning mist is ethereal! What time did you start hiking?',
+        TIMESTAMP '2024-03-15 08:00:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1015),
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 35)
+    )
+);
+
+-- Trending startup post
+INSERT INTO Comments
+VALUES (
+    CommentType(
+        comment_id_seq.NEXTVAL,
+        'Your funding journey is so inspiring! Would love to hear more about your pitch deck preparation 📊',
+        TIMESTAMP '2024-03-15 13:30:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1016),
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 33)
+    )
+);
+
+INSERT INTO Comments
+VALUES (
+    CommentType(
+        comment_id_seq.NEXTVAL,
+        'The section about bootstrapping really resonated with me. Pure startup wisdom! 💡',
+        TIMESTAMP '2024-03-15 14:15:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1008),
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 33)
+    )
+);
+
+COMMIT;
+
+
 
 
 
