@@ -25,3 +25,39 @@ db.users.aggregate([
 
     }
 ]);
+
+// Get total like count
+    db.likes.countDocuments();
+
+    // Get like counts per user
+    db.users.aggregate([
+        {
+            $lookup: {
+                from: "posts",
+                localField: "_id",
+                foreignField: "user.$id",
+                as: "user_posts"
+            }
+        },
+        {
+            $lookup: {
+                from: "likes",
+                localField: "user_posts._id",
+                foreignField: "post.$id",
+                as: "post_likes"
+            }
+        },
+        {
+            $project: {
+                username: 1,
+                user_type: 1,
+                like_count: { $size: "$post_likes" }
+            }
+        },
+        {
+            $sort: {
+                like_count: -1,
+                username: 1
+            }
+        }
+    ]);

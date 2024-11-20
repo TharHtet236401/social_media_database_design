@@ -759,3 +759,245 @@ db.posts.insertMany([
     }
 ]);
 
+// Create likes collection with schema validation
+db.createCollection("likes", {
+    validator: {
+        $jsonSchema: {
+            bsonType: "object",
+            required: ["like_id", "post", "user", "created_at"],
+            properties: {
+                like_id: { bsonType: "number" },
+                post: { bsonType: "object" },
+                user: { bsonType: "object" },
+                created_at: { bsonType: "date" }
+            }
+        }
+    }
+});
+
+// Create indexes for likes - ensure uniqueness on like_id and combination of post/user
+db.likes.createIndex({ "like_id": 1 }, { unique: true });
+db.likes.createIndex({ "post.$id": 1, "user.$id": 1 }, { unique: true });
+
+// Clear any existing likes data
+db.likes.drop();
+
+// Insert likes in exact same order as Oracle database
+db.likes.insertMany([
+    {
+        like_id: 1,
+        post: { $ref: "posts", $id: db.posts.find({ post_id: 1 }).toArray()[0]._id },
+        user: { $ref: "users", $id: user_1006_id },
+        created_at: new Date("2024-03-15T09:15:00Z")
+    },
+    {
+        like_id: 2,
+        post: { $ref: "posts", $id: db.posts.find({ post_id: 1 }).toArray()[0]._id },
+        user: { $ref: "users", $id: user_1016_id },
+        created_at: new Date("2024-03-15T09:30:00Z")
+    },
+    {
+        like_id: 3,
+        post: { $ref: "posts", $id: db.posts.find({ post_id: 4 }).toArray()[0]._id },
+        user: { $ref: "users", $id: user_1008_id },
+        created_at: new Date("2024-03-15T12:05:00Z")
+    },
+    {
+        like_id: 4,
+        post: { $ref: "posts", $id: db.posts.find({ post_id: 4 }).toArray()[0]._id },
+        user: { $ref: "users", $id: user_1015_id },
+        created_at: new Date("2024-03-15T12:15:00Z")
+    },
+    {
+        like_id: 5,
+        post: { $ref: "posts", $id: db.posts.find({ post_id: 11 }).toArray()[0]._id },
+        user: { $ref: "users", $id: user_1006_id },
+        created_at: new Date("2024-03-15T20:05:00Z")
+    },
+    {
+        like_id: 6,
+        post: { $ref: "posts", $id: db.posts.find({ post_id: 11 }).toArray()[0]._id },
+        user: { $ref: "users", $id: user_1018_id },
+        created_at: new Date("2024-03-15T20:10:00Z")
+    },
+    {
+        like_id: 7,
+        post: { $ref: "posts", $id: db.posts.find({ post_id: 11 }).toArray()[0]._id },
+        user: { $ref: "users", $id: user_1019_id },
+        created_at: new Date("2024-03-15T20:15:00Z")
+    },
+    {
+        like_id: 8,
+        post: { $ref: "posts", $id: db.posts.find({ post_id: 14 }).toArray()[0]._id },
+        user: { $ref: "users", $id: user_1015_id },
+        created_at: new Date("2024-03-15T11:30:00Z")
+    },
+    {
+        like_id: 9,
+        post: { $ref: "posts", $id: db.posts.find({ post_id: 14 }).toArray()[0]._id },
+        user: { $ref: "users", $id: user_1019_id },
+        created_at: new Date("2024-03-15T11:45:00Z")
+    },
+    {
+        like_id: 10,
+        post: { $ref: "posts", $id: db.posts.find({ post_id: 5 }).toArray()[0]._id },
+        user: { $ref: "users", $id: user_1006_id },
+        created_at: new Date("2024-03-15T15:45:00Z")
+    },
+    {
+        like_id: 11,
+        post: { $ref: "posts", $id: db.posts.find({ post_id: 7 }).toArray()[0]._id },
+        user: { $ref: "users", $id: user_1020_id },
+        created_at: new Date("2024-03-15T07:15:00Z")
+    },
+    {
+        like_id: 12,
+        post: { $ref: "posts", $id: db.posts.find({ post_id: 7 }).toArray()[0]._id },
+        user: { $ref: "users", $id: user_1015_id },
+        created_at: new Date("2024-03-15T07:30:00Z")
+    },
+    {
+        like_id: 13,
+        post: { $ref: "posts", $id: db.posts.find({ post_id: 9 }).toArray()[0]._id },
+        user: { $ref: "users", $id: user_1017_id },
+        created_at: new Date("2024-03-15T16:30:00Z")
+    },
+    {
+        like_id: 14,
+        post: { $ref: "posts", $id: db.posts.find({ post_id: 28 }).toArray()[0]._id },
+        user: { $ref: "users", $id: user_1011_id },
+        created_at: new Date("2024-03-15T00:15:00Z")
+    },
+    {
+        like_id: 15,
+        post: { $ref: "posts", $id: db.posts.find({ post_id: 35 }).toArray()[0]._id },
+        user: { $ref: "users", $id: user_1014_id },
+        created_at: new Date("2024-03-15T06:00:00Z")
+    },
+    {
+        like_id: 16,
+        post: { $ref: "posts", $id: db.posts.find({ post_id: 35 }).toArray()[0]._id },
+        user: { $ref: "users", $id: user_1010_id },
+        created_at: new Date("2024-03-15T06:15:00Z")
+    },
+    {
+        like_id: 17,
+        post: { $ref: "posts", $id: db.posts.find({ post_id: 37 }).toArray()[0]._id },
+        user: { $ref: "users", $id: user_1019_id },
+        created_at: new Date("2024-03-15T13:45:00Z")
+    },
+    {
+        like_id: 18,
+        post: { $ref: "posts", $id: db.posts.find({ post_id: 40 }).toArray()[0]._id },
+        user: { $ref: "users", $id: user_1011_id },
+        created_at: new Date("2024-03-16T00:00:00Z")
+    },
+    {
+        like_id: 19,
+        post: { $ref: "posts", $id: db.posts.find({ post_id: 41 }).toArray()[0]._id },
+        user: { $ref: "users", $id: user_1015_id },
+        created_at: new Date("2024-03-15T18:30:00Z")
+    },
+    {
+        like_id: 20,
+        post: { $ref: "posts", $id: db.posts.find({ post_id: 41 }).toArray()[0]._id },
+        user: { $ref: "users", $id: user_1017_id },
+        created_at: new Date("2024-03-15T18:45:00Z")
+    },
+    {
+        like_id: 21,
+        post: { $ref: "posts", $id: db.posts.find({ post_id: 1 }).toArray()[0]._id },
+        user: { $ref: "users", $id: user_1007_id },
+        created_at: new Date("2024-03-15T09:45:00Z")
+    },
+    {
+        like_id: 22,
+        post: { $ref: "posts", $id: db.posts.find({ post_id: 2 }).toArray()[0]._id },
+        user: { $ref: "users", $id: user_1014_id },
+        created_at: new Date("2024-03-15T11:35:00Z")
+    },
+    {
+        like_id: 23,
+        post: { $ref: "posts", $id: db.posts.find({ post_id: 4 }).toArray()[0]._id },
+        user: { $ref: "users", $id: user_1010_id },
+        created_at: new Date("2024-03-15T12:30:00Z")
+    },
+    {
+        like_id: 24,
+        post: { $ref: "posts", $id: db.posts.find({ post_id: 5 }).toArray()[0]._id },
+        user: { $ref: "users", $id: user_1012_id },
+        created_at: new Date("2024-03-15T15:50:00Z")
+    },
+    {
+        like_id: 25,
+        post: { $ref: "posts", $id: db.posts.find({ post_id: 11 }).toArray()[0]._id },
+        user: { $ref: "users", $id: user_1013_id },
+        created_at: new Date("2024-03-15T20:20:00Z")
+    },
+    {
+        like_id: 26,
+        post: { $ref: "posts", $id: db.posts.find({ post_id: 12 }).toArray()[0]._id },
+        user: { $ref: "users", $id: user_1016_id },
+        created_at: new Date("2024-03-15T13:00:00Z")
+    },
+    {
+        like_id: 27,
+        post: { $ref: "posts", $id: db.posts.find({ post_id: 14 }).toArray()[0]._id },
+        user: { $ref: "users", $id: user_1007_id },
+        created_at: new Date("2024-03-15T11:50:00Z")
+    },
+    {
+        like_id: 28,
+        post: { $ref: "posts", $id: db.posts.find({ post_id: 7 }).toArray()[0]._id },
+        user: { $ref: "users", $id: user_1011_id },
+        created_at: new Date("2024-03-15T08:00:00Z")
+    },
+    {
+        like_id: 29,
+        post: { $ref: "posts", $id: db.posts.find({ post_id: 9 }).toArray()[0]._id },
+        user: { $ref: "users", $id: user_1008_id },
+        created_at: new Date("2024-03-15T16:45:00Z")
+    },
+    {
+        like_id: 30,
+        post: { $ref: "posts", $id: db.posts.find({ post_id: 35 }).toArray()[0]._id },
+        user: { $ref: "users", $id: user_1013_id },
+        created_at: new Date("2024-03-15T06:30:00Z")
+    },
+    {
+        like_id: 31,
+        post: { $ref: "posts", $id: db.posts.find({ post_id: 37 }).toArray()[0]._id },
+        user: { $ref: "users", $id: user_1008_id },
+        created_at: new Date("2024-03-15T13:15:00Z")
+    },
+    {
+        like_id: 32,
+        post: { $ref: "posts", $id: db.posts.find({ post_id: 40 }).toArray()[0]._id },
+        user: { $ref: "users", $id: user_1007_id },
+        created_at: new Date("2024-03-16T00:15:00Z")
+    },
+    {
+        like_id: 33,
+        post: { $ref: "posts", $id: db.posts.find({ post_id: 41 }).toArray()[0]._id },
+        user: { $ref: "users", $id: user_1014_id },
+        created_at: new Date("2024-03-15T18:55:00Z")
+    },
+    {
+        like_id: 34,
+        post: { $ref: "posts", $id: db.posts.find({ post_id: 1 }).toArray()[0]._id },
+        user: { $ref: "users", $id: user_1009_id },
+        created_at: new Date("2024-03-15T23:55:00Z")
+    },
+    {
+        like_id: 35,
+        post: { $ref: "posts", $id: db.posts.find({ post_id: 40 }).toArray()[0]._id },
+        user: { $ref: "users", $id: user_1011_id },
+        created_at: new Date("2024-03-15T11:25:00Z")
+    },
+    {
+        like_id: 36,
+        post: { $ref: "posts", $id: db.posts.find({ post_id: 14 }).toArray()[0]._id },
+        user: { $ref: "users", $id: user_1020_id },
+        created_at: new Date("2024-03-15T18:25:00Z")
+    }
+]);

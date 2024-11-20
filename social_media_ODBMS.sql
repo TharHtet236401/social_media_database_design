@@ -1917,26 +1917,7 @@ VALUES (
     )
 );
 
--- Admin engagement
-INSERT INTO Likes
-VALUES (
-    LikeType(
-        like_id_seq.NEXTVAL,
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 1),  -- admin_sarah
-        (SELECT REF(p) FROM Posts p WHERE p.post_id = 9),  -- beach cleanup post
-        TIMESTAMP '2024-03-15 16:50:00'
-    )
-);
 
-INSERT INTO Likes
-VALUES (
-    LikeType(
-        like_id_seq.NEXTVAL,
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 2),  -- admin_michael
-        (SELECT REF(p) FROM Posts p WHERE p.post_id = 41),  -- adoption day post
-        TIMESTAMP '2024-03-15 19:15:00'
-    )
-);
 
 -- Early adopter likes
 INSERT INTO Likes

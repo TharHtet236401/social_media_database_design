@@ -15,6 +15,9 @@ ORDER BY post_count DESC, username ASC;
 SELECT COUNT(*) AS total_posts 
 FROM Posts;
 
+--GEt total like count
+SELECT COUNT(*) AS total_likes 
+FROM Likes;
 
 -- Query to get like counts per user
 SELECT 
