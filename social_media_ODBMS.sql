@@ -2403,6 +2403,502 @@ VALUES (
 
 COMMIT;
 
+--insert messages
+
+-- Insert messages with varied content and patterns
+-- Tech support conversations
+INSERT INTO Messages
+VALUES (
+    MessageType(
+        message_id_seq.NEXTVAL,
+        'Hey, I saw your AI project! Would love to collaborate on the neural network implementation.',
+        TIMESTAMP '2024-03-15 10:00:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1016), 
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1006) 
+    )
+);
+
+INSERT INTO Messages
+VALUES (
+    MessageType(
+        message_id_seq.NEXTVAL,
+        'That would be great! I could use help with the deep learning architecture. When are you free to discuss?',
+        TIMESTAMP '2024-03-15 10:15:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1006), -- tech_guru_alex
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1016)  -- scientist_alan
+    )
+);
+
+-- Fitness collaboration messages
+INSERT INTO Messages
+VALUES (
+    MessageType(
+        message_id_seq.NEXTVAL,
+        'Would you be interested in doing a joint workout session for our followers?',
+        TIMESTAMP '2024-03-15 08:30:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1007), -- fitness_jane
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1020)  -- sports_coach_ben
+    )
+);
+
+INSERT INTO Messages
+VALUES (
+    MessageType(
+        message_id_seq.NEXTVAL,
+        'Absolutely! We could combine HIIT with strength training. How about next week?',
+        TIMESTAMP '2024-03-15 09:45:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1020), -- sports_coach_ben
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1007)  -- fitness_jane
+    )
+);
+
+-- Food blogger collaboration
+INSERT INTO Messages
+VALUES (
+    MessageType(
+        message_id_seq.NEXTVAL,
+        'Your food photography is amazing! Want to collab on a cookbook?',
+        TIMESTAMP '2024-03-15 11:30:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1008), -- foodie_mark
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1012)  -- photographer_tom
+    )
+);
+
+-- Artist collaboration request
+INSERT INTO Messages
+VALUES (
+    MessageType(
+        message_id_seq.NEXTVAL,
+        'I love your digital art style! Would you be interested in designing my album cover?',
+        TIMESTAMP '2024-03-15 13:20:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1012), -- music_rachel
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1009)  -- artist_lisa
+    )
+);
+
+-- Travel photography discussion
+INSERT INTO Messages
+VALUES (
+    MessageType(
+        message_id_seq.NEXTVAL,
+        'Which camera settings did you use for those night shots in Tokyo?',
+        TIMESTAMP '2024-03-15 14:45:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1012), -- photographer_tom
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1010)  -- travel_mike
+    )
+);
+
+-- Gaming stream coordination
+INSERT INTO Messages
+VALUES (
+    MessageType(
+        message_id_seq.NEXTVAL,
+        'Up for a multiplayer stream tonight? My followers would love it!',
+        TIMESTAMP '2024-03-15 16:00:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1011), -- gamer_sam
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1018)  -- comedian_jack
+    )
+);
+
+-- Music collaboration
+INSERT INTO Messages
+VALUES (
+    MessageType(
+        message_id_seq.NEXTVAL,
+        'Loved your latest track! Would you be interested in a collab?',
+        TIMESTAMP '2024-03-15 17:30:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1012), -- music_rachel
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1015)  -- dancer_maria
+    )
+);
+
+-- Environmental initiative
+INSERT INTO Messages
+VALUES (
+    MessageType(
+        message_id_seq.NEXTVAL,
+        'Planning a beach cleanup next weekend. Would you help spread the word?',
+        TIMESTAMP '2024-03-15 09:15:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1013), -- eco_peter
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1014)  -- fashion_nina
+    )
+);
+
+-- Fashion collaboration
+INSERT INTO Messages
+VALUES (
+    MessageType(
+        message_id_seq.NEXTVAL,
+        'Your sustainable fashion line is exactly what we need!We should collaborate!',
+        TIMESTAMP '2024-03-15 10:45:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1014),
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1013)  
+    )
+);
+
+-- Dance choreography
+INSERT INTO Messages
+VALUES (
+    MessageType(
+        message_id_seq.NEXTVAL,
+        'Would love to learn that choreography! Any chance for a workshop?',
+        TIMESTAMP '2024-03-15 12:30:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1007), -- fitness_jane
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1015)  -- dancer_maria
+    )
+);
+
+-- Scientific collaboration
+INSERT INTO Messages
+VALUES (
+    MessageType(
+        message_id_seq.NEXTVAL,
+        'Your quantum computing paper was fascinating! Want to collaborate on research?',
+        TIMESTAMP '2024-03-15 14:15:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1016), -- scientist_alan
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1006)  -- tech_guru_alex
+    )
+);
+
+-- DIY project advice
+INSERT INTO Messages
+VALUES (
+    MessageType(
+        message_id_seq.NEXTVAL,
+        'Any tips for upcycling vintage furniture? Love your latest project!',
+        TIMESTAMP '2024-03-15 15:45:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1014), -- fashion_nina
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1017)  -- diy_hannah
+    )
+);
+
+-- Comedy show invitation
+INSERT INTO Messages
+VALUES (
+    MessageType(
+        message_id_seq.NEXTVAL,
+        'Would you like to do a stand-up set at my show next week?',
+        TIMESTAMP '2024-03-15 17:00:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1018), -- comedian_jack
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1011)  -- gamer_sam
+    )
+);
+
+-- Pet rescue coordination
+INSERT INTO Messages
+VALUES (
+    MessageType(
+        message_id_seq.NEXTVAL,
+        'We have a new rescue dog that matches your adoption criteria!',
+        TIMESTAMP '2024-03-15 18:30:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1019), -- pet_lover_lucy
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1013)  -- eco_peter
+    )
+);
+
+-- Sports training inquiry
+INSERT INTO Messages
+VALUES (
+    MessageType(
+        message_id_seq.NEXTVAL,
+        'Interested in personal training sessions. What is your availability?',
+        TIMESTAMP '2024-03-15 08:00:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1014), -- fashion_nina
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1020)  -- sports_coach_ben
+    )
+);
+
+-- Tech mentorship
+INSERT INTO Messages
+VALUES (
+    MessageType(
+        message_id_seq.NEXTVAL,
+        'Would you be interested in mentoring junior developers in our coding bootcamp?',
+        TIMESTAMP '2024-03-15 11:00:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1006), -- tech_guru_alex
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1016)  -- scientist_alan
+    )
+);
+
+-- Photography tips
+INSERT INTO Messages
+VALUES (
+    MessageType(
+        message_id_seq.NEXTVAL,
+        'Could you share some tips on landscape photography? Your shots are amazing!',
+        TIMESTAMP '2024-03-15 13:45:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1010), -- travel_mike
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1012)  -- photographer_tom
+    )
+);
+
+-- Workout plan discussion
+INSERT INTO Messages
+VALUES (
+    MessageType(
+        message_id_seq.NEXTVAL,
+        'Here is your customized workout plan. Let me know if you need modifications!',
+        TIMESTAMP '2024-03-15 09:30:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1020), 
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1014)  
+    )
+);
+
+-- Event planning
+INSERT INTO Messages
+VALUES (
+    MessageType(
+        message_id_seq.NEXTVAL,
+        'Would you be interested in performing at our charity fundraiser?',
+        TIMESTAMP '2024-03-15 15:00:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1013), 
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1012)  
+    )
+);
+
+-- Adding more messages with different timestamps and contexts
+INSERT INTO Messages
+VALUES (
+    MessageType(
+        message_id_seq.NEXTVAL,
+        'Thanks for the Python debugging help! The code works perfectly now.',
+        TIMESTAMP '2024-03-14 16:30:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1007), 
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1006)  
+    )
+);
+
+-- Continuing with more messages...
+
+-- Late night gaming session planning
+INSERT INTO Messages
+VALUES (
+    MessageType(
+        message_id_seq.NEXTVAL,
+        'Just got the new RPG! Want to do a co-op stream at midnight? 🎮',
+        TIMESTAMP '2024-03-14 22:15:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1011), -- gamer_sam
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1016)  -- scientist_alan
+    )
+);
+
+-- Early morning yoga coordination
+INSERT INTO Messages
+VALUES (
+    MessageType(
+        message_id_seq.NEXTVAL,
+        'Sunrise yoga session tomorrow at 6AM? Perfect way to start the day! 🧘‍♀️',
+        TIMESTAMP '2024-03-14 20:00:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1007), -- fitness_jane
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1015)  -- dancer_maria
+    )
+);
+
+-- Recipe exchange
+INSERT INTO Messages
+VALUES (
+    MessageType(
+        message_id_seq.NEXTVAL,
+        'Could you share that vegan ramen recipe you mentioned? My followers keep asking! 🍜',
+        TIMESTAMP '2024-03-14 19:30:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1008), -- foodie_mark
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1013)  -- eco_peter
+    )
+);
+
+-- Photography equipment advice
+INSERT INTO Messages
+VALUES (
+    MessageType(
+        message_id_seq.NEXTVAL,
+        'Which wide-angle lens would you recommend for landscape photography under $1000? 📸',
+        TIMESTAMP '2024-03-14 15:20:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1010), -- travel_mike
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1012)  -- photographer_tom
+    )
+);
+
+-- Startup mentoring
+INSERT INTO Messages
+VALUES (
+    MessageType(
+        message_id_seq.NEXTVAL,
+        'Can we schedule a call to discuss my startup pitch? Need your expertise! 💡',
+        TIMESTAMP '2024-03-14 14:45:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1017), -- diy_hannah
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1014)  -- startup_ryan
+    )
+);
+
+-- Dance collaboration follow-up
+INSERT INTO Messages
+VALUES (
+    MessageType(
+        message_id_seq.NEXTVAL,
+        'The fusion choreography video hit 1M views! Ready for our next collab? 💃',
+        TIMESTAMP '2024-03-14 13:15:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1015), -- dancer_maria
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1012)  -- music_rachel
+    )
+);
+
+-- Tech troubleshooting
+INSERT INTO Messages
+VALUES (
+    MessageType(
+        message_id_seq.NEXTVAL,
+        'Getting a weird error with the API integration. Mind taking a look? Here is the stack trace...',
+        TIMESTAMP '2024-03-14 11:30:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1006), 
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1016)  
+    )
+);
+
+-- Fashion week planning
+INSERT INTO Messages
+VALUES (
+    MessageType(
+        message_id_seq.NEXTVAL,
+        'Your sustainable collection would be perfect for Fashion Week! Interested in showcasing? 👗',
+        TIMESTAMP '2024-03-14 10:45:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1014), 
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1017)  
+    )
+);
+
+-- Comedy writing collaboration
+INSERT INTO Messages
+VALUES (
+    MessageType(
+        message_id_seq.NEXTVAL,
+        'That gaming sketch was hilarious! Want to write more gaming-themed comedy? 😂',
+        TIMESTAMP '2024-03-14 09:20:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1018), 
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1011)  
+    )
+);
+
+-- Pet adoption follow-up
+INSERT INTO Messages
+VALUES (
+    MessageType(
+        message_id_seq.NEXTVAL,
+        'Max has settled in perfectly! Thank you for helping with the adoption process! 🐕',
+        TIMESTAMP '2024-03-14 08:45:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1013), 
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1019)  
+    )
+);
+
+-- Workout progress update
+INSERT INTO Messages
+VALUES (
+    MessageType(
+        message_id_seq.NEXTVAL,
+        'Down 5kg and feeling stronger! Your program is amazing! 💪',
+        TIMESTAMP '2024-03-14 07:30:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1014), 
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1020)  
+    )
+);
+
+-- Book review request
+INSERT INTO Messages
+VALUES (
+    MessageType(
+        message_id_seq.NEXTVAL,
+        'Would you be interested in reviewing my new novel before publication? 📚',
+        TIMESTAMP '2024-03-14 16:15:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1013), 
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1009)  
+    )
+);
+
+-- Environmental project coordination
+INSERT INTO Messages
+VALUES (
+    MessageType(
+        message_id_seq.NEXTVAL,
+        'The recycling workshop was a huge success! Ready for next months event? ♻️',
+        TIMESTAMP '2024-03-14 15:45:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1013), 
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1017)  
+    )
+);
+
+-- Music festival planning
+INSERT INTO Messages
+VALUES (
+    MessageType(
+        message_id_seq.NEXTVAL,
+        'We would love to have you perform at the summer festival! Available June 15th? 🎵',
+        TIMESTAMP '2024-03-14 14:30:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1012), 
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1018)  
+    )
+);
+
+-- Tech conference speaking opportunity
+INSERT INTO Messages
+VALUES (
+    MessageType(
+        message_id_seq.NEXTVAL,
+        'Would you be interested in speaking about AI ethics at TechCon 2024? 🤖',
+        TIMESTAMP '2024-03-14 13:20:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1016), 
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1006)  
+    )
+);
+
+-- Fitness challenge coordination
+INSERT INTO Messages
+VALUES (
+    MessageType(
+        message_id_seq.NEXTVAL,
+        'Starting a 30-day fitness challenge next week. Want to co-host? 🏃‍♀️',
+        TIMESTAMP '2024-03-14 12:15:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1007), 
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1020)  
+    )
+);
+
+-- Photography workshop planning
+INSERT INTO Messages
+VALUES (
+    MessageType(
+        message_id_seq.NEXTVAL,
+        'Let us do a joint sunset photography workshop this weekend! 🌅',
+        TIMESTAMP '2024-03-14 11:00:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1012), 
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1010)  
+    )
+);
+
+-- Cooking class coordination
+INSERT INTO Messages
+VALUES (
+    MessageType(
+        message_id_seq.NEXTVAL,
+        'My restaurant can host your cooking workshop next Saturday. How many students? 👨‍🍳',
+        TIMESTAMP '2024-03-14 10:30:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1008), 
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1015)  
+    )
+);
+
+-- Art commission discussion
+INSERT INTO Messages
+VALUES (
+    MessageType(
+        message_id_seq.NEXTVAL,
+        'Love your digital art style! What would you charge for a custom piece? 🎨',
+        TIMESTAMP '2024-03-14 09:45:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1014), 
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1009)  
+    )
+);
+
+COMMIT;
 
 
 
