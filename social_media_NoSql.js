@@ -1001,3 +1001,313 @@ db.likes.insertMany([
         created_at: new Date("2024-03-15T18:25:00Z")
     }
 ]);
+
+// Create comments collection with schema validation
+db.createCollection("comments", {
+    validator: {
+        $jsonSchema: {
+            bsonType: "object",
+            required: ["comment_id", "content", "created_at", "user", "post"],
+            properties: {
+                comment_id: { bsonType: "number" },
+                content: { bsonType: "string" },
+                created_at: { bsonType: "date" },
+                user: { bsonType: "object" },
+                post: { bsonType: "object" }
+            }
+        }
+    }
+});
+
+// Create indexes for comments
+db.comments.createIndex({ "comment_id": 1 }, { unique: true });
+db.comments.createIndex({ "post.$id": 1, "user.$id": 1 });
+
+// Clear any existing comments data
+db.comments.drop();
+
+// Insert comments in exact same order as Oracle database
+db.comments.insertMany([
+    {
+        comment_id: 1,
+        content: "This AI project looks amazing! Would love to contribute.",
+        created_at: new Date("2024-03-15T09:30:00Z"),
+        user: { $ref: "users", $id: user_1016_id },
+        post: { $ref: "posts", $id: db.posts.find({ post_id: 1 }).toArray()[0]._id }
+    },
+    {
+        comment_id: 2,
+        content: "Have you considered implementing neural networks for this?",
+        created_at: new Date("2024-03-15T09:45:00Z"),
+        user: { $ref: "users", $id: user_1014_id },
+        post: { $ref: "posts", $id: db.posts.find({ post_id: 1 }).toArray()[0]._id }
+    },
+    {
+        comment_id: 3,
+        content: "That ramen looks incredible! Which restaurant is this?",
+        created_at: new Date("2024-03-15T12:30:00Z"),
+        user: { $ref: "users", $id: user_1015_id },
+        post: { $ref: "posts", $id: db.posts.find({ post_id: 4 }).toArray()[0]._id }
+    },
+    {
+        comment_id: 4,
+        content: "Your food photography skills are getting better every day!",
+        created_at: new Date("2024-03-15T12:45:00Z"),
+        user: { $ref: "users", $id: user_1012_id },
+        post: { $ref: "posts", $id: db.posts.find({ post_id: 4 }).toArray()[0]._id }
+    },
+    {
+        comment_id: 5,
+        content: "Thanks for sharing these VS Code tips! The Python extension is a game-changer.",
+        created_at: new Date("2024-03-15T14:30:00Z"),
+        user: { $ref: "users", $id: user_1006_id },
+        post: { $ref: "posts", $id: db.posts.find({ post_id: 3 }).toArray()[0]._id }
+    },
+    {
+        comment_id: 6,
+        content: "Which theme are you using? It looks clean!",
+        created_at: new Date("2024-03-15T14:45:00Z"),
+        user: { $ref: "users", $id: user_1016_id },
+        post: { $ref: "posts", $id: db.posts.find({ post_id: 3 }).toArray()[0]._id }
+    },
+    {
+        comment_id: 7,
+        content: "Great workout routine! Could you share more about your warm-up?",
+        created_at: new Date("2024-03-15T07:30:00Z"),
+        user: { $ref: "users", $id: user_1020_id },
+        post: { $ref: "posts", $id: db.posts.find({ post_id: 7 }).toArray()[0]._id }
+    },
+    {
+        comment_id: 8,
+        content: "Love these sustainable fashion choices! Where did you get that eco-friendly bag?",
+        created_at: new Date("2024-03-15T11:15:00Z"),
+        user: { $ref: "users", $id: user_1013_id },
+        post: { $ref: "posts", $id: db.posts.find({ post_id: 14 }).toArray()[0]._id }
+    },
+    {
+        comment_id: 9,
+        content: "That Mount Fuji shot is breathtaking! What camera settings did you use?",
+        created_at: new Date("2024-03-15T06:15:00Z"),
+        user: { $ref: "users", $id: user_1012_id },
+        post: { $ref: "posts", $id: db.posts.find({ post_id: 35 }).toArray()[0]._id }
+    },
+    {
+        comment_id: 10,
+        content: "The lighting in this photo is perfect! Golden hour magic ✨",
+        created_at: new Date("2024-03-15T06:30:00Z"),
+        user: { $ref: "users", $id: user_1014_id },
+        post: { $ref: "posts", $id: db.posts.find({ post_id: 35 }).toArray()[0]._id }
+    },
+    {
+        comment_id: 11,
+        content: "Such a heartwarming adoption day! Those pets look so happy 🐾",
+        created_at: new Date("2024-03-15T18:45:00Z"),
+        user: { $ref: "users", $id: user_1019_id },
+        post: { $ref: "posts", $id: db.posts.find({ post_id: 41 }).toArray()[0]._id }
+    },
+    {
+        comment_id: 12,
+        content: "Your DIY skills are incredible! Tutorial please! 🙏",
+        created_at: new Date("2024-03-15T13:45:00Z"),
+        user: { $ref: "users", $id: user_1017_id },
+        post: { $ref: "posts", $id: db.posts.find({ post_id: 37 }).toArray()[0]._id }
+    },
+    {
+        comment_id: 13,
+        content: "This comedy show was hilarious! When is your next performance?",
+        created_at: new Date("2024-03-16T00:00:00Z"),
+        user: { $ref: "users", $id: user_1011_id },
+        post: { $ref: "posts", $id: db.posts.find({ post_id: 40 }).toArray()[0]._id }
+    },
+    {
+        comment_id: 14,
+        content: "Your dance choreography is so innovative! Love the fusion elements.",
+        created_at: new Date("2024-03-15T19:30:00Z"),
+        user: { $ref: "users", $id: user_1015_id },
+        post: { $ref: "posts", $id: db.posts.find({ post_id: 29 }).toArray()[0]._id }
+    },
+    {
+        comment_id: 15,
+        content: "This startup journey is inspiring! Any advice for new entrepreneurs?",
+        created_at: new Date("2024-03-15T11:00:00Z"),
+        user: { $ref: "users", $id: user_1014_id },
+        post: { $ref: "posts", $id: db.posts.find({ post_id: 33 }).toArray()[0]._id }
+    },
+    {
+        comment_id: 16,
+        content: "Just tried your recipe and it turned out amazing! The secret ingredient really makes a difference 👨‍🍳",
+        created_at: new Date("2024-03-15T17:00:00Z"),
+        user: { $ref: "users", $id: user_1010_id },
+        post: { $ref: "posts", $id: db.posts.find({ post_id: 5 }).toArray()[0]._id }
+    },
+    {
+        comment_id: 17,
+        content: "Could you do a beginner-friendly version of this workout? Looking to start my fitness journey!",
+        created_at: new Date("2024-03-15T08:15:00Z"),
+        user: { $ref: "users", $id: user_1008_id },
+        post: { $ref: "posts", $id: db.posts.find({ post_id: 7 }).toArray()[0]._id }
+    },
+    {
+        comment_id: 18,
+        content: "The way you explained these Python features makes it so much clearer. Especially the new pattern matching!",
+        created_at: new Date("2024-03-15T11:45:00Z"),
+        user: { $ref: "users", $id: user_1016_id },
+        post: { $ref: "posts", $id: db.posts.find({ post_id: 2 }).toArray()[0]._id }
+    },
+    {
+        comment_id: 19,
+        content: "Been following your gaming streams for months now. Your commentary always makes my day! 🎮",
+        created_at: new Date("2024-03-15T20:30:00Z"),
+        user: { $ref: "users", $id: user_1019_id },
+        post: { $ref: "posts", $id: db.posts.find({ post_id: 11 }).toArray()[0]._id }
+    },
+    {
+        comment_id: 20,
+        content: "These beach cleanup initiatives are so important! Count me in for the next one! 🌊",
+        created_at: new Date("2024-03-15T16:30:00Z"),
+        user: { $ref: "users", $id: user_1017_id },
+        post: { $ref: "posts", $id: db.posts.find({ post_id: 9 }).toArray()[0]._id }
+    },
+    {
+        comment_id: 21,
+        content: "The quantum computing implications here are fascinating. Have you considered the potential impact on blockchain?",
+        created_at: new Date("2024-03-15T14:30:00Z"),
+        user: { $ref: "users", $id: user_1006_id },
+        post: { $ref: "posts", $id: db.posts.find({ post_id: 10 }).toArray()[0]._id }
+    },
+    {
+        comment_id: 22,
+        content: "Your style evolution this year has been incredible! Love how you mix vintage with modern pieces 👗",
+        created_at: new Date("2024-03-15T15:15:00Z"),
+        user: { $ref: "users", $id: user_1015_id },
+        post: { $ref: "posts", $id: db.posts.find({ post_id: 14 }).toArray()[0]._id }
+    },
+    {
+        comment_id: 23,
+        content: "This series of photos tells such a beautiful story. The progression from dawn to dusk is masterful 📸",
+        created_at: new Date("2024-03-15T07:00:00Z"),
+        user: { $ref: "users", $id: user_1014_id },
+        post: { $ref: "posts", $id: db.posts.find({ post_id: 35 }).toArray()[0]._id }
+    },
+    {
+        comment_id: 24,
+        content: "As a fellow entrepreneur, I resonate with these challenges. Building a startup is definitely a roller coaster!",
+        created_at: new Date("2024-03-15T11:30:00Z"),
+        user: { $ref: "users", $id: user_1006_id },
+        post: { $ref: "posts", $id: db.posts.find({ post_id: 33 }).toArray()[0]._id }
+    },
+    {
+        comment_id: 25,
+        content: "The way you blend different dance styles is so unique. Would love to collaborate on a fusion piece! 💃",
+        created_at: new Date("2024-03-15T20:00:00Z"),
+        user: { $ref: "users", $id: user_1007_id },
+        post: { $ref: "posts", $id: db.posts.find({ post_id: 29 }).toArray()[0]._id }
+    },
+    {
+        comment_id: 26,
+        content: "This Python tutorial series is exactly what I needed! The examples are so practical 🐍",
+        created_at: new Date("2024-03-15T12:00:00Z"),
+        user: { $ref: "users", $id: user_1007_id },
+        post: { $ref: "posts", $id: db.posts.find({ post_id: 2 }).toArray()[0]._id }
+    },
+    {
+        comment_id: 27,
+        content: "Could you make a follow-up video on advanced pattern matching cases?",
+        created_at: new Date("2024-03-15T12:15:00Z"),
+        user: { $ref: "users", $id: user_1020_id },
+        post: { $ref: "posts", $id: db.posts.find({ post_id: 2 }).toArray()[0]._id }
+    },
+    {
+        comment_id: 28,
+        content: "The error handling section was particularly helpful. Fixed my project issues! 💻",
+        created_at: new Date("2024-03-15T12:30:00Z"),
+        user: { $ref: "users", $id: user_1013_id },
+        post: { $ref: "posts", $id: db.posts.find({ post_id: 2 }).toArray()[0]._id }
+    },
+    {
+        comment_id: 29,
+        content: "This ramen spot is now my weekend favorite! The broth is incredible 🍜",
+        created_at: new Date("2024-03-15T13:00:00Z"),
+        user: { $ref: "users", $id: user_1016_id },
+        post: { $ref: "posts", $id: db.posts.find({ post_id: 4 }).toArray()[0]._id }
+    },
+    {
+        comment_id: 30,
+        content: "Went there today because of your post - the line was worth it!",
+        created_at: new Date("2024-03-15T19:45:00Z"),
+        user: { $ref: "users", $id: user_1019_id },
+        post: { $ref: "posts", $id: db.posts.find({ post_id: 4 }).toArray()[0]._id }
+    },
+    {
+        comment_id: 31,
+        content: "Their vegetarian option is amazing too! Great recommendation 🌱",
+        created_at: new Date("2024-03-15T20:15:00Z"),
+        user: { $ref: "users", $id: user_1013_id },
+        post: { $ref: "posts", $id: db.posts.find({ post_id: 4 }).toArray()[0]._id }
+    },
+    {
+        comment_id: 32,
+        content: "This HIIT routine is intense but effective! Lost 5kg following your workouts 💪",
+        created_at: new Date("2024-03-15T08:30:00Z"),
+        user: { $ref: "users", $id: user_1014_id },
+        post: { $ref: "posts", $id: db.posts.find({ post_id: 7 }).toArray()[0]._id }
+    },
+    {
+        comment_id: 33,
+        content: "The modified versions for beginners are so thoughtful! Thank you! 🏃‍♀️",
+        created_at: new Date("2024-03-15T09:15:00Z"),
+        user: { $ref: "users", $id: user_1019_id },
+        post: { $ref: "posts", $id: db.posts.find({ post_id: 7 }).toArray()[0]._id }
+    },
+    {
+        comment_id: 34,
+        content: "Been doing this routine for a month - my endurance has improved significantly!",
+        created_at: new Date("2024-03-15T10:00:00Z"),
+        user: { $ref: "users", $id: user_1015_id },
+        post: { $ref: "posts", $id: db.posts.find({ post_id: 7 }).toArray()[0]._id }
+    },
+    {
+        comment_id: 35,
+        content: "The integration with TensorFlow is brilliant! Mind sharing your model architecture?",
+        created_at: new Date("2024-03-15T10:30:00Z"),
+        user: { $ref: "users", $id: user_1016_id },
+        post: { $ref: "posts", $id: db.posts.find({ post_id: 1 }).toArray()[0]._id }
+    },
+    {
+        comment_id: 36,
+        content: "Impressive accuracy rates! How did you handle the data preprocessing? 🤖",
+        created_at: new Date("2024-03-15T11:00:00Z"),
+        user: { $ref: "users", $id: user_1020_id },
+        post: { $ref: "posts", $id: db.posts.find({ post_id: 1 }).toArray()[0]._id }
+    },
+    {
+        comment_id: 37,
+        content: "This Mount Fuji series belongs in a gallery! The composition is perfect 🗻",
+        created_at: new Date("2024-03-15T07:30:00Z"),
+        user: { $ref: "users", $id: user_1008_id },
+        post: { $ref: "posts", $id: db.posts.find({ post_id: 35 }).toArray()[0]._id }
+    },
+    {
+        comment_id: 38,
+        content: "The way you captured the morning mist is ethereal! What time did you start hiking?",
+        created_at: new Date("2024-03-15T08:00:00Z"),
+        user: { $ref: "users", $id: user_1015_id },
+        post: { $ref: "posts", $id: db.posts.find({ post_id: 35 }).toArray()[0]._id }
+    },
+    {
+        comment_id: 39,
+        content: "Your funding journey is so inspiring! Would love to hear more about your pitch deck preparation 📊",
+        created_at: new Date("2024-03-15T13:30:00Z"),
+        user: { $ref: "users", $id: user_1016_id },
+        post: { $ref: "posts", $id: db.posts.find({ post_id: 33 }).toArray()[0]._id }
+    },
+    {
+        comment_id: 40,
+        content: "The section about bootstrapping really resonated with me. Pure startup wisdom! 💡",
+        created_at: new Date("2024-03-15T14:15:00Z"),
+        user: { $ref: "users", $id: user_1008_id },
+        post: { $ref: "posts", $id: db.posts.find({ post_id: 33 }).toArray()[0]._id }
+    }
+]);
+
+
