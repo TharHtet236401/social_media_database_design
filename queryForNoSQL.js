@@ -207,6 +207,7 @@ db.messages.aggregate([
     }
 ]);
 
+db.messages.countDocuments();
 
 
     
