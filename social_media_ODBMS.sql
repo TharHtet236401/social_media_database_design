@@ -10,15 +10,15 @@ DROP SEQUENCE post_id_seq;
 DROP SEQUENCE user_id_seq;
 
 -- Drop tables if they exist
-DROP TABLE Messages;
+DROP TABLE Messages CASCADE CONSTRAINTS;
 
-DROP TABLE Likes;
+DROP TABLE Likes CASCADE CONSTRAINTS;
 
-DROP TABLE Comments;
+DROP TABLE Comments CASCADE CONSTRAINTS;
 
-DROP TABLE Posts;
+DROP TABLE Posts CASCADE CONSTRAINTS;
 
-DROP TABLE Users;
+DROP TABLE Users CASCADE CONSTRAINTS;
 
 -- Drop types if they exist (order matters due to dependencies)
 DROP TYPE MessageType FORCE;
