@@ -54,9 +54,9 @@ db.createCollection("users", {
                 },
                 // Regular user specific fields
                 regular_user:{
-                bio: {
-                    bsonType: "string",
-                    maxLength: 4000
+                    bio: {
+                        bsonType: "string",
+                        maxLength: 4000
                 },
                 user_status: {
                     bsonType: "string",
@@ -67,6 +67,7 @@ db.createCollection("users", {
                 },
                 following: {
                     bsonType: "number"
+                }
                 }
             }
         }
