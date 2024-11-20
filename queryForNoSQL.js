@@ -209,5 +209,127 @@ db.messages.aggregate([
 
 db.messages.countDocuments();
 
+// Query to get posts with engagement metrics and details
+db.posts.aggregate([
+    // Match posts within date range
+    {
+        $match: {
+            created_at: {
+                $gte: new Date("2024-03-12T00:00:00Z"),
+                $lte: new Date("2024-03-15T23:59:59Z")
+            }
+        }
+    },
+    // Lookup user information for post author
+    {
+        $lookup: {
+            from: "users",
+            localField: "user.$id",
+            foreignField: "_id",
+            as: "author"
+        }
+    },
+    // Lookup likes for the post
+    {
+        $lookup: {
+            from: "likes",
+            localField: "_id",
+            foreignField: "post.$id",
+            as: "likes"
+        }
+    },
+    // Lookup comments for the post
+    {
+        $lookup: {
+            from: "comments",
+            localField: "_id",
+            foreignField: "post.$id",
+            as: "comments"
+        }
+    },
+    // Lookup user information for likes
+    {
+        $lookup: {
+            from: "users",
+            localField: "likes.user.$id",
+            foreignField: "_id",
+            as: "liking_users"
+        }
+    },
+    // Project the final format
+    {
+        $project: {
+            post_id: "$_id",
+            post_author: { $arrayElemAt: ["$author.username", 0] },
+            post_preview: {
+                $concat: [
+                    { 
+                        $substrCP: [
+                            { $ifNull: ["$content", ""] },
+                            0,
+                            50
+                        ]
+                    },
+                    "..."
+                ]
+            },
+            post_time: "$created_at",
+            like_count: { $size: "$likes" },
+            comment_count: { $size: "$comments" },
+            liking_users: {
+                $map: {
+                    input: "$liking_users",
+                    as: "user",
+                    in: "$$user.username"
+                }
+            },
+            recent_comments: {
+                $map: {
+                    input: {
+                        $slice: [{
+                            $sortArray: {
+                                input: "$comments",
+                                sortBy: { created_at: 1 }
+                            }
+                        }, 5]
+                    },
+                    as: "comment",
+                    in: {
+                        username: "$$comment.user.username",
+                        preview: {
+                            $concat: [
+                                {
+                                    $substrCP: [
+                                        { $ifNull: ["$$comment.content", ""] },
+                                        0,
+                                        30
+                                    ]
+                                },
+                                "..."
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    },
+    // Match posts that have either likes or comments
+    {
+        $match: {
+            $or: [
+                { like_count: { $gte: 1 } },
+                { comment_count: { $gte: 1 } }
+            ]
+        }
+    },
+    // Sort by engagement metrics
+    {
+        $sort: {
+            like_count: -1,
+            comment_count: -1,
+            post_time: -1
+        }
+    }
+]);
 
-    
+
