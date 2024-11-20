@@ -9,70 +9,70 @@ db.likes.drop();
 db.messages.drop();
 
 // Create collections with schema validation
-db.createCollection("users", {
-    validator: {
-        $jsonSchema: {
-            bsonType: "object",
-            required: ["username", "email", "password_hash", "created_at", "user_type"],
-            properties: {
-                username: {
-                    bsonType: "string",
-                    maxLength: 50
-                },
-                email: {
-                    bsonType: "string",
-                    maxLength: 100
-                },
-                password_hash: {
-                    bsonType: "string",
-                    maxLength: 255
-                },
-                created_at: {
-                    bsonType: "date"
-                },
-                profile_picture: {
-                    bsonType: "string",
-                    maxLength: 500
-                },
-                user_type: {
-                    enum: ["admin", "regular"]
-                },
-                // Admin specific fields
-                admin_user:{
-                    admin_id: {
-                        bsonType: "number"
-                    },
-                    report_viewed: {
-                        bsonType: "number"
-                },
-                last_login: {
-                        bsonType: "date"
-                    },
-                    admin_level: {
-                        bsonType: "number"
-                    },
-                },
-                // Regular user specific fields
-                regular_user:{
-                    bio: {
-                        bsonType: "string",
-                        maxLength: 4000
-                },
-                user_status: {
-                    bsonType: "string",
-                    maxLength: 255
-                },
-                followers: {
-                    bsonType: "number"
-                },
-                following: {
-                    bsonType: "number"
-                }
-                }
-            }
-        }
-    }
-});
+// db.createCollection("users", {
+//     validator: {
+//         $jsonSchema: {
+//             bsonType: "object",
+//             required: ["username", "email", "password_hash", "created_at", "user_type"],
+//             properties: {
+//                 username: {
+//                     bsonType: "string",
+//                     maxLength: 50
+//                 },
+//                 email: {
+//                     bsonType: "string",
+//                     maxLength: 100
+//                 },
+//                 password_hash: {
+//                     bsonType: "string",
+//                     maxLength: 255
+//                 },
+//                 created_at: {
+//                     bsonType: "date"
+//                 },
+//                 profile_picture: {
+//                     bsonType: "string",
+//                     maxLength: 500
+//                 },
+//                 user_type: {
+//                     enum: ["admin", "regular"]
+//                 },
+//                 // Admin specific fields
+//                 admin_user:{
+//                     admin_id: {
+//                         bsonType: "number"
+//                     },
+//                     report_viewed: {
+//                         bsonType: "number"
+//                 },
+//                 last_login: {
+//                         bsonType: "date"
+//                     },
+//                     admin_level: {
+//                         bsonType: "number"
+//                     },
+//                 },
+//                 // Regular user specific fields
+//                 regular_user:{
+//                     bio: {
+//                         bsonType: "string",
+//                         maxLength: 4000
+//                 },
+//                 user_status: {
+//                     bsonType: "string",
+//                     maxLength: 255
+//                 },
+//                 followers: {
+//                     bsonType: "number"
+//                 },
+//                 following: {
+//                     bsonType: "number"
+//                 }
+//                 }
+//             }
+//         }
+//     }
+// });
 
 // Create indexes
 db.users.createIndex({ "username": 1 }, { unique: true });
