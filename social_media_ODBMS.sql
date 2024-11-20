@@ -1563,6 +1563,10 @@ VALUES
 
 COMMIT;
 
+-- Get total post count
+SELECT COUNT(*) AS total_posts 
+FROM Posts;
+
 
 
 

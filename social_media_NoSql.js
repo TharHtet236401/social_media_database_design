@@ -486,9 +486,6 @@ var comedian_jack_id = db.users.find({ user_id: { $eq: 1018 }}).toArray()[0]._id
 var pet_lover_lucy_id = db.users.find({ user_id: { $eq: 1019 }}).toArray()[0]._id;
 var sports_coach_ben_id = db.users.find({ user_id: { $eq: 1020 }}).toArray()[0]._id;
 
-// Drop existing posts collection if it exists
-db.posts.drop();
-
 // Insert all posts in exact order matching Oracle version
 db.posts.insertMany([
     {
@@ -763,3 +760,5 @@ db.posts.insertMany([
     }
 ]);
 
+// Count total number of posts
+db.posts.countDocuments();

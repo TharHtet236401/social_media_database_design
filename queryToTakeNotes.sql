@@ -1,3 +1,4 @@
+-- Query to see all users with their basic information
 SELECT 
     u.username,
     u.user_type,
@@ -10,4 +11,6 @@ GROUP BY u.username, u.user_type
 ORDER BY post_count DESC;
 
 
-
+-- Get total post count
+SELECT COUNT(*) AS total_posts 
+FROM Posts;
