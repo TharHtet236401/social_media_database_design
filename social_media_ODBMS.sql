@@ -2964,10 +2964,10 @@ INSERT INTO Messages
 VALUES (
     MessageType(
         message_id_seq.NEXTVAL,
-        'Can you DJ at our animal shelter fundraiser? It's for a great cause! 🐾',
+        'Can you DJ at our animal shelter fundraiser? It for a great cause! 🐾',
         TIMESTAMP '2024-03-13 12:40:00',
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 1019), -- pet_lover_lucy
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 1012)  -- music_rachel
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1019), 
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1012)  
     )
 );
 
@@ -3000,10 +3000,10 @@ INSERT INTO Messages
 VALUES (
     MessageType(
         message_id_seq.NEXTVAL,
-        'Your illustrations would be perfect for my children's book! Interested in collaborating? 📚',
+        'Your illustrations would be perfect for my childrens book! Interested in collaborating? 📚',
         TIMESTAMP '2024-03-13 09:30:00',
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 1013), -- writer_sophia
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 1009)  -- artist_lisa
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1013), 
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1009)  
     )
 );
 
@@ -3014,8 +3014,8 @@ VALUES (
         message_id_seq.NEXTVAL,
         'The beta version of the fitness app is ready! Want to test the workout tracking feature? 💪',
         TIMESTAMP '2024-03-13 08:15:00',
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 1006), -- tech_guru_alex
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 1007)  -- fitness_jane
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1006), 
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1007)  
     )
 );
 

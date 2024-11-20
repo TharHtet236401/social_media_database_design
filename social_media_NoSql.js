@@ -1296,7 +1296,7 @@ db.comments.insertMany([
     },
     {
         comment_id: 39,
-        content: "Your funding journey is so inspiring! Would love to hear more about your pitch deck preparation 📊",
+        content: "Your funding journey is so inspiring! Would love to hear more about your pitch deck preparation",
         created_at: new Date("2024-03-15T13:30:00Z"),
         user: { $ref: "users", $id: user_1016_id },
         post: { $ref: "posts", $id: db.posts.find({ post_id: 33 }).toArray()[0]._id }
@@ -1309,6 +1309,699 @@ db.comments.insertMany([
         post: { $ref: "posts", $id: db.posts.find({ post_id: 33 }).toArray()[0]._id }
     }
 ]);
+
+// Create messages collection with schema validation
+db.createCollection("messages", {
+    validator: {
+        $jsonSchema: {
+            bsonType: "object",
+            required: ["message_id", "content", "sent_at", "sender", "receiver"],
+            properties: {
+                message_id: { bsonType: "number" },
+                content: { bsonType: "string" },
+                sent_at: { bsonType: "date" },
+                sender: { bsonType: "object" },
+                receiver: { bsonType: "object" }
+            }
+        }
+    }
+});
+
+// Create indexes for messages
+db.messages.createIndex({ "message_id": 1 }, { unique: true });
+db.messages.createIndex({ "sender.$id": 1, "receiver.$id": 1 });
+
+// Clear any existing messages data
+db.messages.drop();
+
+// Insert messages in exact same order as Oracle database
+db.messages.insertMany([
+    {
+        message_id: 1,
+        content: "Hey, I saw your AI project! Would love to collaborate on the neural network implementation.",
+        sent_at: new Date("2024-03-15T10:00:00Z"),
+        sender: { $ref: "users", $id: user_1016_id },
+        receiver: { $ref: "users", $id: user_1006_id }
+    },
+    {
+        message_id: 2,
+        content: "That would be great! I could use help with the deep learning architecture. When are you free to discuss?",
+        sent_at: new Date("2024-03-15T10:15:00Z"),
+        sender: { $ref: "users", $id: user_1006_id },
+        receiver: { $ref: "users", $id: user_1016_id }
+    },
+    {
+        message_id: 3,
+        content: "Would you be interested in doing a joint workout session for our followers?",
+        sent_at: new Date("2024-03-15T08:30:00Z"),
+        sender: { $ref: "users", $id: user_1007_id },
+        receiver: { $ref: "users", $id: user_1020_id }
+    },
+    {
+        message_id: 4,
+        content: "Absolutely! We could combine HIIT with strength training. How about next week?",
+        sent_at: new Date("2024-03-15T09:45:00Z"),
+        sender: { $ref: "users", $id: user_1020_id },
+        receiver: { $ref: "users", $id: user_1007_id }
+    },
+    {
+        message_id: 5,
+        content: "Your food photography is amazing! Want to collab on a cookbook?",
+        sent_at: new Date("2024-03-15T11:30:00Z"),
+        sender: { $ref: "users", $id: user_1008_id },
+        receiver: { $ref: "users", $id: user_1012_id }
+    },
+    {
+        message_id: 6,
+        content: "I love your digital art style! Would you be interested in designing my album cover?",
+        sent_at: new Date("2024-03-15T13:20:00Z"),
+        sender: { $ref: "users", $id: user_1012_id },
+        receiver: { $ref: "users", $id: user_1009_id }
+    },
+    {
+        message_id: 7,
+        content: "Which camera settings did you use for those night shots in Tokyo?",
+        sent_at: new Date("2024-03-15T14:45:00Z"),
+        sender: { $ref: "users", $id: user_1012_id },
+        receiver: { $ref: "users", $id: user_1010_id }
+    },
+    {
+        message_id: 8,
+        content: "Up for a multiplayer stream tonight? My followers would love it!",
+        sent_at: new Date("2024-03-15T16:00:00Z"),
+        sender: { $ref: "users", $id: user_1011_id },
+        receiver: { $ref: "users", $id: user_1018_id }
+    },
+    {
+        message_id: 9,
+        content: "Loved your latest track! Would you be interested in a collab?",
+        sent_at: new Date("2024-03-15T17:30:00Z"),
+        sender: { $ref: "users", $id: user_1012_id },
+        receiver: { $ref: "users", $id: user_1015_id }
+    },
+    {
+        message_id: 10,
+        content: "Planning a beach cleanup next weekend. Would you help spread the word?",
+        sent_at: new Date("2024-03-15T09:15:00Z"),
+        sender: { $ref: "users", $id: user_1013_id },
+        receiver: { $ref: "users", $id: user_1014_id }
+    },
+    {
+        message_id: 11,
+        content: "Your sustainable fashion line is exactly what we need!We should collaborate!",
+        sent_at: new Date("2024-03-15T10:45:00Z"),
+        sender: { $ref: "users", $id: user_1014_id },
+        receiver: { $ref: "users", $id: user_1013_id }
+    },
+    {
+        message_id: 12,
+        content: "Would love to learn that choreography! Any chance for a workshop?",
+        sent_at: new Date("2024-03-15T12:30:00Z"),
+        sender: { $ref: "users", $id: user_1007_id },
+        receiver: { $ref: "users", $id: user_1015_id }
+    },
+    {
+        message_id: 13,
+        content: "Your quantum computing paper was fascinating! Want to collaborate on research?",
+        sent_at: new Date("2024-03-15T14:15:00Z"),
+        sender: { $ref: "users", $id: user_1016_id },
+        receiver: { $ref: "users", $id: user_1006_id }
+    },
+    {
+        message_id: 14,
+        content: "Any tips for upcycling vintage furniture? Love your latest project!",
+        sent_at: new Date("2024-03-15T15:45:00Z"),
+        sender: { $ref: "users", $id: user_1014_id },
+        receiver: { $ref: "users", $id: user_1017_id }
+    },
+    {
+        message_id: 15,
+        content: "Would you like to do a stand-up set at my show next week?",
+        sent_at: new Date("2024-03-15T17:00:00Z"),
+        sender: { $ref: "users", $id: user_1018_id },
+        receiver: { $ref: "users", $id: user_1011_id }
+    },
+    {
+        message_id: 16,
+        content: "We have a new rescue dog that matches your adoption criteria!",
+        sent_at: new Date("2024-03-15T18:30:00Z"),
+        sender: { $ref: "users", $id: user_1019_id },
+        receiver: { $ref: "users", $id: user_1013_id }
+    },
+    {
+        message_id: 17,
+        content: "Interested in personal training sessions. What is your availability?",
+        sent_at: new Date("2024-03-15T08:00:00Z"),
+        sender: { $ref: "users", $id: user_1014_id },
+        receiver: { $ref: "users", $id: user_1020_id }
+    },
+    {
+        message_id: 18,
+        content: "Would you be interested in mentoring junior developers in our coding bootcamp?",
+        sent_at: new Date("2024-03-15T11:00:00Z"),
+        sender: { $ref: "users", $id: user_1006_id },
+        receiver: { $ref: "users", $id: user_1016_id }
+    },
+    {
+        message_id: 19,
+        content: "Could you share some tips on landscape photography? Your shots are amazing!",
+        sent_at: new Date("2024-03-15T13:45:00Z"),
+        sender: { $ref: "users", $id: user_1010_id },
+        receiver: { $ref: "users", $id: user_1012_id }
+    },
+    {
+        message_id: 20,
+        content: "Here is your customized workout plan. Let me know if you need modifications!",
+        sent_at: new Date("2024-03-15T09:30:00Z"),
+        sender: { $ref: "users", $id: user_1020_id },
+        receiver: { $ref: "users", $id: user_1014_id }
+    }
+]);
+
+// Continue with the next batch of messages...
+db.messages.insertMany([
+    {
+        message_id: 21,
+        content: "Would you be interested in performing at our charity fundraiser?",
+        sent_at: new Date("2024-03-15T15:00:00Z"),
+        sender: { $ref: "users", $id: user_1013_id },
+        receiver: { $ref: "users", $id: user_1012_id }
+    },
+    {
+        message_id: 22,
+        content: "Thanks for the Python debugging help! The code works perfectly now.",
+        sent_at: new Date("2024-03-14T16:30:00Z"),
+        sender: { $ref: "users", $id: user_1007_id },
+        receiver: { $ref: "users", $id: user_1006_id }
+    },
+    {
+        message_id: 23,
+        content: "Just got the new RPG! Want to do a co-op stream at midnight? 🎮",
+        sent_at: new Date("2024-03-14T22:15:00Z"),
+        sender: { $ref: "users", $id: user_1011_id },
+        receiver: { $ref: "users", $id: user_1016_id }
+    },
+    {
+        message_id: 24,
+        content: "Sunrise yoga session tomorrow at 6AM? Perfect way to start the day! 🧘‍♀️",
+        sent_at: new Date("2024-03-14T20:00:00Z"),
+        sender: { $ref: "users", $id: user_1007_id },
+        receiver: { $ref: "users", $id: user_1015_id }
+    },
+    {
+        message_id: 25,
+        content: "Could you share that vegan ramen recipe you mentioned? My followers keep asking! 🍜",
+        sent_at: new Date("2024-03-14T19:30:00Z"),
+        sender: { $ref: "users", $id: user_1008_id },
+        receiver: { $ref: "users", $id: user_1013_id }
+    },
+    {
+        message_id: 26,
+        content: "Which wide-angle lens would you recommend for landscape photography under $1000? 📸",
+        sent_at: new Date("2024-03-14T15:20:00Z"),
+        sender: { $ref: "users", $id: user_1010_id },
+        receiver: { $ref: "users", $id: user_1012_id }
+    },
+    {
+        message_id: 27,
+        content: "Can we schedule a call to discuss my startup pitch? Need your expertise! 💡",
+        sent_at: new Date("2024-03-14T14:45:00Z"),
+        sender: { $ref: "users", $id: user_1017_id },
+        receiver: { $ref: "users", $id: user_1014_id }
+    },
+    {
+        message_id: 28,
+        content: "The fusion choreography video hit 1M views! Ready for our next collab? 💃",
+        sent_at: new Date("2024-03-14T13:15:00Z"),
+        sender: { $ref: "users", $id: user_1015_id },
+        receiver: { $ref: "users", $id: user_1012_id }
+    },
+    {
+        message_id: 29,
+        content: "Getting a weird error with the API integration. Mind taking a look? Here is the stack trace...",
+        sent_at: new Date("2024-03-14T11:30:00Z"),
+        sender: { $ref: "users", $id: user_1006_id },
+        receiver: { $ref: "users", $id: user_1016_id }
+    },
+    {
+        message_id: 30,
+        content: "Your sustainable collection would be perfect for Fashion Week! Interested in showcasing? 👗",
+        sent_at: new Date("2024-03-14T10:45:00Z"),
+        sender: { $ref: "users", $id: user_1014_id },
+        receiver: { $ref: "users", $id: user_1017_id }
+    },
+    {
+        message_id: 31,
+        content: "That gaming sketch was hilarious! Want to write more gaming-themed comedy? 😂",
+        sent_at: new Date("2024-03-14T09:20:00Z"),
+        sender: { $ref: "users", $id: user_1018_id },
+        receiver: { $ref: "users", $id: user_1011_id }
+    },
+    {
+        message_id: 32,
+        content: "Max has settled in perfectly! Thank you for helping with the adoption process! 🐕",
+        sent_at: new Date("2024-03-14T08:45:00Z"),
+        sender: { $ref: "users", $id: user_1013_id },
+        receiver: { $ref: "users", $id: user_1019_id }
+    },
+    {
+        message_id: 33,
+        content: "Down 5kg and feeling stronger! Your program is amazing! 💪",
+        sent_at: new Date("2024-03-14T07:30:00Z"),
+        sender: { $ref: "users", $id: user_1014_id },
+        receiver: { $ref: "users", $id: user_1020_id }
+    },
+    {
+        message_id: 34,
+        content: "Would you be interested in reviewing my new novel before publication? 📚",
+        sent_at: new Date("2024-03-14T16:15:00Z"),
+        sender: { $ref: "users", $id: user_1013_id },
+        receiver: { $ref: "users", $id: user_1009_id }
+    },
+    {
+        message_id: 35,
+        content: "The recycling workshop was a huge success! Ready for next months event? ♻️",
+        sent_at: new Date("2024-03-14T15:45:00Z"),
+        sender: { $ref: "users", $id: user_1013_id },
+        receiver: { $ref: "users", $id: user_1017_id }
+    }
+]);
+
+// Continue with more messages...
+db.messages.insertMany([
+    {
+        message_id: 36,
+        content: "We would love to have you perform at the summer festival! Available June 15th? 🎵",
+        sent_at: new Date("2024-03-14T14:30:00Z"),
+        sender: { $ref: "users", $id: user_1012_id },
+        receiver: { $ref: "users", $id: user_1018_id }
+    }
+    // ... Continue with the rest of the messages
+]);
+
+// Continue inserting messages...
+db.messages.insertMany([
+    {
+        message_id: 37,
+        content: "Would you be interested in speaking about AI ethics at TechCon 2024? 🤖",
+        sent_at: new Date("2024-03-14T13:20:00Z"),
+        sender: { $ref: "users", $id: user_1016_id },
+        receiver: { $ref: "users", $id: user_1006_id }
+    },
+    {
+        message_id: 38,
+        content: "Starting a 30-day fitness challenge next week. Want to co-host? 🏃‍♀️",
+        sent_at: new Date("2024-03-14T12:15:00Z"),
+        sender: { $ref: "users", $id: user_1007_id },
+        receiver: { $ref: "users", $id: user_1020_id }
+    },
+    {
+        message_id: 39,
+        content: "Let us do a joint sunset photography workshop this weekend! 🌅",
+        sent_at: new Date("2024-03-14T11:00:00Z"),
+        sender: { $ref: "users", $id: user_1012_id },
+        receiver: { $ref: "users", $id: user_1010_id }
+    },
+    {
+        message_id: 40,
+        content: "My restaurant can host your cooking workshop next Saturday. How many students? 👨‍🍳",
+        sent_at: new Date("2024-03-14T10:30:00Z"),
+        sender: { $ref: "users", $id: user_1008_id },
+        receiver: { $ref: "users", $id: user_1015_id }
+    },
+    {
+        message_id: 41,
+        content: "Love your digital art style! What would you charge for a custom piece? 🎨",
+        sent_at: new Date("2024-03-14T09:45:00Z"),
+        sender: { $ref: "users", $id: user_1014_id },
+        receiver: { $ref: "users", $id: user_1009_id }
+    },
+    {
+        message_id: 42,
+        content: "Want to organize an indie game tournament next month? Prize pool looking good! 🏆",
+        sent_at: new Date("2024-03-13T19:15:00Z"),
+        sender: { $ref: "users", $id: user_1011_id },
+        receiver: { $ref: "users", $id: user_1018_id }
+    },
+    {
+        message_id: 43,
+        content: "Loved being on your podcast! The episode about tech startups got amazing feedback 🎙️",
+        sent_at: new Date("2024-03-13T16:45:00Z"),
+        sender: { $ref: "users", $id: user_1006_id },
+        receiver: { $ref: "users", $id: user_1014_id }
+    },
+    {
+        message_id: 44,
+        content: "Planning a wellness retreat in Bali - want to lead the morning yoga sessions? 🌴",
+        sent_at: new Date("2024-03-13T15:20:00Z"),
+        sender: { $ref: "users", $id: user_1007_id },
+        receiver: { $ref: "users", $id: user_1015_id }
+    },
+    {
+        message_id: 45,
+        content: "The gallery loved your nature series! They want to feature it next month 📸",
+        sent_at: new Date("2024-03-13T14:30:00Z"),
+        sender: { $ref: "users", $id: user_1012_id },
+        receiver: { $ref: "users", $id: user_1010_id }
+    },
+    {
+        message_id: 46,
+        content: "Found an amazing eco-friendly fabric supplier in Thailand. Want to check out the samples? 🧵",
+        sent_at: new Date("2024-03-13T13:15:00Z"),
+        sender: { $ref: "users", $id: user_1014_id },
+        receiver: { $ref: "users", $id: user_1013_id }
+    },
+    {
+        message_id: 47,
+        content: "Can you DJ at our animal shelter fundraiser? It's for a great cause! 🐾",
+        sent_at: new Date("2024-03-13T12:40:00Z"),
+        sender: { $ref: "users", $id: user_1019_id },
+        receiver: { $ref: "users", $id: user_1012_id }
+    },
+    {
+        message_id: 48,
+        content: "Students loved your last workshop! Ready for another machine learning session? 🤖",
+        sent_at: new Date("2024-03-13T11:25:00Z"),
+        sender: { $ref: "users", $id: user_1016_id },
+        receiver: { $ref: "users", $id: user_1006_id }
+    },
+    {
+        message_id: 49,
+        content: "Tried your fusion recipe - the miso pasta is incredible! Mind if I feature it? 🍝",
+        sent_at: new Date("2024-03-13T10:50:00Z"),
+        sender: { $ref: "users", $id: user_1008_id },
+        receiver: { $ref: "users", $id: user_1015_id }
+    },
+    {
+        message_id: 50,
+        content: "Your illustrations would be perfect for my children's book! Interested in collaborating? 📚",
+        sent_at: new Date("2024-03-13T09:30:00Z"),
+        sender: { $ref: "users", $id: user_1013_id },
+        receiver: { $ref: "users", $id: user_1009_id }
+    }
+]);
+
+// Continue with the next batch...
+db.messages.insertMany([
+    {
+        message_id: 51,
+        content: "The beta version of the fitness app is ready! Want to test the workout tracking feature? 💪",
+        sent_at: new Date("2024-03-13T08:15:00Z"),
+        sender: { $ref: "users", $id: user_1006_id },
+        receiver: { $ref: "users", $id: user_1007_id }
+    },
+    {
+        message_id: 52,
+        content: "Your gaming jokes killed at the open mic! Please write more tech-themed material 🎮",
+        sent_at: new Date("2024-03-13T20:45:00Z"),
+        sender: { $ref: "users", $id: user_1018_id },
+        receiver: { $ref: "users", $id: user_1011_id }
+    },
+    {
+        message_id: 53,
+        content: "The hip-hop x classical fusion video is trending! Time for part 2? 💃",
+        sent_at: new Date("2024-03-13T18:30:00Z"),
+        sender: { $ref: "users", $id: user_1015_id },
+        receiver: { $ref: "users", $id: user_1012_id }
+    },
+    {
+        message_id: 54,
+        content: "Our zero-waste challenge reached 10k participants! Ready to scale it up? ♻️",
+        sent_at: new Date("2024-03-13T17:20:00Z"),
+        sender: { $ref: "users", $id: user_1013_id },
+        receiver: { $ref: "users", $id: user_1017_id }
+    },
+    {
+        message_id: 55,
+        content: "The sustainable fashion show needs a killer playlist! Can you help? 🎵",
+        sent_at: new Date("2024-03-13T16:10:00Z"),
+        sender: { $ref: "users", $id: user_1014_id },
+        receiver: { $ref: "users", $id: user_1012_id }
+    },
+    {
+        message_id: 56,
+        content: "We have 15 puppies coming to the adoption drive! Can you photograph them? 📸",
+        sent_at: new Date("2024-03-13T15:00:00Z"),
+        sender: { $ref: "users", $id: user_1019_id },
+        receiver: { $ref: "users", $id: user_1012_id }
+    },
+    {
+        message_id: 57,
+        content: "Your advice on the pitch deck was gold! Ready for another mentoring session? 💡",
+        sent_at: new Date("2024-03-13T13:45:00Z"),
+        sender: { $ref: "users", $id: user_1017_id },
+        receiver: { $ref: "users", $id: user_1014_id }
+    },
+    {
+        message_id: 58,
+        content: "Day 15 of the challenge - participants are seeing amazing results! 🏃‍♀️",
+        sent_at: new Date("2024-03-13T12:30:00Z"),
+        sender: { $ref: "users", $id: user_1007_id },
+        receiver: { $ref: "users", $id: user_1020_id }
+    },
+    {
+        message_id: 59,
+        content: "Panel discussion on AI ethics is confirmed! Sending the schedule now 📅",
+        sent_at: new Date("2024-03-13T11:15:00Z"),
+        sender: { $ref: "users", $id: user_1016_id },
+        receiver: { $ref: "users", $id: user_1006_id }
+    },
+    {
+        message_id: 60,
+        content: "The fusion cooking episode got 500k views! Ready to film the next one? 👨‍🍳",
+        sent_at: new Date("2024-03-13T10:00:00Z"),
+        sender: { $ref: "users", $id: user_1008_id },
+        receiver: { $ref: "users", $id: user_1012_id }
+    },
+    {
+        message_id: 61,
+        content: "Your TikTok dance challenge went viral! Want to create Instagram Reels version? 🎥",
+        sent_at: new Date("2024-03-12T19:30:00Z"),
+        sender: { $ref: "users", $id: user_1015_id },
+        receiver: { $ref: "users", $id: user_1014_id }
+    },
+    {
+        message_id: 62,
+        content: "Found a secret path in level 7! Want to explore it during tomorrow stream? 🎮",
+        sent_at: new Date("2024-03-12T21:15:00Z"),
+        sender: { $ref: "users", $id: user_1011_id },
+        receiver: { $ref: "users", $id: user_1018_id }
+    },
+    {
+        message_id: 63,
+        content: "The database optimization worked perfectly! Response time improved by 40% 🚀",
+        sent_at: new Date("2024-03-12T15:45:00Z"),
+        sender: { $ref: "users", $id: user_1006_id },
+        receiver: { $ref: "users", $id: user_1016_id }
+    },
+    {
+        message_id: 64,
+        content: "Here is your personalized meal plan for the competition prep! High protein focus 🥗",
+        sent_at: new Date("2024-03-12T14:20:00Z"),
+        sender: { $ref: "users", $id: user_1007_id },
+        receiver: { $ref: "users", $id: user_1020_id }
+    },
+    {
+        message_id: 65,
+        content: "First sketch for your album cover is ready! Check your email for preview 🎨",
+        sent_at: new Date("2024-03-12T16:30:00Z"),
+        sender: { $ref: "users", $id: user_1009_id },
+        receiver: { $ref: "users", $id: user_1012_id }
+    }
+]);
+
+// Continue with the next batch...
+db.messages.insertMany([
+    {
+        message_id: 66,
+        content: "Local council approved our community garden project! Starting next month 🌱",
+        sent_at: new Date("2024-03-12T11:20:00Z"),
+        sender: { $ref: "users", $id: user_1013_id },
+        receiver: { $ref: "users", $id: user_1017_id }
+    },
+    {
+        message_id: 67,
+        content: "Your portfolio is stunning! Mind if I feature you in my photography podcast? 📸",
+        sent_at: new Date("2024-03-12T13:40:00Z"),
+        sender: { $ref: "users", $id: user_1012_id },
+        receiver: { $ref: "users", $id: user_1010_id }
+    },
+    {
+        message_id: 68,
+        content: "The fusion sushi recipe was a hit! Let us create more fusion recipes next week 🍱",
+        sent_at: new Date("2024-03-12T17:55:00Z"),
+        sender: { $ref: "users", $id: user_1008_id },
+        receiver: { $ref: "users", $id: user_1015_id }
+    },
+    {
+        message_id: 69,
+        content: "Reviewed your business plan. Great potential! We should discuss scaling strategies 📈",
+        sent_at: new Date("2024-03-12T10:15:00Z"),
+        sender: { $ref: "users", $id: user_1014_id },
+        receiver: { $ref: "users", $id: user_1006_id }
+    },
+    {
+        message_id: 70,
+        content: "Studio booked for next Saturday! How many students should we expect? 💃",
+        sent_at: new Date("2024-03-12T12:30:00Z"),
+        sender: { $ref: "users", $id: user_1015_id },
+        receiver: { $ref: "users", $id: user_1007_id }
+    },
+    {
+        message_id: 71,
+        content: "Your tech jokes killed it last night! Want to co-write material for next show? 😂",
+        sent_at: new Date("2024-03-12T09:45:00Z"),
+        sender: { $ref: "users", $id: user_1018_id },
+        receiver: { $ref: "users", $id: user_1006_id }
+    },
+    {
+        message_id: 72,
+        content: "Got 5 rescue puppies ready for their adoption photos! When can you shoot? 🐕",
+        sent_at: new Date("2024-03-12T14:50:00Z"),
+        sender: { $ref: "users", $id: user_1019_id },
+        receiver: { $ref: "users", $id: user_1012_id }
+    },
+    {
+        message_id: 73,
+        content: "Love your storyboard for the music video! When can we start filming? 🎥",
+        sent_at: new Date("2024-03-12T16:20:00Z"),
+        sender: { $ref: "users", $id: user_1012_id },
+        receiver: { $ref: "users", $id: user_1009_id }
+    },
+    {
+        message_id: 74,
+        content: "Found an amazing sustainable fabric supplier! Perfect for your eco collection 🧵",
+        sent_at: new Date("2024-03-12T11:35:00Z"),
+        sender: { $ref: "users", $id: user_1013_id },
+        receiver: { $ref: "users", $id: user_1014_id }
+    },
+    {
+        message_id: 75,
+        content: "Charity stream raised $5000 for animal shelter! Thank you for co-hosting! 🎮",
+        sent_at: new Date("2024-03-12T22:00:00Z"),
+        sender: { $ref: "users", $id: user_1011_id },
+        receiver: { $ref: "users", $id: user_1019_id }
+    },
+    {
+        message_id: 76,
+        content: "How is the machine learning project going? We need help with the algorithms? 🤖",
+        sent_at: new Date("2024-03-12T13:25:00Z"),
+        sender: { $ref: "users", $id: user_1016_id },
+        receiver: { $ref: "users", $id: user_1006_id }
+    },
+    {
+        message_id: 77,
+        content: "Got the perfect location for our HIIT workout video! Available this weekend? 💪",
+        sent_at: new Date("2024-03-12T15:40:00Z"),
+        sender: { $ref: "users", $id: user_1007_id },
+        receiver: { $ref: "users", $id: user_1020_id }
+    },
+    {
+        message_id: 78,
+        content: "Would you like to do an author interview for my literary podcast? 📚",
+        sent_at: new Date("2024-03-12T18:15:00Z"),
+        sender: { $ref: "users", $id: user_1013_id },
+        receiver: { $ref: "users", $id: user_1018_id }
+    },
+    {
+        message_id: 79,
+        content: "Community center is perfect for the upcycling workshop! Can host 30 people 🔨",
+        sent_at: new Date("2024-03-12T12:45:00Z"),
+        sender: { $ref: "users", $id: user_1017_id },
+        receiver: { $ref: "users", $id: user_1013_id }
+    },
+    {
+        message_id: 80,
+        content: "Here are my camera settings for northern lights photography. Good luck! 📸",
+        sent_at: new Date("2024-03-12T20:30:00Z"),
+        sender: { $ref: "users", $id: user_1012_id },
+        receiver: { $ref: "users", $id: user_1010_id }
+    },
+    {
+        message_id: 81,
+        content: "Your plating techniques are amazing! Want to teach at my cooking school? 👨‍🍳",
+        sent_at: new Date("2024-03-12T19:05:00Z"),
+        sender: { $ref: "users", $id: user_1008_id },
+        receiver: { $ref: "users", $id: user_1012_id }
+    }
+]);
+
+// Continue with the final batch...
+db.messages.insertMany([
+    {
+        message_id: 82,
+        content: "Choreography for the finale is ready! Practice session tomorrow? 💃",
+        sent_at: new Date("2024-03-12T17:30:00Z"),
+        sender: { $ref: "users", $id: user_1015_id },
+        receiver: { $ref: "users", $id: user_1012_id }
+    }
+    // ... Continue with the rest of the messages
+]);
+
+// Continue with the final batch of messages...
+db.messages.insertMany([
+    {
+        message_id: 83,
+        content: "AI model accuracy reached 95%! Ready to deploy to production? 🚀",
+        sent_at: new Date("2024-03-12T16:55:00Z"),
+        sender: { $ref: "users", $id: user_1006_id },
+        receiver: { $ref: "users", $id: user_1016_id }
+    },
+    {
+        message_id: 84,
+        content: "Final fitting tomorrow at 2PM. Bringing the eco-friendly collection! 👗",
+        sent_at: new Date("2024-03-12T15:10:00Z"),
+        sender: { $ref: "users", $id: user_1014_id },
+        receiver: { $ref: "users", $id: user_1013_id }
+    },
+    {
+        message_id: 85,
+        content: "Tournament registrations hit 500! Need help with stream setup? 🎮",
+        sent_at: new Date("2024-03-12T21:40:00Z"),
+        sender: { $ref: "users", $id: user_1011_id },
+        receiver: { $ref: "users", $id: user_1006_id }
+    },
+    {
+        message_id: 86,
+        content: "Got new microphones for the podcast! Sound quality will be amazing 🎙️",
+        sent_at: new Date("2024-03-12T14:05:00Z"),
+        sender: { $ref: "users", $id: user_1018_id },
+        receiver: { $ref: "users", $id: user_1012_id }
+    },
+    {
+        message_id: 87,
+        content: "All puppies from last week event found homes! Thank you for your help! 🐾",
+        sent_at: new Date("2024-03-12T13:00:00Z"),
+        sender: { $ref: "users", $id: user_1019_id },
+        receiver: { $ref: "users", $id: user_1013_id }
+    },
+    {
+        message_id: 88,
+        content: "Users love the new workout tracking features! Ready for phase 2? 💪",
+        sent_at: new Date("2024-03-12T11:50:00Z"),
+        sender: { $ref: "users", $id: user_1007_id },
+        receiver: { $ref: "users", $id: user_1006_id }
+    },
+    {
+        message_id: 89,
+        content: "Gallery space is confirmed for your digital art showcase next month! 🎨",
+        sent_at: new Date("2024-03-12T10:35:00Z"),
+        sender: { $ref: "users", $id: user_1009_id },
+        receiver: { $ref: "users", $id: user_1014_id }
+    },
+    {
+        message_id: 90,
+        content: "Recycling campaign exceeded goals! 2 tons of plastic collected! ♻️",
+        sent_at: new Date("2024-03-12T09:20:00Z"),
+        sender: { $ref: "users", $id: user_1013_id },
+        receiver: { $ref: "users", $id: user_1017_id }
+    }
+]);
+
+// Commit the changes
+db.messages.createIndex({ "sent_at": 1 });
+db.messages.createIndex({ "sender.$id": 1, "sent_at": -1 });
+db.messages.createIndex({ "receiver.$id": 1, "sent_at": -1 });
 
 
 
