@@ -486,12 +486,15 @@ var comedian_jack_id = db.users.find({ user_id: { $eq: 1018 }}).toArray()[0]._id
 var pet_lover_lucy_id = db.users.find({ user_id: { $eq: 1019 }}).toArray()[0]._id;
 var sports_coach_ben_id = db.users.find({ user_id: { $eq: 1020 }}).toArray()[0]._id;
 
-// Now insert all posts with DBRefs
+// Drop existing posts collection if it exists
+db.posts.drop();
+
+// Insert all posts in exact order matching Oracle version
 db.posts.insertMany([
     {
         post_id: 1,
-        content: "Just deployed my first AI model! 🤖 Excited to share my journey in machine learning. #AI #Programming",
-        created_at: new Date("2024-03-10T09:00:00Z"),
+        content: "Just launched my new AI project! Check out the demo at github.com/tech_guru_alex #AI #Programming",
+        created_at: new Date("2024-03-15T09:00:00Z"),
         user: { $ref: "users", $id: tech_guru_alex_id }
     },
     {
@@ -547,11 +550,7 @@ db.posts.insertMany([
         content: "New research paper published on quantum computing applications in cryptography",
         created_at: new Date("2024-03-15T14:00:00Z"),
         user: { $ref: "users", $id: scientist_alan_id }
-    }
-]);
-
-// Continue with more posts
-db.posts.insertMany([
+    },
     {
         post_id: 11,
         content: "Live now! Streaming the new RPG release! Come join! 🎮 #Gaming #LiveStream",
@@ -566,117 +565,105 @@ db.posts.insertMany([
     },
     {
         post_id: 13,
+        content: "My gaming setup tour! New RGB lighting installed! ✨ #GamingSetup",
+        created_at: new Date("2024-03-15T12:45:00Z"),
+        user: { $ref: "users", $id: gamer_sam_id }
+    },
+    {
+        post_id: 14,
         content: "Spring Fashion Haul! 👗 Swipe to see my favorite picks! #FashionBlogger",
         created_at: new Date("2024-03-15T11:00:00Z"),
         user: { $ref: "users", $id: fashion_nina_id }
     },
     {
-        post_id: 14,
+        post_id: 15,
         content: "How to style one dress in 5 different ways! 💃 #StyleTips",
         created_at: new Date("2024-03-15T14:30:00Z"),
         user: { $ref: "users", $id: fashion_nina_id }
     },
     {
-        post_id: 15,
+        post_id: 16,
+        content: "GRWM: Fashion Week Edition! 👠 #FashionWeek #OOTD",
+        created_at: new Date("2024-03-15T17:15:00Z"),
+        user: { $ref: "users", $id: fashion_nina_id }
+    },
+    {
+        post_id: 17,
         content: "Learning React Native for mobile development. Any tips? 📱 #coding #mobiledev",
         created_at: new Date("2024-03-14T15:30:00Z"),
         user: { $ref: "users", $id: tech_guru_alex_id }
-    }
-]);
-
-// Add the remaining posts
-db.posts.insertMany([
+    },
     {
-        post_id: 16,
+        post_id: 18,
+        content: "Exploring machine learning algorithms for my latest project 🤖 #AI #ML",
+        created_at: new Date("2024-03-13T10:45:00Z"),
+        user: { $ref: "users", $id: scientist_alan_id }
+    },
+    {
+        post_id: 19,
         content: "5k morning run completed! New personal best! 🏃‍♀️ #Running #Fitness",
         created_at: new Date("2024-03-14T07:15:00Z"),
         user: { $ref: "users", $id: fitness_jane_id }
     },
     {
-        post_id: 17,
+        post_id: 20,
         content: "Post-workout protein smoothie recipe! Banana + Peanut butter = 😋 #HealthyLiving",
         created_at: new Date("2024-03-13T16:20:00Z"),
         user: { $ref: "users", $id: sports_coach_ben_id }
     },
     {
-        post_id: 18,
+        post_id: 21,
         content: "Sunset in Bali 🌅 Sometimes you need to get lost to find yourself #Travel",
         created_at: new Date("2024-03-12T18:30:00Z"),
         user: { $ref: "users", $id: travel_mike_id }
     },
     {
-        post_id: 19,
+        post_id: 22,
         content: "New digital art piece finished! Swipe to see the process 🎨 #DigitalArt",
         created_at: new Date("2024-03-11T14:20:00Z"),
         user: { $ref: "users", $id: artist_lisa_id }
     },
     {
-        post_id: 20,
+        post_id: 23,
         content: "Homemade sushi night! 🍣 Tutorial coming soon! #Cooking #FoodLover",
         created_at: new Date("2024-03-10T19:15:00Z"),
         user: { $ref: "users", $id: foodie_mark_id }
-    }
-]);
-
-// Final batch of posts
-db.posts.insertMany([
+    },
     {
-        post_id: 21,
+        post_id: 24,
         content: "Just hit Diamond rank! The grind was worth it 🎮 #Gaming #ESports",
         created_at: new Date("2024-03-09T22:30:00Z"),
         user: { $ref: "users", $id: gamer_sam_id }
     },
     {
-        post_id: 22,
+        post_id: 25,
         content: "Simple ways to reduce your carbon footprint 🌍 Thread below! #Environment",
         created_at: new Date("2024-03-08T11:45:00Z"),
         user: { $ref: "users", $id: eco_peter_id }
     },
     {
-        post_id: 23,
+        post_id: 26,
         content: "New cover song dropping tomorrow! Stay tuned 🎵 #Music #Singer",
         created_at: new Date("2024-03-07T20:00:00Z"),
         user: { $ref: "users", $id: music_rachel_id }
     },
     {
-        post_id: 24,
+        post_id: 27,
         content: "Summer fashion trends 2024 prediction 👗 #Fashion #Style",
         created_at: new Date("2024-03-06T13:15:00Z"),
         user: { $ref: "users", $id: fashion_nina_id }
     },
     {
-        post_id: 25,
+        post_id: 28,
         content: "Meet our newest rescue puppy! 🐕 Help us name him! #AdoptDontShop",
         created_at: new Date("2024-03-05T16:40:00Z"),
         user: { $ref: "users", $id: pet_lover_lucy_id }
-    }
-]);
-
-// Add more posts to match Oracle version
-db.posts.insertMany([
-    {
-        post_id: 26,
-        content: "Transformed this $10 thrift store find into a stunning piece! Before and After pics 🎨 #DIY #Upcycling",
-        created_at: new Date("2024-03-04T15:20:00Z"),
-        user: { $ref: "users", $id: diy_hannah_id }
-    },
-    {
-        post_id: 27,
-        content: "When your code finally works but you dont know why 😂 #ProgrammerHumor",
-        created_at: new Date("2024-03-03T19:30:00Z"),
-        user: { $ref: "users", $id: comedian_jack_id }
-    },
-    {
-        post_id: 28,
-        content: "Morning meditation tips for beginners 🧘‍♀️ #Wellness #Mindfulness",
-        created_at: new Date("2024-03-02T08:00:00Z"),
-        user: { $ref: "users", $id: dancer_maria_id }
     },
     {
         post_id: 29,
-        content: "Captured this amazing lightning storm last night ⚡ #Photography",
-        created_at: new Date("2024-03-01T23:15:00Z"),
-        user: { $ref: "users", $id: travel_mike_id }
+        content: "Transformed this $10 thrift store find into a stunning piece! Before and After pics 🎨 #DIY #Upcycling",
+        created_at: new Date("2024-03-04T15:20:00Z"),
+        user: { $ref: "users", $id: diy_hannah_id }
     },
     {
         post_id: 30,

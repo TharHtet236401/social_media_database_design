@@ -1257,66 +1257,6 @@ VALUES
         )
     );
 
--- Comedy content
-INSERT INTO
-    Posts
-VALUES
-    (
-        PostType (
-            post_id_seq.NEXTVAL,
-            'When your code finally works but you dont know why 😂 #ProgrammerHumor',
-            TIMESTAMP '2024-03-03 19:30:00',
-            (
-                SELECT
-                    REF (u)
-                FROM
-                    Users u
-                WHERE
-                    u.user_id = 18
-            )
-        )
-    );
-
--- Yoga and wellness
-INSERT INTO
-    Posts
-VALUES
-    (
-        PostType (
-            post_id_seq.NEXTVAL,
-            'Morning meditation tips for beginners 🧘‍♀️ #Wellness #Mindfulness',
-            TIMESTAMP '2024-03-02 08:00:00',
-            (
-                SELECT
-                    REF (u)
-                FROM
-                    Users u
-                WHERE
-                    u.user_id = 15
-            )
-        )
-    );
-
--- Photography
-INSERT INTO
-    Posts
-VALUES
-    (
-        PostType (
-            post_id_seq.NEXTVAL,
-            'Captured this amazing lightning storm last night ⚡ #Photography',
-            TIMESTAMP '2024-03-01 23:15:00',
-            (
-                SELECT
-                    REF (u)
-                FROM
-                    Users u
-                WHERE
-                    u.user_id = 10
-            )
-        )
-    );
-
 INSERT INTO
     Posts
 VALUES
