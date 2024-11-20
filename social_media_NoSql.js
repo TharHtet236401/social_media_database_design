@@ -164,7 +164,6 @@ db.users.insertMany([
         }
     }
 ]);
-
 // Insert regular users
 db.users.insertMany([
     {
@@ -470,21 +469,21 @@ db.users.insertMany([
 ]);
 
 // First get all user references that we'll need
-var tech_guru_alex_id = db.users.find({ user_id: { $eq: 1006 }}).toArray()[0]._id;
-var fitness_jane_id = db.users.find({ user_id: { $eq: 1007 }}).toArray()[0]._id;
-var foodie_mark_id = db.users.find({ user_id: { $eq: 1008 }}).toArray()[0]._id;
-var artist_lisa_id = db.users.find({ user_id: { $eq: 1009 }}).toArray()[0]._id;
-var travel_mike_id = db.users.find({ user_id: { $eq: 1010 }}).toArray()[0]._id;
-var gamer_sam_id = db.users.find({ user_id: { $eq: 1011 }}).toArray()[0]._id;
-var music_rachel_id = db.users.find({ user_id: { $eq: 1012 }}).toArray()[0]._id;
-var eco_peter_id = db.users.find({ user_id: { $eq: 1013 }}).toArray()[0]._id;
-var fashion_nina_id = db.users.find({ user_id: { $eq: 1014 }}).toArray()[0]._id;
-var dancer_maria_id = db.users.find({ user_id: { $eq: 1015 }}).toArray()[0]._id;
-var scientist_alan_id = db.users.find({ user_id: { $eq: 1016 }}).toArray()[0]._id;
-var diy_hannah_id = db.users.find({ user_id: { $eq: 1017 }}).toArray()[0]._id;
-var comedian_jack_id = db.users.find({ user_id: { $eq: 1018 }}).toArray()[0]._id;
-var pet_lover_lucy_id = db.users.find({ user_id: { $eq: 1019 }}).toArray()[0]._id;
-var sports_coach_ben_id = db.users.find({ user_id: { $eq: 1020 }}).toArray()[0]._id;
+var user_1006_id = db.users.find({ user_id: { $eq: 1006 }}).toArray()[0]._id;
+var user_1007_id = db.users.find({ user_id: { $eq: 1007 }}).toArray()[0]._id;
+var user_1008_id = db.users.find({ user_id: { $eq: 1008 }}).toArray()[0]._id;
+var user_1009_id = db.users.find({ user_id: { $eq: 1009 }}).toArray()[0]._id;
+var user_1010_id = db.users.find({ user_id: { $eq: 1010 }}).toArray()[0]._id;
+var user_1011_id = db.users.find({ user_id: { $eq: 1011 }}).toArray()[0]._id;
+var user_1012_id = db.users.find({ user_id: { $eq: 1012 }}).toArray()[0]._id;
+var user_1013_id = db.users.find({ user_id: { $eq: 1013 }}).toArray()[0]._id;
+var user_1014_id = db.users.find({ user_id: { $eq: 1014 }}).toArray()[0]._id;
+var user_1015_id = db.users.find({ user_id: { $eq: 1015 }}).toArray()[0]._id;
+var user_1016_id = db.users.find({ user_id: { $eq: 1016 }}).toArray()[0]._id;
+var user_1017_id = db.users.find({ user_id: { $eq: 1017 }}).toArray()[0]._id;
+var user_1018_id = db.users.find({ user_id: { $eq: 1018 }}).toArray()[0]._id;
+var user_1019_id = db.users.find({ user_id: { $eq: 1019 }}).toArray()[0]._id;
+var user_1020_id = db.users.find({ user_id: { $eq: 1020 }}).toArray()[0]._id;
 
 // Insert all posts in exact order matching Oracle version
 db.posts.insertMany([
@@ -492,273 +491,297 @@ db.posts.insertMany([
         post_id: 1,
         content: "Just launched my new AI project! Check out the demo at github.com/tech_guru_alex #AI #Programming",
         created_at: new Date("2024-03-15T09:00:00Z"),
-        user: { $ref: "users", $id: tech_guru_alex_id }
+        user: { $ref: "users", $id: user_1006_id }
     },
     {
         post_id: 2,
         content: "Deep dive into Python 3.12 features - Thread coming up! 🧵 #Python #CodingLife",
         created_at: new Date("2024-03-15T11:30:00Z"),
-        user: { $ref: "users", $id: tech_guru_alex_id }
+        user: { $ref: "users", $id: user_1006_id }
     },
     {
         post_id: 3,
         content: "My VS Code setup for maximum productivity. Sharing my favorite extensions! 💻",
         created_at: new Date("2024-03-15T14:15:00Z"),
-        user: { $ref: "users", $id: tech_guru_alex_id }
+        user: { $ref: "users", $id: user_1006_id }
     },
     {
         post_id: 4,
         content: "Just tried this amazing new ramen place! The broth is to die for 🍜 #FoodBlog",
         created_at: new Date("2024-03-15T12:00:00Z"),
-        user: { $ref: "users", $id: foodie_mark_id }
+        user: { $ref: "users", $id: user_1008_id }
     },
     {
         post_id: 5,
         content: "Recipe alert! My secret pasta sauce recipe finally revealed! 🍝 #Cooking",
         created_at: new Date("2024-03-15T15:30:00Z"),
-        user: { $ref: "users", $id: foodie_mark_id }
+        user: { $ref: "users", $id: user_1008_id }
     },
     {
         post_id: 6,
         content: "Food photography tips: How to make your dishes look Instagram-worthy 📸",
         created_at: new Date("2024-03-15T17:45:00Z"),
-        user: { $ref: "users", $id: foodie_mark_id }
+        user: { $ref: "users", $id: user_1008_id }
     },
     {
         post_id: 7,
         content: "Morning workout completed! 💪 Remember: consistency is key! #FitnessMotivation",
         created_at: new Date("2024-03-15T07:00:00Z"),
-        user: { $ref: "users", $id: fitness_jane_id }
+        user: { $ref: "users", $id: user_1007_id }
     },
     {
         post_id: 8,
         content: "Quick healthy lunch ideas for busy professionals 🥗",
         created_at: new Date("2024-03-15T12:30:00Z"),
-        user: { $ref: "users", $id: fitness_jane_id }
+        user: { $ref: "users", $id: user_1007_id }
     },
     {
         post_id: 9,
         content: "Monthly update: Our beach cleanup collected 500kg of plastic! 🌊 #SaveTheOceans",
         created_at: new Date("2024-03-15T16:00:00Z"),
-        user: { $ref: "users", $id: eco_peter_id }
+        user: { $ref: "users", $id: user_1013_id }
     },
     {
         post_id: 10,
         content: "New research paper published on quantum computing applications in cryptography",
         created_at: new Date("2024-03-15T14:00:00Z"),
-        user: { $ref: "users", $id: scientist_alan_id }
+        user: { $ref: "users", $id: user_1016_id }
     },
     {
         post_id: 11,
         content: "Live now! Streaming the new RPG release! Come join! 🎮 #Gaming #LiveStream",
         created_at: new Date("2024-03-15T20:00:00Z"),
-        user: { $ref: "users", $id: gamer_sam_id }
+        user: { $ref: "users", $id: user_1011_id }
     },
     {
         post_id: 12,
         content: "Game Review: 10 things you need to know about the latest release! 🎮",
         created_at: new Date("2024-03-15T15:30:00Z"),
-        user: { $ref: "users", $id: gamer_sam_id }
+        user: { $ref: "users", $id: user_1011_id }
     },
     {
         post_id: 13,
         content: "My gaming setup tour! New RGB lighting installed! ✨ #GamingSetup",
         created_at: new Date("2024-03-15T12:45:00Z"),
-        user: { $ref: "users", $id: gamer_sam_id }
+        user: { $ref: "users", $id: user_1011_id }
     },
     {
         post_id: 14,
         content: "Spring Fashion Haul! 👗 Swipe to see my favorite picks! #FashionBlogger",
         created_at: new Date("2024-03-15T11:00:00Z"),
-        user: { $ref: "users", $id: fashion_nina_id }
+        user: { $ref: "users", $id: user_1014_id }
     },
     {
         post_id: 15,
         content: "How to style one dress in 5 different ways! 💃 #StyleTips",
         created_at: new Date("2024-03-15T14:30:00Z"),
-        user: { $ref: "users", $id: fashion_nina_id }
+        user: { $ref: "users", $id: user_1014_id }
     },
     {
         post_id: 16,
         content: "GRWM: Fashion Week Edition! 👠 #FashionWeek #OOTD",
         created_at: new Date("2024-03-15T17:15:00Z"),
-        user: { $ref: "users", $id: fashion_nina_id }
+        user: { $ref: "users", $id: user_1014_id }
     },
     {
         post_id: 17,
         content: "Learning React Native for mobile development. Any tips? 📱 #coding #mobiledev",
         created_at: new Date("2024-03-14T15:30:00Z"),
-        user: { $ref: "users", $id: tech_guru_alex_id }
+        user: { $ref: "users", $id: user_1006_id }
     },
     {
         post_id: 18,
         content: "Exploring machine learning algorithms for my latest project 🤖 #AI #ML",
         created_at: new Date("2024-03-13T10:45:00Z"),
-        user: { $ref: "users", $id: scientist_alan_id }
+        user: { $ref: "users", $id: user_1016_id }
     },
     {
         post_id: 19,
         content: "5k morning run completed! New personal best! 🏃‍♀️ #Running #Fitness",
         created_at: new Date("2024-03-14T07:15:00Z"),
-        user: { $ref: "users", $id: fitness_jane_id }
+        user: { $ref: "users", $id: user_1007_id }
     },
     {
         post_id: 20,
         content: "Post-workout protein smoothie recipe! Banana + Peanut butter = 😋 #HealthyLiving",
         created_at: new Date("2024-03-13T16:20:00Z"),
-        user: { $ref: "users", $id: sports_coach_ben_id }
+        user: { $ref: "users", $id: user_1020_id }
     },
     {
         post_id: 21,
         content: "Sunset in Bali 🌅 Sometimes you need to get lost to find yourself #Travel",
         created_at: new Date("2024-03-12T18:30:00Z"),
-        user: { $ref: "users", $id: travel_mike_id }
+        user: { $ref: "users", $id: user_1010_id }
     },
     {
         post_id: 22,
         content: "New digital art piece finished! Swipe to see the process 🎨 #DigitalArt",
         created_at: new Date("2024-03-11T14:20:00Z"),
-        user: { $ref: "users", $id: artist_lisa_id }
+        user: { $ref: "users", $id: user_1009_id }
     },
     {
         post_id: 23,
         content: "Homemade sushi night! 🍣 Tutorial coming soon! #Cooking #FoodLover",
         created_at: new Date("2024-03-10T19:15:00Z"),
-        user: { $ref: "users", $id: foodie_mark_id }
+        user: { $ref: "users", $id: user_1008_id }
     },
     {
         post_id: 24,
         content: "Just hit Diamond rank! The grind was worth it 🎮 #Gaming #ESports",
         created_at: new Date("2024-03-09T22:30:00Z"),
-        user: { $ref: "users", $id: gamer_sam_id }
+        user: { $ref: "users", $id: user_1011_id }
     },
     {
         post_id: 25,
         content: "Simple ways to reduce your carbon footprint 🌍 Thread below! #Environment",
         created_at: new Date("2024-03-08T11:45:00Z"),
-        user: { $ref: "users", $id: eco_peter_id }
+        user: { $ref: "users", $id: user_1013_id }
     },
     {
         post_id: 26,
         content: "New cover song dropping tomorrow! Stay tuned 🎵 #Music #Singer",
         created_at: new Date("2024-03-07T20:00:00Z"),
-        user: { $ref: "users", $id: music_rachel_id }
+        user: { $ref: "users", $id: user_1012_id }
     },
     {
         post_id: 27,
         content: "Summer fashion trends 2024 prediction 👗 #Fashion #Style",
         created_at: new Date("2024-03-06T13:15:00Z"),
-        user: { $ref: "users", $id: fashion_nina_id }
+        user: { $ref: "users", $id: user_1014_id }
     },
     {
         post_id: 28,
         content: "Meet our newest rescue puppy! 🐕 Help us name him! #AdoptDontShop",
         created_at: new Date("2024-03-05T16:40:00Z"),
-        user: { $ref: "users", $id: pet_lover_lucy_id }
+        user: { $ref: "users", $id: user_1019_id }
     },
     {
         post_id: 29,
         content: "Transformed this $10 thrift store find into a stunning piece! Before and After pics 🎨 #DIY #Upcycling",
         created_at: new Date("2024-03-04T15:20:00Z"),
-        user: { $ref: "users", $id: diy_hannah_id }
+        user: { $ref: "users", $id: user_1017_id }
     },
     {
         post_id: 30,
         content: "Just finished the first draft of my new novel! 📚 Six months of work finally paying off! #AmWriting",
         created_at: new Date("2024-03-14T23:45:00Z"),
-        user: { $ref: "users", $id: eco_peter_id }
+        user: { $ref: "users", $id: user_1013_id }
     },
     {
         post_id: 31,
         content: "Book Review: \"The Midnight Library\" - A masterpiece that makes you question every life choice 📖 #BookReview",
         created_at: new Date("2024-03-13T16:30:00Z"),
-        user: { $ref: "users", $id: eco_peter_id }
+        user: { $ref: "users", $id: user_1013_id }
     },
     {
         post_id: 32,
         content: "New choreography sneak peek! 💃 Contemporary piece coming to the studio next week #DanceLife",
         created_at: new Date("2024-03-15T19:20:00Z"),
-        user: { $ref: "users", $id: dancer_maria_id }
+        user: { $ref: "users", $id: user_1015_id }
     },
     {
         post_id: 33,
         content: "Behind the scenes at today's dance rehearsal! Preparing for the summer showcase 🎭 #DancerLife",
         created_at: new Date("2024-03-14T14:15:00Z"),
-        user: { $ref: "users", $id: dancer_maria_id }
+        user: { $ref: "users", $id: user_1015_id }
     },
     {
         post_id: 34,
         content: "Big news! Our startup just secured Series A funding! 🚀 Grateful for the amazing team! #StartupLife",
         created_at: new Date("2024-03-15T10:30:00Z"),
-        user: { $ref: "users", $id: fashion_nina_id }
+        user: { $ref: "users", $id: user_1014_id }
     },
     {
         post_id: 35,
         content: "The future of AI in healthcare - My thoughts on recent developments and what's coming next 🤖 #HealthTech",
         created_at: new Date("2024-03-13T11:45:00Z"),
-        user: { $ref: "users", $id: fashion_nina_id }
+        user: { $ref: "users", $id: user_1014_id }
     },
     {
         post_id: 36,
         content: "Dawn at Mount Fuji. Sometimes waking up at 4AM is worth it 📸 #Photography #Nature",
         created_at: new Date("2024-03-15T05:30:00Z"),
-        user: { $ref: "users", $id: music_rachel_id }
+        user: { $ref: "users", $id: user_1012_id }
     },
     {
         post_id: 37,
         content: "Photography Workshop Announcement! Learn night photography techniques this weekend 🌙 #PhotoWorkshop",
         created_at: new Date("2024-03-14T12:00:00Z"),
-        user: { $ref: "users", $id: music_rachel_id }
+        user: { $ref: "users", $id: user_1012_id }
     },
     {
         post_id: 38,
         content: "Championship game highlights! Proud coach moment - our team brought home the trophy! 🏆 #Sports",
         created_at: new Date("2024-03-15T21:00:00Z"),
-        user: { $ref: "users", $id: sports_coach_ben_id }
+        user: { $ref: "users", $id: user_1020_id }
     },
     {
         post_id: 39,
         content: "Quick agility drill tutorial 🏃‍♂️ Save this for your next training session! #SportsTraining",
         created_at: new Date("2024-03-14T16:45:00Z"),
-        user: { $ref: "users", $id: sports_coach_ben_id }
+        user: { $ref: "users", $id: user_1020_id }
     },
     {
         post_id: 40,
         content: "Transformed this $10 thrift store find into a stunning piece! Before and After pics 🎨 #DIY #Upcycling",
         created_at: new Date("2024-03-15T13:20:00Z"),
-        user: { $ref: "users", $id: diy_hannah_id }
+        user: { $ref: "users", $id: user_1017_id }
     },
     {
         post_id: 41,
         content: "Easy weekend project: Making your own macramé wall hanging! Tutorial in comments 🧶 #DIYHome",
         created_at: new Date("2024-03-13T14:30:00Z"),
-        user: { $ref: "users", $id: diy_hannah_id }
+        user: { $ref: "users", $id: user_1017_id }
     },
     {
         post_id: 42,
         content: "Tonight's show was EPIC! Thanks NYC for the amazing energy! 🎤 Next stop: Chicago! #StandUpComedy",
         created_at: new Date("2024-03-15T23:45:00Z"),
-        user: { $ref: "users", $id: comedian_jack_id }
+        user: { $ref: "users", $id: user_1018_id }
     },
     {
         post_id: 43,
         content: "When your mom says \"we have food at home\" 😂 #ComedySketch #Relatable",
         created_at: new Date("2024-03-14T17:30:00Z"),
-        user: { $ref: "users", $id: comedian_jack_id }
+        user: { $ref: "users", $id: user_1018_id }
     },
     {
         post_id: 44,
         content: "Successful adoption day at the shelter! 15 pets found their forever homes today! ❤️ #AdoptDontShop",
         created_at: new Date("2024-03-15T18:15:00Z"),
-        user: { $ref: "users", $id: pet_lover_lucy_id }
+        user: { $ref: "users", $id: user_1019_id }
     },
     {
         post_id: 45,
         content: "Essential tips for first-time cat owners! 🐱 Save this post for later! #PetCare #CatLover",
         created_at: new Date("2024-03-14T13:45:00Z"),
-        user: { $ref: "users", $id: pet_lover_lucy_id }
+        user: { $ref: "users", $id: user_1019_id }
     }
 ]);
 
 // Count total number of posts
 db.posts.countDocuments();
+
+// Get user statistics including post counts and first/last post dates
+db.users.aggregate([
+    {
+        $lookup: {
+            from: "posts",
+            localField: "_id",
+            foreignField: "user.$id",
+            as: "user_posts"
+        }
+    },
+    {
+        $project: {
+            username: 1,
+            user_type: 1,
+            post_count: { $size: "$user_posts" },
+            first_post_date: { $min: "$user_posts.created_at" },
+            last_post_date: { $max: "$user_posts.created_at" }
+        }
+    },
+    {
+        $sort: { post_count: -1 }
+    }
+]);
