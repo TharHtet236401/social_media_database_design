@@ -1559,7 +1559,7 @@ VALUES
                 FROM
                     Users u
                 WHERE
-                    u.user_id = 18
+                    u.user_id = 18 
             )
         )
     );
