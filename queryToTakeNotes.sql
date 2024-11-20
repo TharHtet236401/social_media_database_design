@@ -129,4 +129,19 @@ ORDER BY
     total_comments DESC,
     unique_posts_commented DESC;
 
+-- Oracle query to find users who sent the most messages
+SELECT 
+    u.username,
+    u.user_type,
+    COUNT(*) as message_count
+FROM 
+    Users u,
+    Messages m
+WHERE 
+    REF(u) = m.sender_ref
+GROUP BY 
+    u.username, u.user_type
+ORDER BY 
+    message_count DESC;
+
 

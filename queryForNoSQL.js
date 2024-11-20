@@ -167,6 +167,46 @@ db.comments.aggregate([
     }
 ]);
 
+// MongoDB query to find users who sent the most messages
+db.messages.aggregate([
+    // Join with users collection to get sender details
+    {
+        $lookup: {
+            from: "users",
+            localField: "sender.$id",
+            foreignField: "_id",
+            as: "sender_details"
+        }
+    },
+    // Unwind the sender_details array
+    {
+        $unwind: "$sender_details"
+    },
+    // Group by sender and count messages
+    {
+        $group: {
+            _id: {
+                username: "$sender_details.username",
+                user_type: "$sender_details.user_type"
+            },
+            message_count: { $sum: 1 }
+        }
+    },
+    // Sort by message count in descending order
+    {
+        $sort: { message_count: -1 }
+    },
+    // Project the final output format
+    {
+        $project: {
+            _id: 0,
+            username: "$_id.username",
+            user_type: "$_id.user_type",
+            message_count: 1
+        }
+    }
+]);
+
 
 
     
