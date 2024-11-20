@@ -42,7 +42,8 @@ OR REPLACE TYPE UserType AS OBJECT (
     username VARCHAR2 (50),
     email VARCHAR2 (100),
     password_hash VARCHAR2 (255),
-    created_at TIMESTAMP
+    created_at TIMESTAMP,
+    profile_picture VARCHAR2 (500)
 ) NOT FINAL;
 
 /
@@ -59,7 +60,6 @@ OR REPLACE TYPE AdminType UNDER UserType (
 -- RegularUser object type inheriting from UserType
 CREATE
 OR REPLACE TYPE RegularUserType UNDER UserType (
-    profile_picture VARCHAR2 (500),
     bio VARCHAR2 (4000),
     user_status VARCHAR2 (255),
     followers NUMBER,
@@ -182,772 +182,384 @@ WITH
 
 --inserting data
 -- Insert admin users
+
+-- Insert Admin Users
+--admin 1
 INSERT INTO Users VALUES (
     AdminType(
         user_id_seq.NEXTVAL,
-        'admin1',
-        'admin1@example.com', 
-        'hashed_password_1',
-        TO_DATE('23-JAN-2005','DD-MM-YYYY'),
+        'admin_sarah',
+        'sarah.admin@platform.com',
+        'hashed_admin_pwd_1',
+        TIMESTAMP '2023-01-01 09:00:00',
+        'admin_profiles/sarah.jpg',
         1001,
-        0,
-        TO_DATE('15-MAR-2005','DD-MM-YYYY'),
+        250,
+        TIMESTAMP '2024-03-15 14:30:00',
+        1
+    )
+);
+--admin 2
+INSERT INTO Users VALUES (
+    AdminType(
+        user_id_seq.NEXTVAL,
+        'admin_michael',
+        'michael.admin@platform.com',
+        'hashed_admin_pwd_2',
+        TIMESTAMP '2023-01-02 10:00:00',
+        'admin_profiles/michael.jpg',
+        1002,
+        180,
+        TIMESTAMP '2024-03-15 16:45:00',
+        2
+    )
+);
+--admin 3
+INSERT INTO Users VALUES (
+    AdminType(
+        user_id_seq.NEXTVAL,
+        'admin_jessica',
+        'jessica.admin@platform.com',
+        'hashed_admin_pwd_3',
+        TIMESTAMP '2023-01-03 11:00:00',
+        'admin_profiles/jessica.jpg',
+        1003,
+        320,
+        TIMESTAMP '2024-03-15 15:20:00',
+        1
+    )
+);
+--admin 4
+INSERT INTO Users VALUES (
+    AdminType(
+        user_id_seq.NEXTVAL,
+        'admin_david',
+        'david.admin@platform.com',
+        'hashed_admin_pwd_4',
+        TIMESTAMP '2023-01-04 12:00:00',
+        'admin_profiles/david.jpg',
+        1004,
+        290,
+        TIMESTAMP '2024-03-15 17:10:00',
+        2
+    )
+);
+--admin 5
+INSERT INTO Users VALUES (
+    AdminType(
+        user_id_seq.NEXTVAL,
+        'admin_emma',
+        'emma.admin@platform.com',
+        'hashed_admin_pwd_5',
+        TIMESTAMP '2023-01-05 13:00:00',
+        'admin_profiles/emma.jpg',
+        1005,
+        275,
+        TIMESTAMP '2024-03-15 18:00:00',
         1
     )
 );
 
-INSERT INTO Users VALUES (
-    AdminType(
-        user_id_seq.NEXTVAL,
-        'admin2',
-        'admin2@example.com',
-        'hashed_password_2', 
-        TO_DATE('07-JUN-2005','DD-MM-YYYY'),
-        1002,
-        5,
-        TO_DATE('12-SEP-2005','DD-MM-YYYY'),
-        2
-    )
-);
-
-INSERT INTO Users VALUES (
-    AdminType(
-        user_id_seq.NEXTVAL,
-        'superadmin',
-        'superadmin@example.com',
-        'hashed_password_3',
-        TO_DATE('30-NOV-2005','DD-MM-YYYY'),
-        1003,
-        25,
-        TO_DATE('25-DEC-2005','DD-MM-YYYY'),
-        3
-    )
-);
-
--- Insert regular users
+-- Insert Regular Users with adjusted follower/following counts (max 20)
+--user 1
 INSERT INTO Users VALUES (
     RegularUserType(
         user_id_seq.NEXTVAL,
-        'regularuser1',
-        'user1@example.com',
-        'hashed_password_4',
-        TO_DATE('15-DEC-2005','DD-MM-YYYY'),
-        'profile_picture_url',
-        'bio_text',
-        'user_status',
-        100,
-        100
+        'tech_guru_alex',
+        'alex@email.com',
+        'hashed_pwd_1',
+        TIMESTAMP '2023-02-01 10:00:00',
+        'profiles/alex.jpg',
+        'Software Developer | AI Enthusiast | Coffee Lover',
+        'Coding something cool',
+        15,
+        12
     )
 );
-
+--user 2
 INSERT INTO Users VALUES (
     RegularUserType(
         user_id_seq.NEXTVAL,
-        'regularuser2', 
-        'user2@example.com',
-        'hashed_password_5',
-        TO_DATE('16-DEC-2005','DD-MM-YYYY'),
-        'profile_picture_url',
-        'bio_text',
-        'user_status',
-        200,
-        150
+        'fitness_jane',
+        'jane@email.com',
+        'hashed_pwd_2',
+        TIMESTAMP '2023-02-02 11:00:00',
+        'profiles/jane.jpg',
+        'Personal Trainer | Nutrition Expert',
+        'At the gym 💪',
+        18,
+        15
     )
 );
-
+--user 3
 INSERT INTO Users VALUES (
     RegularUserType(
         user_id_seq.NEXTVAL,
-        'regularuser3',
-        'user3@example.com',
-        'hashed_password_6',
-        TO_DATE('17-DEC-2005','DD-MM-YYYY'),
-        'profile_picture_url',
-        'bio_text',
-        'user_status',
-        300,
-        250
+        'foodie_mark',
+        'mark@email.com',
+        'hashed_pwd_3',
+        TIMESTAMP '2023-02-03 12:00:00',
+        'profiles/mark.jpg',
+        'Food Blogger | Chef | Restaurant Explorer',
+        'Cooking up something special',
+        20,
+        17
     )
 );
-
-INSERT INTO Users VALUES (
-    RegularUserType(
-        user_id_seq.NEXTVAL,
-        'techie_sarah',
-        'sarah@example.com',
-        'hashed_password_7',
-        TO_DATE('18-DEC-2005','DD-MM-YYYY'),
-        'profile_pic_sarah.jpg',
-        'Tech enthusiast | Coffee lover | Code warrior',
-        'Coding away...',
-        150,
-        120
-    )
-);
-
-INSERT INTO Users VALUES (
-    RegularUserType(
-        user_id_seq.NEXTVAL,
-        'adventure_mike',
-        'mike@example.com',
-        'hashed_password_8',
-        TO_DATE('19-DEC-2005','DD-MM-YYYY'),
-        'profile_pic_mike.jpg',
-        'Travel | Photography | Nature',
-        'Exploring the world',
-        280,
-        200
-    )
-);
-
-INSERT INTO Users VALUES (
-    RegularUserType(
-        user_id_seq.NEXTVAL,
-        'foodie_emma',
-        'emma@example.com',
-        'hashed_password_9',
-        TO_DATE('20-DEC-2005','DD-MM-YYYY'),
-        'profile_pic_emma.jpg',
-        'Food blogger | Recipe developer',
-        'Cooking up something delicious',
-        450,
-        380
-    )
-);
-
-INSERT INTO Users VALUES (
-    RegularUserType(
-        user_id_seq.NEXTVAL,
-        'fitness_alex',
-        'alex@example.com',
-        'hashed_password_10',
-        TO_DATE('21-DEC-2005','DD-MM-YYYY'),
-        'profile_pic_alex.jpg',
-        'Personal trainer | Wellness coach',
-        'At the gym',
-        600,
-        520
-    )
-);
-
+--user 4
 INSERT INTO Users VALUES (
     RegularUserType(
         user_id_seq.NEXTVAL,
         'artist_lisa',
-        'lisa@example.com',
-        'hashed_password_11',
-        TO_DATE('22-DEC-2005','DD-MM-YYYY'),
-        'profile_pic_lisa.jpg',
-        'Digital artist | Illustrator',
+        'lisa@email.com',
+        'hashed_pwd_4',
+        TIMESTAMP '2023-02-04 13:00:00',
+        'profiles/lisa.jpg',
+        'Digital Artist | Illustrator',
         'Creating new artwork',
-        750,
-        680
+        16,
+        14
     )
 );
-
+--user 5
 INSERT INTO Users VALUES (
     RegularUserType(
         user_id_seq.NEXTVAL,
-        'gamer_dave',
-        'dave@example.com',
-        'hashed_password_12',
-        TO_DATE('23-DEC-2005','DD-MM-YYYY'),
-        'profile_pic_dave.jpg',
-        'Professional gamer | Streamer',
-        'Live streaming',
-        1200,
-        800
+        'travel_mike',
+        'mike@email.com',
+        'hashed_pwd_5',
+        TIMESTAMP '2023-02-05 14:00:00',
+        'profiles/mike.jpg',
+        'World Traveler | Photographer',
+        'Exploring new places',
+        19,
+        16
     )
 );
-
+--user 6
 INSERT INTO Users VALUES (
     RegularUserType(
         user_id_seq.NEXTVAL,
-        'bookworm_nina',
-        'nina@example.com',
-        'hashed_password_13',
-        TO_DATE('24-DEC-2005','DD-MM-YYYY'),
-        'profile_pic_nina.jpg',
-        'Book reviewer | Literature lover',
-        'Reading my next book',
-        320,
-        290
+        'gamer_sam',
+        'sam@email.com',
+        'hashed_pwd_6',
+        TIMESTAMP '2023-02-06 15:00:00',
+        'profiles/sam.jpg',
+        'Professional Gamer | Streamer',
+        'Live streaming now!',
+        20,
+        18
     )
 );
-
+--user 7
 INSERT INTO Users VALUES (
     RegularUserType(
         user_id_seq.NEXTVAL,
-        'music_tom',
-        'tom@example.com',
-        'hashed_password_14',
-        TO_DATE('25-DEC-2005','DD-MM-YYYY'),
-        'profile_pic_tom.jpg',
-        'Musician | Producer',
-        'Making music',
-        890,
-        760
+        'music_rachel',
+        'rachel@email.com',
+        'hashed_pwd_7',
+        TIMESTAMP '2023-02-07 16:00:00',
+        'profiles/rachel.jpg',
+        'Singer | Songwriter | Producer',
+        'Making music 🎵',
+        17,
+        15
     )
 );
-
+--user 8
 INSERT INTO Users VALUES (
     RegularUserType(
         user_id_seq.NEXTVAL,
-        'eco_julia',
-        'julia@example.com',
-        'hashed_password_15',
-        TO_DATE('26-DEC-2005','DD-MM-YYYY'),
-        'profile_pic_julia.jpg',
-        'Environmental activist | Sustainable living',
-        'Saving the planet',
-        420,
-        380
+        'eco_peter',
+        'peter@email.com',
+        'hashed_pwd_8',
+        TIMESTAMP '2023-02-08 17:00:00',
+        'profiles/peter.jpg',
+        'Environmental Activist | Sustainable Living',
+        'Saving the planet 🌍',
+        14,
+        12
+    )
+);
+--user 9
+INSERT INTO Users VALUES (
+    RegularUserType(
+        user_id_seq.NEXTVAL,
+        'fashion_nina',
+        'nina@email.com',
+        'hashed_pwd_9',
+        TIMESTAMP '2023-02-09 18:00:00',
+        'profiles/nina.jpg',
+        'Fashion Blogger | Style Consultant',
+        'Fashion week ready',
+        20,
+        16
+    )
+);
+--user 10
+INSERT INTO Users VALUES (
+    RegularUserType(
+        user_id_seq.NEXTVAL,
+        'chef_carlos',
+        'carlos@email.com',
+        'hashed_pwd_10',
+        TIMESTAMP '2023-02-10 19:00:00',
+        'profiles/carlos.jpg',
+        'Professional Chef | Food Photography',
+        'In the kitchen',
+        18,
+        15
+    )
+);
+--user 11
+INSERT INTO Users VALUES (
+    RegularUserType(
+        user_id_seq.NEXTVAL,
+        'yoga_emma',
+        'emma.y@email.com',
+        'hashed_pwd_11',
+        TIMESTAMP '2023-02-11 20:00:00',
+        'profiles/emma_y.jpg',
+        'Yoga Instructor | Mindfulness Coach',
+        'Namaste 🧘‍♀️',
+        16,
+        13
+    )
+);
+--user 12
+INSERT INTO Users VALUES (
+    RegularUserType(
+        user_id_seq.NEXTVAL,
+        'photographer_tom',
+        'tom@email.com',
+        'hashed_pwd_12',
+        TIMESTAMP '2023-02-12 21:00:00',
+        'profiles/tom.jpg',
+        'Professional Photographer | Nature Lover',
+        'Capturing moments',
+        19,
+        17
+    )
+);
+--user 13
+INSERT INTO Users VALUES (
+    RegularUserType(
+        user_id_seq.NEXTVAL,
+        'writer_sophia',
+        'sophia@email.com',
+        'hashed_pwd_13',
+        TIMESTAMP '2023-02-13 22:00:00',
+        'profiles/sophia.jpg',
+        'Author | Book Reviewer | Coffee Addict',
+        'Writing my next novel',
+        15,
+        14
+    )
+);
+--user 14
+INSERT INTO Users VALUES (
+    RegularUserType(
+        user_id_seq.NEXTVAL,
+        'startup_ryan',
+        'ryan@email.com',
+        'hashed_pwd_14',
+        TIMESTAMP '2023-02-14 23:00:00',
+        'profiles/ryan.jpg',
+        'Entrepreneur | Tech Startup Founder',
+        'Building the future',
+        20,
+        15
+    )
+);
+--user 15
+INSERT INTO Users VALUES (
+    RegularUserType(
+        user_id_seq.NEXTVAL,
+        'dancer_maria',
+        'maria@email.com',
+        'hashed_pwd_15',
+        TIMESTAMP '2023-02-15 00:00:00',
+        'profiles/maria.jpg',
+        'Professional Dancer | Dance Instructor',
+        'Dancing through life 💃',
+        18,
+        16
+    )
+);
+--user 16
+INSERT INTO Users VALUES (
+    RegularUserType(
+        user_id_seq.NEXTVAL,
+        'scientist_alan',
+        'alan@email.com',
+        'hashed_pwd_16',
+        TIMESTAMP '2023-02-16 01:00:00',
+        'profiles/alan.jpg',
+        'Research Scientist | Physics Enthusiast',
+        'Exploring the universe',
+        13,
+        11
+    )
+);
+--user 17
+INSERT INTO Users VALUES (
+    RegularUserType(
+        user_id_seq.NEXTVAL,
+        'diy_hannah',
+        'hannah@email.com',
+        'hashed_pwd_17',
+        TIMESTAMP '2023-02-17 02:00:00',
+        'profiles/hannah.jpg',
+        'DIY Expert | Home Improvement',
+        'Creating something new',
+        17,
+        14
+    )
+);
+--user 18
+INSERT INTO Users VALUES (
+    RegularUserType(
+        user_id_seq.NEXTVAL,
+        'comedian_jack',
+        'jack@email.com',
+        'hashed_pwd_18',
+        TIMESTAMP '2023-02-18 03:00:00',
+        'profiles/jack.jpg',
+        'Stand-up Comedian | Content Creator',
+        'Making people laugh 😂',
+        20,
+        18
+    )
+);
+--user 19
+INSERT INTO Users VALUES (
+    RegularUserType(
+        user_id_seq.NEXTVAL,
+        'pet_lover_lucy',
+        'lucy@email.com',
+        'hashed_pwd_19',
+        TIMESTAMP '2023-02-19 04:00:00',
+        'profiles/lucy.jpg',
+        'Pet Influencer | Animal Rescue Advocate',
+        'Playing with puppies 🐕',
+        19,
+        16
+    )
+);
+--user 20
+INSERT INTO Users VALUES (
+    RegularUserType(
+        user_id_seq.NEXTVAL,
+        'sports_coach_ben',
+        'ben@email.com',
+        'hashed_pwd_20',
+        TIMESTAMP '2023-02-20 05:00:00',
+        'profiles/ben.jpg',
+        'Sports Coach | Fitness Expert',
+        'Training champions',
+        17,
+        15
     )
 );
 
---insert posts
-INSERT INTO Posts VALUES (
-    
-        post_id_seq.NEXTVAL,
-        'This is my first post! Hello social media world!',
-        TO_DATE('15-DEC-2005','DD-MM-YYYY'),
-        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser1')
-    
-);
-
-INSERT INTO Posts VALUES (
-    
-        post_id_seq.NEXTVAL,
-        'Sharing some thoughts about technology and social media...',
-        TO_DATE('16-DEC-2005','DD-MM-YYYY'),
-        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser1')
-    
-);
-
-INSERT INTO Posts VALUES (
-   
-        post_id_seq.NEXTVAL,
-        'Just had an amazing day! Wanted to share with everyone.',
-        TO_DATE('15-DEC-2005','DD-MM-YYYY'),
-        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser2')
-    
-);
-
-INSERT INTO Posts VALUES (
-    
-        post_id_seq.NEXTVAL,
-        'Check out this awesome new project I''m working on!',
-        TO_DATE('16-DEC-2005','DD-MM-YYYY'),
-        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser2')
-    
-);
-
-INSERT INTO Posts VALUES (
-    
-        post_id_seq.NEXTVAL,
-        'Happy to join this platform! Looking forward to connecting with everyone.',
-        TO_DATE('17-DEC-2005','DD-MM-YYYY'),
-        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser3')
-    
-);
-
-INSERT INTO Posts VALUES (
-    
-        post_id_seq.NEXTVAL,
-        'Sharing some interesting insights about my recent experiences...',
-        TO_DATE('18-DEC-2005','DD-MM-YYYY'),
-        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser3')
-    
-);
-
--- Posts from techie_sarah
-INSERT INTO Posts VALUES (
-    post_id_seq.NEXTVAL,
-    'Just deployed my first machine learning model! The possibilities are endless! #AI #coding',
-    TO_DATE('18-DEC-2005','DD-MM-YYYY'),
-    (SELECT REF(u) FROM Users u WHERE u.username = 'techie_sarah')
-);
-
-INSERT INTO Posts VALUES (
-    post_id_seq.NEXTVAL,
-    'My favorite VS Code extensions for productivity boost - thread 🧵',
-    TO_DATE('19-DEC-2005','DD-MM-YYYY'),
-    (SELECT REF(u) FROM Users u WHERE u.username = 'techie_sarah')
-);
-
--- Posts from adventure_mike
-INSERT INTO Posts VALUES (
-    post_id_seq.NEXTVAL,
-    'Sunrise at Mount Fuji - worth every step of the climb! 🗻 #Travel #Adventure',
-    TO_DATE('19-DEC-2005','DD-MM-YYYY'),
-    (SELECT REF(u) FROM Users u WHERE u.username = 'adventure_mike')
-);
-
-INSERT INTO Posts VALUES (
-    post_id_seq.NEXTVAL,
-    'Planning my next backpacking trip through South America. Any recommendations?',
-    TO_DATE('20-DEC-2005','DD-MM-YYYY'),
-    (SELECT REF(u) FROM Users u WHERE u.username = 'adventure_mike')
-);
-
--- Posts from foodie_emma
-INSERT INTO Posts VALUES (
-    post_id_seq.NEXTVAL,
-    'New recipe alert! 🍝 The perfect homemade pasta sauce - recipe in comments!',
-    TO_DATE('20-DEC-2005','DD-MM-YYYY'),
-    (SELECT REF(u) FROM Users u WHERE u.username = 'foodie_emma')
-);
-
-INSERT INTO Posts VALUES (
-    post_id_seq.NEXTVAL,
-    'Visited this amazing hidden gem restaurant in the city. Their sushi is to die for! 🍣',
-    TO_DATE('21-DEC-2005','DD-MM-YYYY'),
-    (SELECT REF(u) FROM Users u WHERE u.username = 'foodie_emma')
-);
-
--- Posts from fitness_alex
-INSERT INTO Posts VALUES (
-    post_id_seq.NEXTVAL,
-    'Quick 15-minute HIIT workout for busy professionals - swipe for exercises! 💪',
-    TO_DATE('21-DEC-2005','DD-MM-YYYY'),
-    (SELECT REF(u) FROM Users u WHERE u.username = 'fitness_alex')
-);
-
-INSERT INTO Posts VALUES (
-    post_id_seq.NEXTVAL,
-    'The importance of proper form in weightlifting - common mistakes to avoid',
-    TO_DATE('22-DEC-2005','DD-MM-YYYY'),
-    (SELECT REF(u) FROM Users u WHERE u.username = 'fitness_alex')
-);
-
--- Posts from artist_lisa
-INSERT INTO Posts VALUES (
-    post_id_seq.NEXTVAL,
-    'Just finished this digital portrait commission! Love how it turned out 🎨',
-    TO_DATE('22-DEC-2005','DD-MM-YYYY'),
-    (SELECT REF(u) FROM Users u WHERE u.username = 'artist_lisa')
-);
-
-INSERT INTO Posts VALUES (
-    post_id_seq.NEXTVAL,
-    'My creative process: from sketch to final piece - a timelapse',
-    TO_DATE('23-DEC-2005','DD-MM-YYYY'),
-    (SELECT REF(u) FROM Users u WHERE u.username = 'artist_lisa')
-);
-
--- Posts from gamer_dave
-INSERT INTO Posts VALUES (
-    post_id_seq.NEXTVAL,
-    'Epic win in today''s tournament! Thanks for all the support on the stream 🎮',
-    TO_DATE('23-DEC-2005','DD-MM-YYYY'),
-    (SELECT REF(u) FROM Users u WHERE u.username = 'gamer_dave')
-);
-
-INSERT INTO Posts VALUES (
-    post_id_seq.NEXTVAL,
-    'My thoughts on the latest game patch - what it means for competitive play',
-    TO_DATE('24-DEC-2005','DD-MM-YYYY'),
-    (SELECT REF(u) FROM Users u WHERE u.username = 'gamer_dave')
-);
-
--- Posts from bookworm_nina
-INSERT INTO Posts VALUES (
-    post_id_seq.NEXTVAL,
-    'Monthly book review: "The Midnight Library" - a journey through parallel lives 📚',
-    TO_DATE('24-DEC-2005','DD-MM-YYYY'),
-    (SELECT REF(u) FROM Users u WHERE u.username = 'bookworm_nina')
-);
-
-INSERT INTO Posts VALUES (
-    post_id_seq.NEXTVAL,
-    'My top 5 must-read books for personal development',
-    TO_DATE('25-DEC-2005','DD-MM-YYYY'),
-    (SELECT REF(u) FROM Users u WHERE u.username = 'bookworm_nina')
-);
-
--- Posts from music_tom
-INSERT INTO Posts VALUES (
-    post_id_seq.NEXTVAL,
-    'Just dropped my new track! Link in bio 🎵 #NewMusic',
-    TO_DATE('25-DEC-2005','DD-MM-YYYY'),
-    (SELECT REF(u) FROM Users u WHERE u.username = 'music_tom')
-);
-
-INSERT INTO Posts VALUES (
-    post_id_seq.NEXTVAL,
-    'Behind the scenes of my latest studio session - creating magic! 🎹',
-    TO_DATE('26-DEC-2005','DD-MM-YYYY'),
-    (SELECT REF(u) FROM Users u WHERE u.username = 'music_tom')
-);
-
--- Posts from eco_julia
-INSERT INTO Posts VALUES (
-    post_id_seq.NEXTVAL,
-    'Simple ways to reduce your plastic waste - start your eco-journey today! 🌱',
-    TO_DATE('26-DEC-2005','DD-MM-YYYY'),
-    (SELECT REF(u) FROM Users u WHERE u.username = 'eco_julia')
-);
-
-INSERT INTO Posts VALUES (
-    post_id_seq.NEXTVAL,
-    'Join us for this weekend''s beach cleanup! Together we can make a difference 🌊',
-    TO_DATE('27-DEC-2005','DD-MM-YYYY'),
-    (SELECT REF(u) FROM Users u WHERE u.username = 'eco_julia')
-);
-
---insert likes 
-INSERT INTO Likes VALUES (
-    LikeType(
-        like_id_seq.NEXTVAL,
-        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser1'),
-        (SELECT REF(p) FROM Posts p WHERE p.post_id = 2),
-        TO_DATE('16-DEC-2005','DD-MM-YYYY')
-    )
-);
-
-INSERT INTO Likes VALUES (
-    LikeType(
-        like_id_seq.NEXTVAL,
-        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser2'),
-        (SELECT REF(p) FROM Posts p WHERE p.post_id = 1),
-        TO_DATE('16-DEC-2005','DD-MM-YYYY')
-    )
-);
-
-INSERT INTO Likes VALUES (
-    LikeType(
-        like_id_seq.NEXTVAL,
-        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser3'),
-        (SELECT REF(p) FROM Posts p WHERE p.post_id = 1),
-        TO_DATE('17-DEC-2005','DD-MM-YYYY')
-    )
-);
-
-INSERT INTO Likes VALUES (
-    LikeType(
-        like_id_seq.NEXTVAL,
-        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser1'),
-        (SELECT REF(p) FROM Posts p WHERE p.post_id = 4),
-        TO_DATE('17-DEC-2005','DD-MM-YYYY')
-    )
-);
-
-INSERT INTO Likes VALUES (
-    LikeType(
-        like_id_seq.NEXTVAL,
-        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser2'),
-        (SELECT REF(p) FROM Posts p WHERE p.post_id = 3),
-        TO_DATE('18-DEC-2005','DD-MM-YYYY')
-    )
-);
-
-INSERT INTO Likes VALUES (
-    LikeType(
-        like_id_seq.NEXTVAL,
-        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser3'),
-        (SELECT REF(p) FROM Posts p WHERE p.post_id = 5),
-        TO_DATE('18-DEC-2005','DD-MM-YYYY')
-    )
-);
-
-INSERT INTO Likes VALUES (
-    LikeType(
-        like_id_seq.NEXTVAL,
-        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser1'),
-        (SELECT REF(p) FROM Posts p WHERE p.post_id = 6),
-        TO_DATE('19-DEC-2005','DD-MM-YYYY')
-    )
-);
-
-INSERT INTO Likes VALUES (
-    LikeType(
-        like_id_seq.NEXTVAL,
-        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser2'),
-        (SELECT REF(p) FROM Posts p WHERE p.post_id = 5),
-        TO_DATE('19-DEC-2005','DD-MM-YYYY')
-    )
-);
-
-INSERT INTO Likes VALUES (
-    LikeType(
-        like_id_seq.NEXTVAL,
-        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser3'),
-        (SELECT REF(p) FROM Posts p WHERE p.post_id = 4),
-        TO_DATE('20-DEC-2005','DD-MM-YYYY')
-    )
-);
-
--- insert comments
-INSERT INTO Comments VALUES (
-    CommentType(
-        comment_id_seq.NEXTVAL,
-        'Great first post! Welcome to the platform!',
-        TO_DATE('15-DEC-2005','DD-MM-YYYY'),
-        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser2'),
-        (SELECT REF(p) FROM Posts p WHERE p.post_id = 1)
-    )
-);
-
-INSERT INTO Comments VALUES (
-    CommentType(
-        comment_id_seq.NEXTVAL,
-        'Thanks for sharing! Looking forward to more posts.',
-        TO_DATE('15-DEC-2005','DD-MM-YYYY'), 
-        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser3'),
-        (SELECT REF(p) FROM Posts p WHERE p.post_id = 1)
-    )
-);
-
-INSERT INTO Comments VALUES (
-    CommentType(
-        comment_id_seq.NEXTVAL,
-        'Interesting thoughts! Would love to discuss more.',
-        TO_DATE('16-DEC-2005','DD-MM-YYYY'),
-        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser2'),
-        (SELECT REF(p) FROM Posts p WHERE p.post_id = 2)
-    )
-);
-
-INSERT INTO Comments VALUES (
-    CommentType(
-        comment_id_seq.NEXTVAL,
-        'Could you elaborate more on your thoughts about social media?',
-        TO_DATE('16-DEC-2005','DD-MM-YYYY'),
-        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser3'),
-        (SELECT REF(p) FROM Posts p WHERE p.post_id = 2)
-    )
-);
-
-INSERT INTO Comments VALUES (
-    CommentType(
-        comment_id_seq.NEXTVAL,
-        'Glad you had a great day! Share more details!',
-        TO_DATE('15-DEC-2005','DD-MM-YYYY'),
-        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser1'),
-        (SELECT REF(p) FROM Posts p WHERE p.post_id = 3)
-    )
-);
-
-INSERT INTO Comments VALUES (
-    CommentType(
-        comment_id_seq.NEXTVAL,
-        'Your positive energy is contagious!',
-        TO_DATE('15-DEC-2005','DD-MM-YYYY'),
-        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser3'),
-        (SELECT REF(p) FROM Posts p WHERE p.post_id = 3)
-    )
-);
-
-
---insert messages
-
-INSERT INTO Messages VALUES (
-    MessageType(
-        message_id_seq.NEXTVAL,
-        'Hey, how are you doing?',
-        TO_DATE('15-DEC-2005','DD-MM-YYYY'),
-        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser1'),
-        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser2')
-    )
-);
-
-INSERT INTO Messages VALUES (
-    MessageType(
-        message_id_seq.NEXTVAL,
-        'I''m good! Thanks for asking. How about you?',
-        TO_DATE('15-DEC-2005','DD-MM-YYYY'),
-        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser2'),
-        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser1')
-    )
-);
-
-INSERT INTO Messages VALUES (
-    MessageType(
-        message_id_seq.NEXTVAL,
-        'Did you see my latest post about the project?',
-        TO_DATE('16-DEC-2005','DD-MM-YYYY'),
-        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser2'),
-        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser3')
-    )
-);
-
-INSERT INTO Messages VALUES (
-    MessageType(
-        message_id_seq.NEXTVAL,
-        'Yes, it looks amazing! Would love to collaborate',
-        TO_DATE('16-DEC-2005','DD-MM-YYYY'),
-        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser3'),
-        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser2')
-    )
-);
-
-INSERT INTO Messages VALUES (
-    MessageType(
-        message_id_seq.NEXTVAL,
-        'Can we schedule a meeting to discuss the details?',
-        TO_DATE('16-DEC-2005','DD-MM-YYYY'),
-        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser2'),
-        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser3')
-    )
-);
-
-INSERT INTO Messages VALUES (
-    MessageType(
-        message_id_seq.NEXTVAL,
-        'Hey! Long time no chat!',
-        TO_DATE('17-DEC-2005','DD-MM-YYYY'),
-        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser1'),
-        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser3')
-    )
-);
-
-INSERT INTO Messages VALUES (
-    MessageType(
-        message_id_seq.NEXTVAL,
-        'Indeed! We should catch up soon',
-        TO_DATE('17-DEC-2005','DD-MM-YYYY'),
-        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser3'),
-        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser1')
-    )
-);
-
-INSERT INTO Messages VALUES (
-    MessageType(
-        message_id_seq.NEXTVAL,
-        'Are you free this weekend?',
-        TO_DATE('17-DEC-2005','DD-MM-YYYY'),
-        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser1'),
-        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser3')
-    )
-);
-
-INSERT INTO Messages VALUES (
-    MessageType(
-        message_id_seq.NEXTVAL,
-        'Yes, Saturday afternoon works for me!',
-        TO_DATE('17-DEC-2005','DD-MM-YYYY'),
-        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser3'),
-        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser1')
-    )
-);
-
-INSERT INTO Messages VALUES (
-    MessageType(
-        message_id_seq.NEXTVAL,
-        'Have you started working on the new feature?',
-        TO_DATE('18-DEC-2005','DD-MM-YYYY'),
-        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser2'),
-        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser1')
-    )
-);
-
-INSERT INTO Messages VALUES (
-    MessageType(
-        message_id_seq.NEXTVAL,
-        'Just getting started. Need any help?',
-        TO_DATE('18-DEC-2005','DD-MM-YYYY'),
-        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser1'),
-        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser2')
-    )
-);
-
-INSERT INTO Messages VALUES (
-    MessageType(
-        message_id_seq.NEXTVAL,
-        'Could you review my code when you have time?',
-        TO_DATE('18-DEC-2005','DD-MM-YYYY'),
-        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser2'),
-        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser1')
-    )
-);
-
-INSERT INTO Messages VALUES (
-    MessageType(
-        message_id_seq.NEXTVAL,
-        'Sure, send it over!',
-        TO_DATE('18-DEC-2005','DD-MM-YYYY'),
-        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser1'),
-        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser2')
-    )
-);
-
-INSERT INTO Messages VALUES (
-    MessageType(
-        message_id_seq.NEXTVAL,
-        'Are we still meeting tomorrow?',
-        TO_DATE('19-DEC-2005','DD-MM-YYYY'),
-        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser3'),
-        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser2')
-    )
-);
-
-INSERT INTO Messages VALUES (
-    MessageType(
-        message_id_seq.NEXTVAL,
-        'Yes, 2 PM at the usual place',
-        TO_DATE('19-DEC-2005','DD-MM-YYYY'),
-        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser2'),
-        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser3')
-    )
-);
-
-INSERT INTO Messages VALUES (
-    MessageType(
-        message_id_seq.NEXTVAL,
-        'Don''t forget about the team meeting today!',
-        TO_DATE('19-DEC-2005','DD-MM-YYYY'),
-        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser1'),
-        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser2')
-    )
-);
-
-INSERT INTO Messages VALUES (
-    MessageType(
-        message_id_seq.NEXTVAL,
-        'Thanks for the reminder!',
-        TO_DATE('19-DEC-2005','DD-MM-YYYY'),
-        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser2'),
-        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser1')
-    )
-);
-
-INSERT INTO Messages VALUES (
-    MessageType(
-        message_id_seq.NEXTVAL,
-        'How''s the project coming along?',
-        TO_DATE('20-DEC-2005','DD-MM-YYYY'),
-        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser3'),
-        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser1')
-    )
-);
-
-INSERT INTO Messages VALUES (
-    MessageType(
-        message_id_seq.NEXTVAL,
-        'Making good progress! Will share updates soon',
-        TO_DATE('20-DEC-2005','DD-MM-YYYY'),
-        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser1'),
-        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser3')
-    )
-);
-
-INSERT INTO Messages VALUES (
-    MessageType(
-        message_id_seq.NEXTVAL,
-        'Let''s grab coffee sometime this week!',
-        TO_DATE('20-DEC-2005','DD-MM-YYYY'),
-        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser2'),
-        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser3')
-    )
-);
-
-INSERT INTO Messages VALUES (
-    MessageType(
-        message_id_seq.NEXTVAL,
-        'Definitely! How about Wednesday?',
-        TO_DATE('20-DEC-2005','DD-MM-YYYY'),
-        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser3'),
-        (SELECT REF(u) FROM Users u WHERE u.username = 'regularuser2')
-    )
-);
-
+COMMIT;
