@@ -8,3 +8,6 @@ FROM Users u
 LEFT JOIN Posts p ON REF(u) = p.user_ref
 GROUP BY u.username, u.user_type
 ORDER BY post_count DESC;
+
+
+
