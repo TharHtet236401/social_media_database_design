@@ -590,3 +590,326 @@ INSERT INTO Users VALUES (
 );
 
 COMMIT;
+
+-- inserting posts
+INSERT INTO Posts VALUES (
+    PostType(
+        post_id_seq.NEXTVAL,
+        'Just launched my new AI project! Check out the demo at github.com/tech_guru_alex #AI #Programming',
+        TIMESTAMP '2024-03-15 09:00:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 6)
+    )
+);
+
+INSERT INTO Posts VALUES (
+    PostType(
+        post_id_seq.NEXTVAL,
+        'Deep dive into Python 3.12 features - Thread coming up! 🧵 #Python #CodingLife',
+        TIMESTAMP '2024-03-15 11:30:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 6)
+    )
+);
+
+INSERT INTO Posts VALUES (
+    PostType(
+        post_id_seq.NEXTVAL,
+        'My VS Code setup for maximum productivity. Sharing my favorite extensions! 💻',
+        TIMESTAMP '2024-03-15 14:15:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 6)
+    )
+);
+
+
+INSERT INTO Posts VALUES (
+    PostType(
+        post_id_seq.NEXTVAL,
+        'Just tried this amazing new ramen place! The broth is to die for 🍜 #FoodBlog',
+        TIMESTAMP '2024-03-15 12:00:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 8)
+    )
+);
+
+INSERT INTO Posts VALUES (
+    PostType(
+        post_id_seq.NEXTVAL,
+        'Recipe alert! My secret pasta sauce recipe finally revealed! 🍝 #Cooking',
+        TIMESTAMP '2024-03-15 15:30:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 8)
+    )
+);
+
+INSERT INTO Posts VALUES (
+    PostType(
+        post_id_seq.NEXTVAL,
+        'Food photography tips: How to make your dishes look Instagram-worthy 📸',
+        TIMESTAMP '2024-03-15 17:45:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 8)
+    )
+);
+
+-- Moderately active users (fitness_jane - ID 7)
+INSERT INTO Posts VALUES (
+    PostType(
+        post_id_seq.NEXTVAL,
+        'Morning workout completed! 💪 Remember: consistency is key! #FitnessMotivation',
+        TIMESTAMP '2024-03-15 07:00:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 7)
+    )
+);
+
+INSERT INTO Posts VALUES (
+    PostType(
+        post_id_seq.NEXTVAL,
+        'Quick healthy lunch ideas for busy professionals 🥗',
+        TIMESTAMP '2024-03-15 12:30:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 7)
+    )
+);
+
+-- Less active users (eco_peter - ID 13, scientist_alan - ID 16)
+INSERT INTO Posts VALUES (
+    PostType(
+        post_id_seq.NEXTVAL,
+        'Monthly update: Our beach cleanup collected 500kg of plastic! 🌊 #SaveTheOceans',
+        TIMESTAMP '2024-03-15 16:00:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 13)
+    )
+);
+
+INSERT INTO Posts VALUES (
+    PostType(
+        post_id_seq.NEXTVAL,
+        'New research paper published on quantum computing applications in cryptography',
+        TIMESTAMP '2024-03-15 14:00:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 16)
+    )
+);
+
+-- gamer_sam posts (User ID: 11) - Very active gaming influencer
+INSERT INTO Posts VALUES (
+    PostType(
+        post_id_seq.NEXTVAL,
+        'Live now! Streaming the new RPG release! Come join! 🎮 #Gaming #LiveStream',
+        TIMESTAMP '2024-03-15 20:00:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 11)
+    )
+);
+
+INSERT INTO Posts VALUES (
+    PostType(
+        post_id_seq.NEXTVAL,
+        'Game Review: 10 things you need to know about the latest release! 🎮',
+        TIMESTAMP '2024-03-15 15:30:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 11)
+    )
+);
+
+INSERT INTO Posts VALUES (
+    PostType(
+        post_id_seq.NEXTVAL,
+        'My gaming setup tour! New RGB lighting installed! ✨ #GamingSetup',
+        TIMESTAMP '2024-03-15 12:45:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 11)
+    )
+);
+
+-- fashion_nina posts (User ID: 14) - Very active fashion influencer
+INSERT INTO Posts VALUES (
+    PostType(
+        post_id_seq.NEXTVAL,
+        'Spring Fashion Haul! 👗 Swipe to see my favorite picks! #FashionBlogger',
+        TIMESTAMP '2024-03-15 11:00:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 14)
+    )
+);
+
+INSERT INTO Posts VALUES (
+    PostType(
+        post_id_seq.NEXTVAL,
+        'How to style one dress in 5 different ways! 💃 #StyleTips',
+        TIMESTAMP '2024-03-15 14:30:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 14)
+    )
+);
+
+INSERT INTO Posts VALUES (
+    PostType(
+        post_id_seq.NEXTVAL,
+        'GRWM: Fashion Week Edition! 👠 #FashionWeek #OOTD',
+        TIMESTAMP '2024-03-15 17:15:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 14)
+    )
+);
+
+-- Additional random posts with varying dates and content
+-- Tech posts from different users
+INSERT INTO Posts VALUES (
+    PostType(
+        post_id_seq.NEXTVAL,
+        'Learning React Native for mobile development. Any tips? 📱 #coding #mobiledev',
+        TIMESTAMP '2024-03-14 15:30:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 6)
+    )
+);
+
+INSERT INTO Posts VALUES (
+    PostType(
+        post_id_seq.NEXTVAL,
+        'Exploring machine learning algorithms for my latest project 🤖 #AI #ML',
+        TIMESTAMP '2024-03-13 10:45:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 16)
+    )
+);
+
+-- Fitness and Health posts
+INSERT INTO Posts VALUES (
+    PostType(
+        post_id_seq.NEXTVAL,
+        '5k morning run completed! New personal best! 🏃‍♀️ #Running #Fitness',
+        TIMESTAMP '2024-03-14 07:15:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 7)
+    )
+);
+
+INSERT INTO Posts VALUES (
+    PostType(
+        post_id_seq.NEXTVAL,
+        'Post-workout protein smoothie recipe! Banana + Peanut butter = 😋 #HealthyLiving',
+        TIMESTAMP '2024-03-13 16:20:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 20)
+    )
+);
+
+-- Travel content
+INSERT INTO Posts VALUES (
+    PostType(
+        post_id_seq.NEXTVAL,
+        'Sunset in Bali 🌅 Sometimes you need to get lost to find yourself #Travel',
+        TIMESTAMP '2024-03-12 18:30:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 10)
+    )
+);
+
+-- Art and creativity
+INSERT INTO Posts VALUES (
+    PostType(
+        post_id_seq.NEXTVAL,
+        'New digital art piece finished! Swipe to see the process 🎨 #DigitalArt',
+        TIMESTAMP '2024-03-11 14:20:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 9)
+    )
+);
+
+-- Food and cooking
+INSERT INTO Posts VALUES (
+    PostType(
+        post_id_seq.NEXTVAL,
+        'Homemade sushi night! 🍣 Tutorial coming soon! #Cooking #FoodLover',
+        TIMESTAMP '2024-03-10 19:15:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 8)
+    )
+);
+
+-- Gaming content
+INSERT INTO Posts VALUES (
+    PostType(
+        post_id_seq.NEXTVAL,
+        'Just hit Diamond rank! The grind was worth it 🎮 #Gaming #ESports',
+        TIMESTAMP '2024-03-09 22:30:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 11)
+    )
+);
+
+-- Environmental awareness
+INSERT INTO Posts VALUES (
+    PostType(
+        post_id_seq.NEXTVAL,
+        'Simple ways to reduce your carbon footprint 🌍 Thread below! #Environment',
+        TIMESTAMP '2024-03-08 11:45:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 13)
+    )
+);
+
+-- Music related
+INSERT INTO Posts VALUES (
+    PostType(
+        post_id_seq.NEXTVAL,
+        'New cover song dropping tomorrow! Stay tuned 🎵 #Music #Singer',
+        TIMESTAMP '2024-03-07 20:00:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 12)
+    )
+);
+
+-- Fashion posts
+INSERT INTO Posts VALUES (
+    PostType(
+        post_id_seq.NEXTVAL,
+        'Summer fashion trends 2024 prediction 👗 #Fashion #Style',
+        TIMESTAMP '2024-03-06 13:15:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 14)
+    )
+);
+
+-- Pet content
+INSERT INTO Posts VALUES (
+    PostType(
+        post_id_seq.NEXTVAL,
+        'Meet our newest rescue puppy! 🐕 Help us name him! #AdoptDontShop',
+        TIMESTAMP '2024-03-05 16:40:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 19)
+    )
+);
+
+-- DIY content
+INSERT INTO Posts VALUES (
+    PostType(
+        post_id_seq.NEXTVAL,
+        'Upcycled this old cabinet into a beautiful bar cart! 🛠️ #DIY #HomeDecor',
+        TIMESTAMP '2024-03-04 15:20:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 17)
+    )
+);
+
+-- Comedy content
+INSERT INTO Posts VALUES (
+    PostType(
+        post_id_seq.NEXTVAL,
+        'When your code finally works but you dont know why 😂 #ProgrammerHumor',
+        TIMESTAMP '2024-03-03 19:30:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 18)
+    )
+);
+
+-- Yoga and wellness
+INSERT INTO Posts VALUES (
+    PostType(
+        post_id_seq.NEXTVAL,
+        'Morning meditation tips for beginners 🧘‍♀️ #Wellness #Mindfulness',
+        TIMESTAMP '2024-03-02 08:00:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 15)
+    )
+);
+
+-- Photography
+INSERT INTO Posts VALUES (
+    PostType(
+        post_id_seq.NEXTVAL,
+        'Captured this amazing lightning storm last night ⚡ #Photography',
+        TIMESTAMP '2024-03-01 23:15:00',
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 10)
+    )
+);
+
+COMMIT;
+
+
+SELECT 
+    u.username,
+    u.user_type,
+    COUNT(p.post_id) as post_count,
+    MIN(p.created_at) as first_post_date,
+    MAX(p.created_at) as last_post_date
+FROM Users u
+LEFT JOIN Posts p ON REF(u) = p.user_ref
+GROUP BY u.username, u.user_type
+ORDER BY post_count DESC;
