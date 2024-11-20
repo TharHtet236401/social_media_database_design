@@ -38,19 +38,22 @@ db.createCollection("users", {
                     enum: ["admin", "regular"]
                 },
                 // Admin specific fields
-                admin_id: {
-                    bsonType: "number"
-                },
-                report_viewed: {
-                    bsonType: "number"
+                admin_user:{
+                    admin_id: {
+                        bsonType: "number"
+                    },
+                    report_viewed: {
+                        bsonType: "number"
                 },
                 last_login: {
-                    bsonType: "date"
-                },
-                admin_level: {
-                    bsonType: "number"
+                        bsonType: "date"
+                    },
+                    admin_level: {
+                        bsonType: "number"
+                    },
                 },
                 // Regular user specific fields
+                regular_user:{
                 bio: {
                     bsonType: "string",
                     maxLength: 4000
@@ -83,10 +86,12 @@ db.users.insertMany([
         created_at: new Date("2023-01-01T09:00:00Z"),
         profile_picture: "admin_profiles/sarah.jpg",
         user_type: "admin",
-        admin_id: 1001,
-        report_viewed: 250,
-        last_login: new Date("2024-03-15T14:30:00Z"),
-        admin_level: 1
+        admin_user:{
+            admin_id: 1001,
+            report_viewed: 250,
+            last_login: new Date("2024-03-15T14:30:00Z"),
+            admin_level: 1
+        }
     },
     {
         username: "admin_michael",
@@ -95,10 +100,12 @@ db.users.insertMany([
         created_at: new Date("2023-01-02T10:00:00Z"),
         profile_picture: "admin_profiles/michael.jpg",
         user_type: "admin",
-        admin_id: 1002,
-        report_viewed: 180,
-        last_login: new Date("2024-03-15T16:45:00Z"),
-        admin_level: 2
+        admin_user:{
+            admin_id: 1002,
+            report_viewed: 180,
+            last_login: new Date("2024-03-15T16:45:00Z"),
+            admin_level: 2
+        }
     },
     {
         username: "admin_jessica",
@@ -107,10 +114,12 @@ db.users.insertMany([
         created_at: new Date("2023-01-03T11:00:00Z"),
         profile_picture: "admin_profiles/jessica.jpg",
         user_type: "admin",
-        admin_id: 1003,
-        report_viewed: 320,
-        last_login: new Date("2024-03-15T15:20:00Z"),
-        admin_level: 1
+        admin_user:{
+            admin_id: 1003,
+            report_viewed: 320,
+            last_login: new Date("2024-03-15T15:20:00Z"),
+            admin_level: 1
+        }
     },
     {
         username: "admin_david",
@@ -119,10 +128,12 @@ db.users.insertMany([
         created_at: new Date("2023-01-04T12:00:00Z"),
         profile_picture: "admin_profiles/david.jpg",
         user_type: "admin",
-        admin_id: 1004,
-        report_viewed: 290,
-        last_login: new Date("2024-03-15T17:10:00Z"),
-        admin_level: 2
+        admin_user:{
+            admin_id: 1004,
+            report_viewed: 290,
+            last_login: new Date("2024-03-15T17:10:00Z"),
+            admin_level: 2
+        }
     },
     {
         username: "admin_emma",
@@ -131,10 +142,12 @@ db.users.insertMany([
         created_at: new Date("2023-01-05T13:00:00Z"),
         profile_picture: "admin_profiles/emma.jpg",
         user_type: "admin",
-        admin_id: 1005,
-        report_viewed: 275,
-        last_login: new Date("2024-03-15T18:00:00Z"),
-        admin_level: 1
+        admin_user:{
+            admin_id: 1005,
+            report_viewed: 275,
+            last_login: new Date("2024-03-15T18:00:00Z"),
+            admin_level: 1
+        }
     }
 ]);
 
@@ -147,10 +160,12 @@ db.users.insertMany([
         created_at: new Date("2023-02-01T10:00:00Z"),
         profile_picture: "profiles/alex.jpg",
         user_type: "regular",
-        bio: "Software Developer | AI Enthusiast | Coffee Lover",
-        user_status: "Coding something cool",
-        followers: 15,
-        following: 12
+        regular_user:{
+            bio: "Software Developer | AI Enthusiast | Coffee Lover",
+            user_status: "Coding something cool",
+            followers: 15,
+            following: 12
+        }
     },
     {
         username: "fitness_jane",
@@ -159,10 +174,12 @@ db.users.insertMany([
         created_at: new Date("2023-02-02T11:00:00Z"),
         profile_picture: "profiles/jane.jpg",
         user_type: "regular",
-        bio: "Personal Trainer | Nutrition Expert",
-        user_status: "At the gym 💪",
-        followers: 18,
-        following: 15
+        regular_user:{
+            bio: "Personal Trainer | Nutrition Expert",
+            user_status: "At the gym 💪",
+            followers: 18,
+            following: 15
+        }
     },
     {
         username: "foodie_mark",
@@ -171,10 +188,12 @@ db.users.insertMany([
         created_at: new Date("2023-02-03T12:00:00Z"),
         profile_picture: "profiles/mark.jpg",
         user_type: "regular",
-        bio: "Food Blogger | Chef | Restaurant Explorer",
-        user_status: "Cooking up something special",
-        followers: 20,
-        following: 17
+        regular_user:{
+            bio: "Food Blogger | Chef | Restaurant Explorer",
+            user_status: "Cooking up something special",
+            followers: 20,
+            following: 17
+        }
     },
     {
         username: "artist_lisa",
@@ -183,10 +202,12 @@ db.users.insertMany([
         created_at: new Date("2023-02-04T13:00:00Z"),
         profile_picture: "profiles/lisa.jpg",
         user_type: "regular",
-        bio: "Digital Artist | Illustrator",
-        user_status: "Creating new artwork",
-        followers: 16,
-        following: 14
+        regular_user:{
+            bio: "Digital Artist | Illustrator",
+            user_status: "Creating new artwork",
+            followers: 16,
+            following: 14
+        }
     },
     {
         username: "travel_mike",
@@ -195,10 +216,12 @@ db.users.insertMany([
         created_at: new Date("2023-02-05T14:00:00Z"),
         profile_picture: "profiles/mike.jpg",
         user_type: "regular",
-        bio: "World Traveler | Photographer",
-        user_status: "Exploring new places",
-        followers: 19,
-        following: 16
+        regular_user:{
+            bio: "World Traveler | Photographer",
+            user_status: "Exploring new places",
+            followers: 19,
+            following: 16
+        }
     },
     {
         username: "gamer_sam",
@@ -207,10 +230,12 @@ db.users.insertMany([
         created_at: new Date("2023-02-06T15:00:00Z"),
         profile_picture: "profiles/sam.jpg",
         user_type: "regular",
-        bio: "Professional Gamer | Streamer",
-        user_status: "Live streaming now!",
-        followers: 20,
-        following: 18
+        regular_user:{
+            bio: "Professional Gamer | Streamer",
+            user_status: "Live streaming now!",
+            followers: 20,
+            following: 18
+        }
     },
     {
         username: "music_rachel",
@@ -219,10 +244,12 @@ db.users.insertMany([
         created_at: new Date("2023-02-07T16:00:00Z"),
         profile_picture: "profiles/rachel.jpg",
         user_type: "regular",
-        bio: "Singer | Songwriter | Producer",
-        user_status: "Making music 🎵",
-        followers: 17,
-        following: 15
+        regular_user:{
+            bio: "Singer | Songwriter | Producer",
+            user_status: "Making music 🎵",
+            followers: 17,
+            following: 15
+        }
     },
     {
         username: "eco_peter",
@@ -231,10 +258,12 @@ db.users.insertMany([
         created_at: new Date("2023-02-08T17:00:00Z"),
         profile_picture: "profiles/peter.jpg",
         user_type: "regular",
-        bio: "Environmental Activist | Sustainable Living",
-        user_status: "Saving the planet 🌍",
-        followers: 14,
-        following: 12
+        regular_user:{
+            bio: "Environmental Activist | Sustainable Living",
+            user_status: "Saving the planet 🌍",
+            followers: 14,
+            following: 12
+        }
     },
     {
         username: "fashion_nina",
@@ -243,10 +272,12 @@ db.users.insertMany([
         created_at: new Date("2023-02-09T18:00:00Z"),
         profile_picture: "profiles/nina.jpg",
         user_type: "regular",
-        bio: "Fashion Blogger | Style Consultant",
-        user_status: "Fashion week ready",
-        followers: 20,
-        following: 16
+        regular_user:{
+            bio: "Fashion Blogger | Style Consultant",
+            user_status: "Fashion week ready",
+            followers: 20,
+            following: 16
+        }
     },
     {
         username: "chef_carlos",
@@ -255,10 +286,12 @@ db.users.insertMany([
         created_at: new Date("2023-02-10T19:00:00Z"),
         profile_picture: "profiles/carlos.jpg",
         user_type: "regular",
-        bio: "Professional Chef | Food Photography",
-        user_status: "In the kitchen",
-        followers: 18,
-        following: 15
+        regular_user:{
+            bio: "Professional Chef | Food Photography",
+            user_status: "In the kitchen",
+            followers: 18,
+            following: 15
+        }
     },
     {
         username: "yoga_emma",
@@ -267,10 +300,12 @@ db.users.insertMany([
         created_at: new Date("2023-02-11T20:00:00Z"),
         profile_picture: "profiles/emma_y.jpg",
         user_type: "regular",
-        bio: "Yoga Instructor | Mindfulness Coach",
-        user_status: "Namaste 🧘‍♀️",
-        followers: 16,
-        following: 13
+        regular_user:{
+            bio: "Yoga Instructor | Mindfulness Coach",
+            user_status: "Namaste 🧘‍♀️",
+            followers: 16,
+            following: 13
+        }
     },
     {
         username: "photographer_tom",
@@ -278,11 +313,13 @@ db.users.insertMany([
         password_hash: "hashed_pwd_12",
         created_at: new Date("2023-02-12T21:00:00Z"),
         profile_picture: "profiles/tom.jpg",
-        user_type: "regular",
-        bio: "Professional Photographer | Nature Lover",
-        user_status: "Capturing moments",
-        followers: 19,
-        following: 17
+        user_type: "regular",   
+        regular_user:{
+            bio: "Professional Photographer | Nature Lover",
+            user_status: "Capturing moments",
+            followers: 19,
+            following: 17
+        }
     },
     {
         username: "writer_sophia",
@@ -291,10 +328,12 @@ db.users.insertMany([
         created_at: new Date("2023-02-13T22:00:00Z"),
         profile_picture: "profiles/sophia.jpg",
         user_type: "regular",
-        bio: "Author | Book Reviewer | Coffee Addict",
-        user_status: "Writing my next novel",
-        followers: 15,
-        following: 14
+        regular_user:{
+            bio: "Author | Book Reviewer | Coffee Addict",
+            user_status: "Writing my next novel",
+            followers: 15,
+            following: 14
+        }
     },
     {
         username: "startup_ryan",
@@ -303,10 +342,12 @@ db.users.insertMany([
         created_at: new Date("2023-02-14T23:00:00Z"),
         profile_picture: "profiles/ryan.jpg",
         user_type: "regular",
-        bio: "Entrepreneur | Tech Startup Founder",
-        user_status: "Building the future",
-        followers: 20,
-        following: 15
+        regular_user:{
+            bio: "Entrepreneur | Tech Startup Founder",
+            user_status: "Building the future",
+            followers: 20,
+            following: 15
+        }
     },
     {
         username: "dancer_maria",
@@ -315,10 +356,12 @@ db.users.insertMany([
         created_at: new Date("2023-02-15T00:00:00Z"),
         profile_picture: "profiles/maria.jpg",
         user_type: "regular",
-        bio: "Professional Dancer | Dance Instructor",
-        user_status: "Dancing through life 💃",
-        followers: 18,
-        following: 16
+        regular_user:{
+            bio: "Professional Dancer | Dance Instructor",
+            user_status: "Dancing through life 💃",
+            followers: 18,
+            following: 16
+        }
     },
     {
         username: "scientist_alan",
@@ -326,11 +369,13 @@ db.users.insertMany([
         password_hash: "hashed_pwd_16",
         created_at: new Date("2023-02-16T01:00:00Z"),
         profile_picture: "profiles/alan.jpg",
-        user_type: "regular",
-        bio: "Research Scientist | Physics Enthusiast",
-        user_status: "Exploring the universe",
-        followers: 13,
-        following: 11
+        user_type: "regular",   
+        regular_user:{
+            bio: "Research Scientist | Physics Enthusiast",
+            user_status: "Exploring the universe",
+            followers: 13,
+            following: 11
+        }
     },
     {
         username: "diy_hannah",
@@ -339,10 +384,12 @@ db.users.insertMany([
         created_at: new Date("2023-02-17T02:00:00Z"),
         profile_picture: "profiles/hannah.jpg",
         user_type: "regular",
-        bio: "DIY Expert | Home Improvement",
-        user_status: "Creating something new",
-        followers: 17,
-        following: 14
+        regular_user:{
+            bio: "DIY Expert | Home Improvement",
+            user_status: "Creating something new",
+            followers: 17,
+            following: 14
+        }
     },
     {
         username: "comedian_jack",
@@ -351,10 +398,12 @@ db.users.insertMany([
         created_at: new Date("2023-02-18T03:00:00Z"),
         profile_picture: "profiles/jack.jpg",
         user_type: "regular",
-        bio: "Stand-up Comedian | Content Creator",
-        user_status: "Making people laugh 😂",
-        followers: 20,
-        following: 18
+        regular_user:{
+            bio: "Stand-up Comedian | Content Creator",
+            user_status: "Making people laugh 😂",
+            followers: 20,
+            following: 18
+        }
     },
     {
         username: "pet_lover_lucy",
@@ -363,10 +412,12 @@ db.users.insertMany([
         created_at: new Date("2023-02-19T04:00:00Z"),
         profile_picture: "profiles/lucy.jpg",
         user_type: "regular",
-        bio: "Pet Influencer | Animal Rescue Advocate",
-        user_status: "Playing with puppies 🐕",
-        followers: 19,
-        following: 16
+        regular_user:{
+            bio: "Pet Influencer | Animal Rescue Advocate",
+            user_status: "Playing with puppies 🐕",
+            followers: 19,
+            following: 16
+        }
     },
     {
         username: "sports_coach_ben",
@@ -375,10 +426,12 @@ db.users.insertMany([
         created_at: new Date("2023-02-20T05:00:00Z"),
         profile_picture: "profiles/ben.jpg",
         user_type: "regular",
-        bio: "Sports Coach | Fitness Expert",
-        user_status: "Training champions",
-        followers: 17,
-        following: 15
+        regular_user:{
+            bio: "Sports Coach | Fitness Expert",
+            user_status: "Training champions",
+            followers: 17,
+            following: 15
+        }
     }
 ]);
 
