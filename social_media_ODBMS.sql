@@ -119,7 +119,8 @@ CREATE TABLE
         user_id PRIMARY KEY,
         username UNIQUE NOT NULL,
         email UNIQUE NOT NULL,
-        password_hash NOT NULL
+        password_hash NOT NULL,
+        user_type NOT NULL
     );
 
 -- Posts table (Object table of PostType)
