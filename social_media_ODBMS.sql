@@ -1563,9 +1563,420 @@ VALUES
 
 COMMIT;
 
--- Get total post count
-SELECT COUNT(*) AS total_posts 
-FROM Posts;
+--insert likes 
+
+-- Insert likes with varied patterns
+-- Tech enthusiasts liking tech content
+INSERT INTO Likes
+VALUES (
+    LikeType(
+        like_id_seq.NEXTVAL,
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 6),  -- tech_guru_alex
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 1),  -- AI project post
+        TIMESTAMP '2024-03-15 09:15:00'
+    )
+);
+
+INSERT INTO Likes
+VALUES (
+    LikeType(
+        like_id_seq.NEXTVAL,
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 16),  -- scientist_alan
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 1),  -- AI project post
+        TIMESTAMP '2024-03-15 09:30:00'
+    )
+);
+
+-- Foodies liking food content
+INSERT INTO Likes
+VALUES (
+    LikeType(
+        like_id_seq.NEXTVAL,
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 8),  -- foodie_mark
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 4),  -- ramen post
+        TIMESTAMP '2024-03-15 12:05:00'
+    )
+);
+
+INSERT INTO Likes
+VALUES (
+    LikeType(
+        like_id_seq.NEXTVAL,
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 15),  -- dancer_maria
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 4),  -- ramen post
+        TIMESTAMP '2024-03-15 12:15:00'
+    )
+);
+
+-- Popular gaming post getting lots of likes
+INSERT INTO Likes
+VALUES (
+    LikeType(
+        like_id_seq.NEXTVAL,
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 6),  -- tech_guru_alex
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 11),  -- gaming stream post
+        TIMESTAMP '2024-03-15 20:05:00'
+    )
+);
+
+INSERT INTO Likes
+VALUES (
+    LikeType(
+        like_id_seq.NEXTVAL,
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 18),  -- comedian_jack
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 11),  -- gaming stream post
+        TIMESTAMP '2024-03-15 20:10:00'
+    )
+);
+
+INSERT INTO Likes
+VALUES (
+    LikeType(
+        like_id_seq.NEXTVAL,
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 19),  -- pet_lover_lucy
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 11),  -- gaming stream post
+        TIMESTAMP '2024-03-15 20:15:00'
+    )
+);
+
+-- Fashion post engagement
+INSERT INTO Likes
+VALUES (
+    LikeType(
+        like_id_seq.NEXTVAL,
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 15),  -- dancer_maria
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 14),  -- fashion haul post
+        TIMESTAMP '2024-03-15 11:30:00'
+    )
+);
+
+INSERT INTO Likes
+VALUES (
+    LikeType(
+        like_id_seq.NEXTVAL,
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 19),  -- pet_lover_lucy
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 14),  -- fashion haul post
+        TIMESTAMP '2024-03-15 11:45:00'
+    )
+);
+
+-- Cross-interest engagement (tech people liking food posts)
+INSERT INTO Likes
+VALUES (
+    LikeType(
+        like_id_seq.NEXTVAL,
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 6),  -- tech_guru_alex
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 5),  -- pasta sauce recipe
+        TIMESTAMP '2024-03-15 15:45:00'
+    )
+);
+
+-- Early morning fitness post engagement
+INSERT INTO Likes
+VALUES (
+    LikeType(
+        like_id_seq.NEXTVAL,
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 20),  -- sports_coach_ben
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 7),  -- morning workout post
+        TIMESTAMP '2024-03-15 07:15:00'
+    )
+);
+
+INSERT INTO Likes
+VALUES (
+    LikeType(
+        like_id_seq.NEXTVAL,
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 15),  -- dancer_maria
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 7),  -- morning workout post
+        TIMESTAMP '2024-03-15 07:30:00'
+    )
+);
+
+-- Environmental post support
+INSERT INTO Likes
+VALUES (
+    LikeType(
+        like_id_seq.NEXTVAL,
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 17),  -- diy_hannah
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 9),  -- beach cleanup post
+        TIMESTAMP '2024-03-15 16:30:00'
+    )
+);
+
+-- Late night engagement
+INSERT INTO Likes
+VALUES (
+    LikeType(
+        like_id_seq.NEXTVAL,
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 11),  -- gamer_sam
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 28),  -- novel draft post
+        TIMESTAMP '2024-03-15 00:15:00'
+    )
+);
+
+-- Multiple likes on photography content
+INSERT INTO Likes
+VALUES (
+    LikeType(
+        like_id_seq.NEXTVAL,
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 14),  -- fashion_nina
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 35),  -- Mount Fuji photo
+        TIMESTAMP '2024-03-15 06:00:00'
+    )
+);
+
+INSERT INTO Likes
+VALUES (
+    LikeType(
+        like_id_seq.NEXTVAL,
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 10),  -- travel_mike
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 35),  -- Mount Fuji photo
+        TIMESTAMP '2024-03-15 06:15:00'
+    )
+);
+
+-- DIY post engagement
+INSERT INTO Likes
+VALUES (
+    LikeType(
+        like_id_seq.NEXTVAL,
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 19),  -- pet_lover_lucy
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 37),  -- thrift store transformation
+        TIMESTAMP '2024-03-15 13:45:00'
+    )
+);
+
+-- Comedy post likes
+INSERT INTO Likes
+VALUES (
+    LikeType(
+        like_id_seq.NEXTVAL,
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 11),  -- gamer_sam
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 40),  -- comedy show post
+        TIMESTAMP '2024-03-16 00:00:00'
+    )
+);
+
+-- Pet content engagement
+INSERT INTO Likes
+VALUES (
+    LikeType(
+        like_id_seq.NEXTVAL,
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 15),  -- dancer_maria
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 41),  -- adoption day post
+        TIMESTAMP '2024-03-15 18:30:00'
+    )
+);
+
+INSERT INTO Likes
+VALUES (
+    LikeType(
+        like_id_seq.NEXTVAL,
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 17),  -- diy_hannah
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 41),  -- adoption day post
+        TIMESTAMP '2024-03-15 18:45:00'
+    )
+);
+
+INSERT INTO Likes
+VALUES (
+    LikeType(
+        like_id_seq.NEXTVAL,
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 7),  -- fitness_jane
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 1),  -- AI project post
+        TIMESTAMP '2024-03-15 09:45:00'
+    )
+);
+
+INSERT INTO Likes
+VALUES (
+    LikeType(
+        like_id_seq.NEXTVAL,
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 14),  -- fashion_nina
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 2),  -- Python features post
+        TIMESTAMP '2024-03-15 11:35:00'
+    )
+);
+
+-- More food content engagement
+INSERT INTO Likes
+VALUES (
+    LikeType(
+        like_id_seq.NEXTVAL,
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 10),  -- travel_mike
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 4),  -- ramen post
+        TIMESTAMP '2024-03-15 12:30:00'
+    )
+);
+
+INSERT INTO Likes
+VALUES (
+    LikeType(
+        like_id_seq.NEXTVAL,
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 12),  -- photographer_tom
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 5),  -- pasta sauce recipe
+        TIMESTAMP '2024-03-15 15:50:00'
+    )
+);
+
+-- Additional gaming engagement
+INSERT INTO Likes
+VALUES (
+    LikeType(
+        like_id_seq.NEXTVAL,
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 13),  -- writer_sophia
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 11),  -- gaming stream post
+        TIMESTAMP '2024-03-15 20:20:00'
+    )
+);
+
+INSERT INTO Likes
+VALUES (
+    LikeType(
+        like_id_seq.NEXTVAL,
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 16),  -- scientist_alan
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 12),  -- gaming setup post
+        TIMESTAMP '2024-03-15 13:00:00'
+    )
+);
+
+-- More fashion engagement
+INSERT INTO Likes
+VALUES (
+    LikeType(
+        like_id_seq.NEXTVAL,
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 7),  -- fitness_jane
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 14),  -- fashion haul post
+        TIMESTAMP '2024-03-15 11:50:00'
+    )
+);
+
+-- Additional fitness content engagement
+INSERT INTO Likes
+VALUES (
+    LikeType(
+        like_id_seq.NEXTVAL,
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 11),  -- gamer_sam
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 7),  -- morning workout post
+        TIMESTAMP '2024-03-15 08:00:00'
+    )
+);
+
+-- More environmental post engagement
+INSERT INTO Likes
+VALUES (
+    LikeType(
+        like_id_seq.NEXTVAL,
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 8),  -- foodie_mark
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 9),  -- beach cleanup post
+        TIMESTAMP '2024-03-15 16:45:00'
+    )
+);
+
+-- Additional photography engagement
+INSERT INTO Likes
+VALUES (
+    LikeType(
+        like_id_seq.NEXTVAL,
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 13),  -- writer_sophia
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 35),  -- Mount Fuji photo
+        TIMESTAMP '2024-03-15 06:30:00'
+    )
+);
+
+-- More DIY engagement
+INSERT INTO Likes
+VALUES (
+    LikeType(
+        like_id_seq.NEXTVAL,
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 8),  -- foodie_mark
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 37),  -- thrift store transformation
+        TIMESTAMP '2024-03-15 14:00:00'
+    )
+);
+
+-- Additional comedy post engagement
+INSERT INTO Likes
+VALUES (
+    LikeType(
+        like_id_seq.NEXTVAL,
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 7),  -- fitness_jane
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 40),  -- comedy show post
+        TIMESTAMP '2024-03-16 00:15:00'
+    )
+);
+
+-- More pet content engagement
+INSERT INTO Likes
+VALUES (
+    LikeType(
+        like_id_seq.NEXTVAL,
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 14),  -- fashion_nina
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 41),  -- adoption day post
+        TIMESTAMP '2024-03-15 19:00:00'
+    )
+);
+
+-- Admin engagement
+INSERT INTO Likes
+VALUES (
+    LikeType(
+        like_id_seq.NEXTVAL,
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1),  -- admin_sarah
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 9),  -- beach cleanup post
+        TIMESTAMP '2024-03-15 16:50:00'
+    )
+);
+
+INSERT INTO Likes
+VALUES (
+    LikeType(
+        like_id_seq.NEXTVAL,
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 2),  -- admin_michael
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 41),  -- adoption day post
+        TIMESTAMP '2024-03-15 19:15:00'
+    )
+);
+
+-- Early adopter likes
+INSERT INTO Likes
+VALUES (
+    LikeType(
+        like_id_seq.NEXTVAL,
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 9),  -- artist_lisa
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 1),  -- AI project post
+        TIMESTAMP '2024-03-15 09:20:00'
+    )
+);
+
+-- Late night engagement
+INSERT INTO Likes
+VALUES (
+    LikeType(
+        like_id_seq.NEXTVAL,
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 11),  -- gamer_sam
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 40),  -- comedy show post
+        TIMESTAMP '2024-03-15 23:45:00'
+    )
+);
+
+-- Cross-community engagement
+INSERT INTO Likes
+VALUES (
+    LikeType(
+        like_id_seq.NEXTVAL,
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 20),  -- sports_coach_ben
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 14),  -- fashion haul post
+        TIMESTAMP '2024-03-15 12:00:00'
+    )
+);
+
+COMMIT;
+
+
+
+
+
 
 
 
