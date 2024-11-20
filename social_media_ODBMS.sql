@@ -165,7 +165,8 @@ CREATE TABLE
 -- Create sequences for generating IDs
 CREATE SEQUENCE user_id_seq START
 WITH
-    1 INCREMENT BY 1;
+    1001 INCREMENT BY 1;
+
 
 CREATE SEQUENCE post_id_seq START
 WITH
@@ -704,7 +705,7 @@ VALUES
                 FROM
                     Users u
                 WHERE
-                    u.user_id = 6
+                    u.user_id = 1006
             )
         )
     );
@@ -723,7 +724,7 @@ VALUES
                 FROM
                     Users u
                 WHERE
-                    u.user_id = 6
+                    u.user_id = 1006
             )
         )
     );
@@ -742,7 +743,7 @@ VALUES
                 FROM
                     Users u
                 WHERE
-                    u.user_id = 6
+                    u.user_id = 1006
             )
         )
     );
@@ -761,7 +762,7 @@ VALUES
                 FROM
                     Users u
                 WHERE
-                    u.user_id = 8
+                    u.user_id = 1008
             )
         )
     );
@@ -780,7 +781,7 @@ VALUES
                 FROM
                     Users u
                 WHERE
-                    u.user_id = 8
+                    u.user_id = 1008
             )
         )
     );
@@ -799,7 +800,7 @@ VALUES
                 FROM
                     Users u
                 WHERE
-                    u.user_id = 8
+                    u.user_id = 1008
             )
         )
     );
@@ -819,7 +820,7 @@ VALUES
                 FROM
                     Users u
                 WHERE
-                    u.user_id = 7
+                    u.user_id = 1007
             )
         )
     );
@@ -838,7 +839,7 @@ VALUES
                 FROM
                     Users u
                 WHERE
-                    u.user_id = 7
+                    u.user_id = 1007
             )
         )
     );
@@ -858,7 +859,7 @@ VALUES
                 FROM
                     Users u
                 WHERE
-                    u.user_id = 13
+                    u.user_id = 1013
             )
         )
     );
@@ -877,7 +878,7 @@ VALUES
                 FROM
                     Users u
                 WHERE
-                    u.user_id = 16
+                    u.user_id = 1016
             )
         )
     );
@@ -897,7 +898,7 @@ VALUES
                 FROM
                     Users u
                 WHERE
-                    u.user_id = 11
+                    u.user_id = 1011
             )
         )
     );
@@ -916,7 +917,7 @@ VALUES
                 FROM
                     Users u
                 WHERE
-                    u.user_id = 11
+                    u.user_id = 1011
             )
         )
     );
@@ -935,7 +936,7 @@ VALUES
                 FROM
                     Users u
                 WHERE
-                    u.user_id = 11
+                    u.user_id = 1011
             )
         )
     );
@@ -955,7 +956,7 @@ VALUES
                 FROM
                     Users u
                 WHERE
-                    u.user_id = 14
+                    u.user_id = 1014
             )
         )
     );
@@ -974,7 +975,7 @@ VALUES
                 FROM
                     Users u
                 WHERE
-                    u.user_id = 14
+                    u.user_id = 1014
             )
         )
     );
@@ -993,7 +994,7 @@ VALUES
                 FROM
                     Users u
                 WHERE
-                    u.user_id = 14
+                    u.user_id = 1014
             )
         )
     );
@@ -1014,7 +1015,7 @@ VALUES
                 FROM
                     Users u
                 WHERE
-                    u.user_id = 6
+                    u.user_id = 1006
             )
         )
     );
@@ -1033,7 +1034,7 @@ VALUES
                 FROM
                     Users u
                 WHERE
-                    u.user_id = 16
+                    u.user_id = 1016
             )
         )
     );
@@ -1053,7 +1054,7 @@ VALUES
                 FROM
                     Users u
                 WHERE
-                    u.user_id = 7
+                    u.user_id = 1007
             )
         )
     );
@@ -1072,7 +1073,7 @@ VALUES
                 FROM
                     Users u
                 WHERE
-                    u.user_id = 20
+                    u.user_id = 1007
             )
         )
     );
@@ -1092,7 +1093,7 @@ VALUES
                 FROM
                     Users u
                 WHERE
-                    u.user_id = 10
+                    u.user_id = 1020
             )
         )
     );
@@ -1112,7 +1113,7 @@ VALUES
                 FROM
                     Users u
                 WHERE
-                    u.user_id = 9
+                    u.user_id = 1009
             )
         )
     );
@@ -1132,7 +1133,7 @@ VALUES
                 FROM
                     Users u
                 WHERE
-                    u.user_id = 8
+                    u.user_id = 1008
             )
         )
     );
@@ -1152,7 +1153,7 @@ VALUES
                 FROM
                     Users u
                 WHERE
-                    u.user_id = 11
+                    u.user_id = 1011
             )
         )
     );
@@ -1172,7 +1173,7 @@ VALUES
                 FROM
                     Users u
                 WHERE
-                    u.user_id = 13
+                    u.user_id = 1013
             )
         )
     );
@@ -1192,7 +1193,7 @@ VALUES
                 FROM
                     Users u
                 WHERE
-                    u.user_id = 12
+                    u.user_id = 1012
             )
         )
     );
@@ -1212,7 +1213,7 @@ VALUES
                 FROM
                     Users u
                 WHERE
-                    u.user_id = 14
+                    u.user_id = 1014
             )
         )
     );
@@ -1232,7 +1233,7 @@ VALUES
                 FROM
                     Users u
                 WHERE
-                    u.user_id = 19
+                    u.user_id = 1019
             )
         )
     );
@@ -1252,7 +1253,7 @@ VALUES
                 FROM
                     Users u
                 WHERE
-                    u.user_id = 17
+                    u.user_id = 1017
             )
         )
     );
@@ -1271,7 +1272,7 @@ VALUES
                 FROM
                     Users u
                 WHERE
-                    u.user_id = 13
+                    u.user_id = 1017
             )
         )
     );
@@ -1290,7 +1291,7 @@ VALUES
                 FROM
                     Users u
                 WHERE
-                    u.user_id = 13
+                    u.user_id = 1013
             )
         )
     );
@@ -1309,7 +1310,7 @@ VALUES
                 FROM
                     Users u
                 WHERE
-                    u.user_id = 15
+                    u.user_id = 1015
             )
         )
     );
@@ -1328,7 +1329,7 @@ VALUES
                 FROM
                     Users u
                 WHERE
-                    u.user_id = 15
+                    u.user_id = 1015
             )
         )
     );
@@ -1347,7 +1348,7 @@ VALUES
                 FROM
                     Users u
                 WHERE
-                    u.user_id = 14
+                    u.user_id = 1014
             )
         )
     );
@@ -1366,7 +1367,7 @@ VALUES
                 FROM
                     Users u
                 WHERE
-                    u.user_id = 14
+                    u.user_id = 1014
             )
         )
     );
@@ -1385,7 +1386,7 @@ VALUES
                 FROM
                     Users u
                 WHERE
-                    u.user_id = 12
+                    u.user_id = 1012
             )
         )
     );
@@ -1404,7 +1405,7 @@ VALUES
                 FROM
                     Users u
                 WHERE
-                    u.user_id = 12
+                    u.user_id = 1012
             )
         )
     );
@@ -1423,7 +1424,7 @@ VALUES
                 FROM
                     Users u
                 WHERE
-                    u.user_id = 20
+                    u.user_id = 1020
             )
         )
     );
@@ -1442,7 +1443,7 @@ VALUES
                 FROM
                     Users u
                 WHERE
-                    u.user_id = 20
+                    u.user_id = 1020
             )
         )
     );
@@ -1461,7 +1462,7 @@ VALUES
                 FROM
                     Users u
                 WHERE
-                    u.user_id = 17
+                    u.user_id = 1017
             )
         )
     );
@@ -1480,7 +1481,7 @@ VALUES
                 FROM
                     Users u
                 WHERE
-                    u.user_id = 17
+                    u.user_id = 1017
             )
         )
     );
@@ -1499,7 +1500,7 @@ VALUES
                 FROM
                     Users u
                 WHERE
-                    u.user_id = 18 
+                    u.user_id = 1018 
             )
         )
     );
@@ -1518,7 +1519,7 @@ VALUES
                 FROM
                     Users u
                 WHERE
-                    u.user_id = 18
+                    u.user_id = 1018
             )
         )
     );
@@ -1537,7 +1538,7 @@ VALUES
                 FROM
                     Users u
                 WHERE
-                    u.user_id = 19
+                    u.user_id = 1019
             )
         )
     );
@@ -1556,7 +1557,7 @@ VALUES
                 FROM
                     Users u
                 WHERE
-                    u.user_id = 19
+                    u.user_id = 1019
             )
         )
     );
@@ -1571,7 +1572,7 @@ INSERT INTO Likes
 VALUES (
     LikeType(
         like_id_seq.NEXTVAL,
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 6),  -- tech_guru_alex
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1006),  -- tech_guru_alex
         (SELECT REF(p) FROM Posts p WHERE p.post_id = 1),  -- AI project post
         TIMESTAMP '2024-03-15 09:15:00'
     )
@@ -1581,7 +1582,7 @@ INSERT INTO Likes
 VALUES (
     LikeType(
         like_id_seq.NEXTVAL,
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 16),  -- scientist_alan
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1016),  -- scientist_alan
         (SELECT REF(p) FROM Posts p WHERE p.post_id = 1),  -- AI project post
         TIMESTAMP '2024-03-15 09:30:00'
     )
@@ -1592,7 +1593,7 @@ INSERT INTO Likes
 VALUES (
     LikeType(
         like_id_seq.NEXTVAL,
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 8),  -- foodie_mark
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1008),  -- foodie_mark
         (SELECT REF(p) FROM Posts p WHERE p.post_id = 4),  -- ramen post
         TIMESTAMP '2024-03-15 12:05:00'
     )
@@ -1602,7 +1603,7 @@ INSERT INTO Likes
 VALUES (
     LikeType(
         like_id_seq.NEXTVAL,
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 15),  -- dancer_maria
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1015),  -- dancer_maria
         (SELECT REF(p) FROM Posts p WHERE p.post_id = 4),  -- ramen post
         TIMESTAMP '2024-03-15 12:15:00'
     )
@@ -1613,7 +1614,7 @@ INSERT INTO Likes
 VALUES (
     LikeType(
         like_id_seq.NEXTVAL,
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 6),  -- tech_guru_alex
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1006),  -- tech_guru_alex
         (SELECT REF(p) FROM Posts p WHERE p.post_id = 11),  -- gaming stream post
         TIMESTAMP '2024-03-15 20:05:00'
     )
@@ -1623,7 +1624,7 @@ INSERT INTO Likes
 VALUES (
     LikeType(
         like_id_seq.NEXTVAL,
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 18),  -- comedian_jack
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1018),  -- comedian_jack
         (SELECT REF(p) FROM Posts p WHERE p.post_id = 11),  -- gaming stream post
         TIMESTAMP '2024-03-15 20:10:00'
     )
@@ -1633,7 +1634,7 @@ INSERT INTO Likes
 VALUES (
     LikeType(
         like_id_seq.NEXTVAL,
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 19),  -- pet_lover_lucy
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1019),  -- pet_lover_lucy
         (SELECT REF(p) FROM Posts p WHERE p.post_id = 11),  -- gaming stream post
         TIMESTAMP '2024-03-15 20:15:00'
     )
@@ -1644,7 +1645,7 @@ INSERT INTO Likes
 VALUES (
     LikeType(
         like_id_seq.NEXTVAL,
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 15),  -- dancer_maria
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1015),  -- dancer_maria
         (SELECT REF(p) FROM Posts p WHERE p.post_id = 14),  -- fashion haul post
         TIMESTAMP '2024-03-15 11:30:00'
     )
@@ -1654,7 +1655,7 @@ INSERT INTO Likes
 VALUES (
     LikeType(
         like_id_seq.NEXTVAL,
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 19),  -- pet_lover_lucy
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1019),  -- pet_lover_lucy
         (SELECT REF(p) FROM Posts p WHERE p.post_id = 14),  -- fashion haul post
         TIMESTAMP '2024-03-15 11:45:00'
     )
@@ -1665,7 +1666,7 @@ INSERT INTO Likes
 VALUES (
     LikeType(
         like_id_seq.NEXTVAL,
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 6),  -- tech_guru_alex
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1006),  -- tech_guru_alex
         (SELECT REF(p) FROM Posts p WHERE p.post_id = 5),  -- pasta sauce recipe
         TIMESTAMP '2024-03-15 15:45:00'
     )
@@ -1676,7 +1677,7 @@ INSERT INTO Likes
 VALUES (
     LikeType(
         like_id_seq.NEXTVAL,
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 20),  -- sports_coach_ben
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1020),  -- sports_coach_ben
         (SELECT REF(p) FROM Posts p WHERE p.post_id = 7),  -- morning workout post
         TIMESTAMP '2024-03-15 07:15:00'
     )
@@ -1686,7 +1687,7 @@ INSERT INTO Likes
 VALUES (
     LikeType(
         like_id_seq.NEXTVAL,
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 15),  -- dancer_maria
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1015),  -- dancer_maria
         (SELECT REF(p) FROM Posts p WHERE p.post_id = 7),  -- morning workout post
         TIMESTAMP '2024-03-15 07:30:00'
     )
@@ -1697,7 +1698,7 @@ INSERT INTO Likes
 VALUES (
     LikeType(
         like_id_seq.NEXTVAL,
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 17),  -- diy_hannah
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1017),  -- diy_hannah
         (SELECT REF(p) FROM Posts p WHERE p.post_id = 9),  -- beach cleanup post
         TIMESTAMP '2024-03-15 16:30:00'
     )
@@ -1708,7 +1709,7 @@ INSERT INTO Likes
 VALUES (
     LikeType(
         like_id_seq.NEXTVAL,
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 11),  -- gamer_sam
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1011),  -- gamer_sam
         (SELECT REF(p) FROM Posts p WHERE p.post_id = 28),  -- novel draft post
         TIMESTAMP '2024-03-15 00:15:00'
     )
@@ -1719,7 +1720,7 @@ INSERT INTO Likes
 VALUES (
     LikeType(
         like_id_seq.NEXTVAL,
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 14),  -- fashion_nina
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1014),  -- fashion_nina
         (SELECT REF(p) FROM Posts p WHERE p.post_id = 35),  -- Mount Fuji photo
         TIMESTAMP '2024-03-15 06:00:00'
     )
@@ -1729,7 +1730,7 @@ INSERT INTO Likes
 VALUES (
     LikeType(
         like_id_seq.NEXTVAL,
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 10),  -- travel_mike
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1010),  -- travel_mike
         (SELECT REF(p) FROM Posts p WHERE p.post_id = 35),  -- Mount Fuji photo
         TIMESTAMP '2024-03-15 06:15:00'
     )
@@ -1740,7 +1741,7 @@ INSERT INTO Likes
 VALUES (
     LikeType(
         like_id_seq.NEXTVAL,
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 19),  -- pet_lover_lucy
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1019),  -- pet_lover_lucy
         (SELECT REF(p) FROM Posts p WHERE p.post_id = 37),  -- thrift store transformation
         TIMESTAMP '2024-03-15 13:45:00'
     )
@@ -1751,7 +1752,7 @@ INSERT INTO Likes
 VALUES (
     LikeType(
         like_id_seq.NEXTVAL,
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 11),  -- gamer_sam
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1011),  -- gamer_sam
         (SELECT REF(p) FROM Posts p WHERE p.post_id = 40),  -- comedy show post
         TIMESTAMP '2024-03-16 00:00:00'
     )
@@ -1762,7 +1763,7 @@ INSERT INTO Likes
 VALUES (
     LikeType(
         like_id_seq.NEXTVAL,
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 15),  -- dancer_maria
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1015),  -- dancer_maria
         (SELECT REF(p) FROM Posts p WHERE p.post_id = 41),  -- adoption day post
         TIMESTAMP '2024-03-15 18:30:00'
     )
@@ -1772,7 +1773,7 @@ INSERT INTO Likes
 VALUES (
     LikeType(
         like_id_seq.NEXTVAL,
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 17),  -- diy_hannah
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1017),  -- diy_hannah
         (SELECT REF(p) FROM Posts p WHERE p.post_id = 41),  -- adoption day post
         TIMESTAMP '2024-03-15 18:45:00'
     )
@@ -1782,7 +1783,7 @@ INSERT INTO Likes
 VALUES (
     LikeType(
         like_id_seq.NEXTVAL,
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 7),  -- fitness_jane
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1007),  -- fitness_jane
         (SELECT REF(p) FROM Posts p WHERE p.post_id = 1),  -- AI project post
         TIMESTAMP '2024-03-15 09:45:00'
     )
@@ -1792,7 +1793,7 @@ INSERT INTO Likes
 VALUES (
     LikeType(
         like_id_seq.NEXTVAL,
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 14),  -- fashion_nina
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1014),  -- fashion_nina
         (SELECT REF(p) FROM Posts p WHERE p.post_id = 2),  -- Python features post
         TIMESTAMP '2024-03-15 11:35:00'
     )
@@ -1803,7 +1804,7 @@ INSERT INTO Likes
 VALUES (
     LikeType(
         like_id_seq.NEXTVAL,
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 10),  -- travel_mike
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1010),  -- travel_mike
         (SELECT REF(p) FROM Posts p WHERE p.post_id = 4),  -- ramen post
         TIMESTAMP '2024-03-15 12:30:00'
     )
@@ -1813,7 +1814,7 @@ INSERT INTO Likes
 VALUES (
     LikeType(
         like_id_seq.NEXTVAL,
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 12),  -- photographer_tom
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1012),  -- photographer_tom
         (SELECT REF(p) FROM Posts p WHERE p.post_id = 5),  -- pasta sauce recipe
         TIMESTAMP '2024-03-15 15:50:00'
     )
@@ -1824,7 +1825,7 @@ INSERT INTO Likes
 VALUES (
     LikeType(
         like_id_seq.NEXTVAL,
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 13),  -- writer_sophia
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1013),  -- writer_sophia
         (SELECT REF(p) FROM Posts p WHERE p.post_id = 11),  -- gaming stream post
         TIMESTAMP '2024-03-15 20:20:00'
     )
@@ -1834,7 +1835,7 @@ INSERT INTO Likes
 VALUES (
     LikeType(
         like_id_seq.NEXTVAL,
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 16),  -- scientist_alan
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1016),  -- scientist_alan
         (SELECT REF(p) FROM Posts p WHERE p.post_id = 12),  -- gaming setup post
         TIMESTAMP '2024-03-15 13:00:00'
     )
@@ -1845,7 +1846,7 @@ INSERT INTO Likes
 VALUES (
     LikeType(
         like_id_seq.NEXTVAL,
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 7),  -- fitness_jane
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1007),  -- fitness_jane
         (SELECT REF(p) FROM Posts p WHERE p.post_id = 14),  -- fashion haul post
         TIMESTAMP '2024-03-15 11:50:00'
     )
@@ -1856,7 +1857,7 @@ INSERT INTO Likes
 VALUES (
     LikeType(
         like_id_seq.NEXTVAL,
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 11),  -- gamer_sam
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1011),  -- gamer_sam
         (SELECT REF(p) FROM Posts p WHERE p.post_id = 7),  -- morning workout post
         TIMESTAMP '2024-03-15 08:00:00'
     )
@@ -1867,7 +1868,7 @@ INSERT INTO Likes
 VALUES (
     LikeType(
         like_id_seq.NEXTVAL,
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 8),  -- foodie_mark
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1008),  -- foodie_mark
         (SELECT REF(p) FROM Posts p WHERE p.post_id = 9),  -- beach cleanup post
         TIMESTAMP '2024-03-15 16:45:00'
     )
@@ -1878,7 +1879,7 @@ INSERT INTO Likes
 VALUES (
     LikeType(
         like_id_seq.NEXTVAL,
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 13),  -- writer_sophia
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1013),  -- writer_sophia
         (SELECT REF(p) FROM Posts p WHERE p.post_id = 35),  -- Mount Fuji photo
         TIMESTAMP '2024-03-15 06:30:00'
     )
@@ -1889,7 +1890,7 @@ INSERT INTO Likes
 VALUES (
     LikeType(
         like_id_seq.NEXTVAL,
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 8),  -- foodie_mark
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1008),  -- foodie_mark
         (SELECT REF(p) FROM Posts p WHERE p.post_id = 37),  -- thrift store transformation
         TIMESTAMP '2024-03-15 14:00:00'
     )
@@ -1900,7 +1901,7 @@ INSERT INTO Likes
 VALUES (
     LikeType(
         like_id_seq.NEXTVAL,
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 7),  -- fitness_jane
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1007),  -- fitness_jane
         (SELECT REF(p) FROM Posts p WHERE p.post_id = 40),  -- comedy show post
         TIMESTAMP '2024-03-16 00:15:00'
     )
@@ -1911,7 +1912,7 @@ INSERT INTO Likes
 VALUES (
     LikeType(
         like_id_seq.NEXTVAL,
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 14),  -- fashion_nina
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1014),  -- fashion_nina
         (SELECT REF(p) FROM Posts p WHERE p.post_id = 41),  -- adoption day post
         TIMESTAMP '2024-03-15 19:00:00'
     )
@@ -1924,7 +1925,7 @@ INSERT INTO Likes
 VALUES (
     LikeType(
         like_id_seq.NEXTVAL,
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 9),  -- artist_lisa
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1009),  -- artist_lisa
         (SELECT REF(p) FROM Posts p WHERE p.post_id = 1),  -- AI project post
         TIMESTAMP '2024-03-15 09:20:00'
     )
@@ -1935,7 +1936,7 @@ INSERT INTO Likes
 VALUES (
     LikeType(
         like_id_seq.NEXTVAL,
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 11),  -- gamer_sam
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1011),  -- gamer_sam
         (SELECT REF(p) FROM Posts p WHERE p.post_id = 40),  -- comedy show post
         TIMESTAMP '2024-03-15 23:45:00'
     )
@@ -1946,7 +1947,7 @@ INSERT INTO Likes
 VALUES (
     LikeType(
         like_id_seq.NEXTVAL,
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 20),  -- sports_coach_ben
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1020),  -- sports_coach_ben
         (SELECT REF(p) FROM Posts p WHERE p.post_id = 14),  -- fashion haul post
         TIMESTAMP '2024-03-15 12:00:00'
     )

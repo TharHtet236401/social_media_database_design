@@ -23,6 +23,7 @@ FROM Likes;
 SELECT 
     u.username,
     u.user_type,
+    u.user_id,
     COUNT(l.like_id) as like_count
 FROM 
     Users u
