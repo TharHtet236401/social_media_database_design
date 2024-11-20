@@ -23,6 +23,10 @@ FROM Likes;
 SELECT COUNT(*) AS total_comments 
 FROM Comments;
 
+-- Get total message count
+SELECT COUNT(*) AS total_messages 
+FROM Messages;
+
 -- Query to get like counts per user
 SELECT 
     u.username,
