@@ -13,8 +13,11 @@ db.createCollection("users", {
     validator: {
         $jsonSchema: {
             bsonType: "object",
-            required: ["username", "email", "password_hash", "created_at", "user_type"],
+            required: ["user_id", "username", "email", "password_hash", "created_at", "user_type"],
             properties: {
+                user_id: {
+                    bsonType: "number"
+                },
                 username: {
                     bsonType: "string",
                     maxLength: 50
@@ -80,12 +83,13 @@ db.createCollection("users", {
 });
 
 // Create indexes
-db.users.createIndex({ "username": 1 }, { unique: true });
+db.users.createIndex({ "user_id": 1 }, { unique: true });
 db.users.createIndex({ "email": 1 }, { unique: true });
 
 // Insert admin users
 db.users.insertMany([
     {
+        user_id: 1001,
         username: "admin_sarah",
         email: "sarah.admin@platform.com",
         password_hash: "hashed_admin_pwd_1",
@@ -93,13 +97,14 @@ db.users.insertMany([
         profile_picture: "admin_profiles/sarah.jpg",
         user_type: "admin",
         admin_user:{
-            admin_id: 1001,
+            admin_id: 5001,
             report_viewed: 250,
             last_login: new Date("2024-03-15T14:30:00Z"),
             admin_level: 1
         }
     },
     {
+        user_id: 1002,
         username: "admin_michael",
         email: "michael.admin@platform.com",
         password_hash: "hashed_admin_pwd_2",
@@ -107,13 +112,14 @@ db.users.insertMany([
         profile_picture: "admin_profiles/michael.jpg",
         user_type: "admin",
         admin_user:{
-            admin_id: 1002,
+            admin_id: 5002,
             report_viewed: 180,
             last_login: new Date("2024-03-15T16:45:00Z"),
             admin_level: 2
         }
     },
     {
+        user_id: 1003,
         username: "admin_jessica",
         email: "jessica.admin@platform.com",
         password_hash: "hashed_admin_pwd_3",
@@ -121,13 +127,14 @@ db.users.insertMany([
         profile_picture: "admin_profiles/jessica.jpg",
         user_type: "admin",
         admin_user:{
-            admin_id: 1003,
+            admin_id: 5003,
             report_viewed: 320,
             last_login: new Date("2024-03-15T15:20:00Z"),
             admin_level: 1
         }
     },
     {
+        user_id: 1004,
         username: "admin_david",
         email: "david.admin@platform.com",
         password_hash: "hashed_admin_pwd_4",
@@ -135,13 +142,14 @@ db.users.insertMany([
         profile_picture: "admin_profiles/david.jpg",
         user_type: "admin",
         admin_user:{
-            admin_id: 1004,
+            admin_id: 5004,
             report_viewed: 290,
             last_login: new Date("2024-03-15T17:10:00Z"),
             admin_level: 2
         }
     },
     {
+        user_id: 1005,
         username: "admin_emma",
         email: "emma.admin@platform.com",
         password_hash: "hashed_admin_pwd_5",
@@ -149,7 +157,7 @@ db.users.insertMany([
         profile_picture: "admin_profiles/emma.jpg",
         user_type: "admin",
         admin_user:{
-            admin_id: 1005,
+            admin_id: 5005,
             report_viewed: 275,
             last_login: new Date("2024-03-15T18:00:00Z"),
             admin_level: 1
@@ -160,6 +168,7 @@ db.users.insertMany([
 // Insert regular users
 db.users.insertMany([
     {
+        user_id: 1006,
         username: "tech_guru_alex",
         email: "alex@email.com",
         password_hash: "hashed_pwd_1",
@@ -174,6 +183,7 @@ db.users.insertMany([
         }
     },
     {
+        user_id: 1007,
         username: "fitness_jane",
         email: "jane@email.com",
         password_hash: "hashed_pwd_2",
@@ -188,6 +198,7 @@ db.users.insertMany([
         }
     },
     {
+        user_id: 1008,
         username: "foodie_mark",
         email: "mark@email.com",
         password_hash: "hashed_pwd_3",
@@ -201,7 +212,8 @@ db.users.insertMany([
             following: 17
         }
     },
-    {
+    {   
+        user_id: 1009,
         username: "artist_lisa",
         email: "lisa@email.com",
         password_hash: "hashed_pwd_4",
@@ -216,6 +228,7 @@ db.users.insertMany([
         }
     },
     {
+        user_id: 1010,
         username: "travel_mike",
         email: "mike@email.com",
         password_hash: "hashed_pwd_5",
@@ -230,6 +243,7 @@ db.users.insertMany([
         }
     },
     {
+        user_id: 1011,
         username: "gamer_sam",
         email: "sam@email.com",
         password_hash: "hashed_pwd_6",
@@ -244,6 +258,7 @@ db.users.insertMany([
         }
     },
     {
+        user_id: 1012,
         username: "music_rachel",
         email: "rachel@email.com",
         password_hash: "hashed_pwd_7",
@@ -258,6 +273,7 @@ db.users.insertMany([
         }
     },
     {
+        user_id: 1013,
         username: "eco_peter",
         email: "peter@email.com",
         password_hash: "hashed_pwd_8",
@@ -272,6 +288,7 @@ db.users.insertMany([
         }
     },
     {
+        user_id: 1014,
         username: "fashion_nina",
         email: "nina@email.com",
         password_hash: "hashed_pwd_9",
@@ -286,6 +303,7 @@ db.users.insertMany([
         }
     },
     {
+        user_id: 1015,
         username: "chef_carlos",
         email: "carlos@email.com",
         password_hash: "hashed_pwd_10",
@@ -300,6 +318,7 @@ db.users.insertMany([
         }
     },
     {
+        user_id: 1016,
         username: "yoga_emma",
         email: "emma.y@email.com",
         password_hash: "hashed_pwd_11",
@@ -314,6 +333,7 @@ db.users.insertMany([
         }
     },
     {
+        user_id: 1017,
         username: "photographer_tom",
         email: "tom@email.com",
         password_hash: "hashed_pwd_12",
@@ -328,6 +348,7 @@ db.users.insertMany([
         }
     },
     {
+        user_id: 1018,
         username: "writer_sophia",
         email: "sophia@email.com",
         password_hash: "hashed_pwd_13",
@@ -342,6 +363,7 @@ db.users.insertMany([
         }
     },
     {
+        user_id: 1019,
         username: "startup_ryan",
         email: "ryan@email.com",
         password_hash: "hashed_pwd_14",
@@ -356,6 +378,7 @@ db.users.insertMany([
         }
     },
     {
+        user_id: 1020,
         username: "dancer_maria",
         email: "maria@email.com",
         password_hash: "hashed_pwd_15",
@@ -370,6 +393,7 @@ db.users.insertMany([
         }
     },
     {
+        user_id: 1021,
         username: "scientist_alan",
         email: "alan@email.com",
         password_hash: "hashed_pwd_16",
@@ -384,6 +408,7 @@ db.users.insertMany([
         }
     },
     {
+        user_id: 1022,
         username: "diy_hannah",
         email: "hannah@email.com",
         password_hash: "hashed_pwd_17",
@@ -398,6 +423,7 @@ db.users.insertMany([
         }
     },
     {
+        user_id: 1023,
         username: "comedian_jack",
         email: "jack@email.com",
         password_hash: "hashed_pwd_18",
@@ -412,6 +438,7 @@ db.users.insertMany([
         }
     },
     {
+        user_id: 1024,
         username: "pet_lover_lucy",
         email: "lucy@email.com",
         password_hash: "hashed_pwd_19",
@@ -426,6 +453,7 @@ db.users.insertMany([
         }
     },
     {
+        user_id: 1025,
         username: "sports_coach_ben",
         email: "ben@email.com",
         password_hash: "hashed_pwd_20",
