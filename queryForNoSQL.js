@@ -211,6 +211,8 @@ db.messages.aggregate([
 
 db.messages.countDocuments();
 
+
+//QUERY 1 
 //the post engagement between 2 dates
 db.posts.aggregate([
   // Match posts within the date range and by user type

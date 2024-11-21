@@ -167,7 +167,8 @@ ORDER BY
 
 
 --new query with all joins 
--- posts activity between 14 and 15 march 2024
+-- QUERY 1
+-- posts engagement between 14 and 15 march 2024
 SELECT 
     p.post_id,
     DEREF(p.user_ref).username AS post_author,
