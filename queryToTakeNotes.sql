@@ -144,39 +144,60 @@ GROUP BY
 ORDER BY 
     message_count DESC;
 
--- This query joins Posts, Likes, Comments and Users tables using different join types
--- It shows posts with their engagement metrics (likes and comments), including user information
--- The query focuses on posts from March 12-15, 2024 with engagement
-SELECT DISTINCT 
+
+
+--to see all posts with likes
+SELECT 
+    p.post_id,
+    DEREF(p.user_ref).username AS author,
+    p.content,
+    p.created_at,
+    COUNT(l.like_id) AS like_count,
+FROM 
+    Posts p
+    RIGHT OUTER JOIN Likes l ON l.post_ref = REF(p)
+GROUP BY
+    p.post_id,
+    DEREF(p.user_ref).username,
+    p.content, 
+    p.created_at
+ORDER BY 
+    like_count DESC,
+    p.created_at DESC;
+
+
+--new query with all joins 
+-- posts activity between 14 and 15 march 2024
+SELECT 
     p.post_id,
     DEREF(p.user_ref).username AS post_author,
-    SUBSTR(p.content, 1, 50) || '...' AS post_preview,  -- Showing first 50 chars for readability
+    p.content AS post_content,
     p.created_at AS post_time,
     COUNT(DISTINCT l.like_id) AS like_count,
     COUNT(DISTINCT c.comment_id) AS comment_count,
     LISTAGG(DISTINCT DEREF(l.user_ref).username, ', ') 
-        WITHIN GROUP (ORDER BY DEREF(l.user_ref).username) AS liking_users,
-    LISTAGG(DISTINCT DEREF(c.user_ref).username || ': ' || SUBSTR(c.content, 1, 30), ' | ')
+        WITHIN GROUP (ORDER BY DEREF(l.user_ref).username) AS users_who_liked,
+    LISTAGG(DISTINCT DEREF(c.user_ref).username || ': ' || SUBSTR(c.content, 1, 50), ' | ')
         WITHIN GROUP (ORDER BY c.created_at) AS recent_comments
 FROM 
     Posts p
-    LEFT OUTER JOIN Likes l ON l.post_ref = REF(p)  -- Left join to include posts with no likes
-    FULL OUTER JOIN Comments c ON c.post_ref = REF(p)  -- Full join to include all engagement
+    INNER JOIN Users u ON REF(u) = p.user_ref  -- Get post authors
+    RIGHT OUTER JOIN Likes l ON l.post_ref = REF(p)  -- Exclude posts with no likes
+    FULL OUTER JOIN Comments c ON c.post_ref = REF(p)  -- Include all engagement
 WHERE 
-    p.created_at BETWEEN TIMESTAMP '2024-03-12 00:00:00' 
+    p.created_at BETWEEN TIMESTAMP '2024-03-14 00:00:00' 
     AND TIMESTAMP '2024-03-15 23:59:59'
+    AND (
+        DEREF(p.user_ref).user_type = 'regular'  
+    )
 GROUP BY 
     p.post_id,
     DEREF(p.user_ref).username,
     p.content,
     p.created_at
 HAVING 
-    COUNT(DISTINCT l.like_id) >= 1  -- Posts with at least 1 like
-    OR COUNT(DISTINCT c.comment_id) >= 1  -- or at least 1 comment
+    COUNT(DISTINCT l.like_id) > 0  
+    OR COUNT(DISTINCT c.comment_id) > 0
 ORDER BY 
-    like_count DESC,
-    comment_count DESC,
+    like_count + comment_count DESC,  
     p.created_at DESC;
-
-
-
