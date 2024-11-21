@@ -35,7 +35,21 @@ DROP TYPE AdminType FORCE;
 
 DROP TYPE UserType FORCE;
 
--- User object type with attributes common to all users
+-- First drop the nested table type
+DROP TYPE interest_table_type FORCE;
+
+-- Then drop the interest type
+DROP TYPE interest_type FORCE;
+
+
+CREATE OR REPLACE TYPE interest_type AS OBJECT (
+    interest_id NUMBER,
+    interest_name VARCHAR2(255)
+);
+/
+
+CREATE OR REPLACE TYPE interest_table_type AS TABLE OF interest_type;
+/
 CREATE
 OR REPLACE TYPE UserType AS OBJECT (
     user_id NUMBER,
@@ -46,7 +60,6 @@ OR REPLACE TYPE UserType AS OBJECT (
     profile_picture VARCHAR2 (500),
     user_type VARCHAR2 (255)
 ) NOT FINAL;
-
 /
 -- Admin object type inheriting from UserType
 CREATE
@@ -64,7 +77,8 @@ OR REPLACE TYPE RegularUserType UNDER UserType (
     bio VARCHAR2 (4000),
     user_status VARCHAR2 (255),
     followers NUMBER,
-    following NUMBER
+    following NUMBER,
+    interests interest_table_type
 );
 
 /
@@ -114,14 +128,13 @@ COMMIT;
 
 -- Creating tables for the database
 -- Users table (Object table of UserType)
-CREATE TABLE
-    Users OF UserType (
-        user_id PRIMARY KEY,
-        username UNIQUE NOT NULL,
-        email UNIQUE NOT NULL,
-        password_hash NOT NULL,
-        user_type NOT NULL
-    );
+CREATE TABLE Users OF UserType (
+    user_id PRIMARY KEY,
+    username UNIQUE NOT NULL,
+    email UNIQUE NOT NULL,
+    password_hash NOT NULL,
+    user_type NOT NULL
+);
 
 -- Posts table (Object table of PostType)
 CREATE TABLE
@@ -300,7 +313,12 @@ VALUES
             'Software Developer | AI Enthusiast | Coffee Lover',
             'Coding something cool',
             15,
-            12
+            12,
+            interest_table_type(
+                interest_type(1, 'Software Development'),
+                interest_type(2, 'Artificial Intelligence'),
+                interest_type(3, 'Coffee')
+            )
         )
     );
 
@@ -320,7 +338,8 @@ VALUES
             'Personal Trainer | Nutrition Expert',
             'At the gym 💪',
             18,
-            15
+            15,
+            interest_table_type()
         )
     );
 
@@ -340,7 +359,8 @@ VALUES
             'Food Blogger | Chef | Restaurant Explorer',
             'Cooking up something special',
             20,
-            17
+            17,
+            interest_table_type()
         )
     );
 
@@ -360,7 +380,8 @@ VALUES
             'Digital Artist | Illustrator',
             'Creating new artwork',
             16,
-            14
+            14,
+            interest_table_type()
         )
     );
 
@@ -380,7 +401,8 @@ VALUES
             'World Traveler | Photographer',
             'Exploring new places',
             19,
-            16
+            16,
+            interest_table_type()
         )
     );
 
@@ -400,7 +422,8 @@ VALUES
             'Professional Gamer | Streamer',
             'Live streaming now!',
             20,
-            18
+            18,
+            interest_table_type()
         )
     );
 
@@ -420,7 +443,8 @@ VALUES
             'Singer | Songwriter | Producer',
             'Making music 🎵',
             17,
-            15
+            15,
+            interest_table_type()
         )
     );
 
@@ -440,7 +464,8 @@ VALUES
             'Environmental Activist | Sustainable Living',
             'Saving the planet 🌍',
             14,
-            12
+            12,
+            interest_table_type()
         )
     );
 
@@ -460,7 +485,8 @@ VALUES
             'Fashion Blogger | Style Consultant',
             'Fashion week ready',
             20,
-            16
+            16,
+            interest_table_type()
         )
     );
 
@@ -480,7 +506,8 @@ VALUES
             'Professional Chef | Food Photography',
             'In the kitchen',
             18,
-            15
+            15,
+            interest_table_type()
         )
     );
 
@@ -500,7 +527,8 @@ VALUES
             'Yoga Instructor | Mindfulness Coach',
             'Namaste 🧘‍♀️',
             16,
-            13
+            13,
+            interest_table_type()
         )
     );
 
@@ -520,7 +548,8 @@ VALUES
             'Professional Photographer | Nature Lover',
             'Capturing moments',
             19,
-            17
+            17,
+            interest_table_type()
         )
     );
 
@@ -540,7 +569,8 @@ VALUES
             'Author | Book Reviewer | Coffee Addict',
             'Writing my next novel',
             15,
-            14
+            14,
+            interest_table_type()
         )
     );
 
@@ -560,7 +590,8 @@ VALUES
             'Entrepreneur | Tech Startup Founder',
             'Building the future',
             20,
-            15
+            15,
+            interest_table_type()
         )
     );
 
@@ -580,7 +611,8 @@ VALUES
             'Professional Dancer | Dance Instructor',
             'Dancing through life 💃',
             18,
-            16
+            16,
+            interest_table_type()
         )
     );
 
@@ -600,7 +632,8 @@ VALUES
             'Research Scientist | Physics Enthusiast',
             'Exploring the universe',
             13,
-            11
+            11,
+            interest_table_type()
         )
     );
 
@@ -620,7 +653,8 @@ VALUES
             'DIY Expert | Home Improvement',
             'Creating something new',
             17,
-            14
+            14,
+            interest_table_type()
         )
     );
 
@@ -640,7 +674,8 @@ VALUES
             'Stand-up Comedian | Content Creator',
             'Making people laugh 😂',
             20,
-            18
+            18,
+            interest_table_type()
         )
     );
 
@@ -660,7 +695,8 @@ VALUES
             'Pet Influencer | Animal Rescue Advocate',
             'Playing with puppies 🐕',
             19,
-            16
+            16,
+            interest_table_type()
         )
     );
 
@@ -680,7 +716,8 @@ VALUES
             'Sports Coach | Fitness Expert',
             'Training champions',
             17,
-            15
+            15,
+            interest_table_type()
         )
     );
 
