@@ -297,429 +297,445 @@ VALUES
         )
     );
 
---user 1
-INSERT INTO
-    Users
-VALUES
-    (
-        RegularUserType (
-            user_id_seq.NEXTVAL,
-            'tech_guru_alex',
-            'alex@email.com',
-            'hashed_pwd_1',
-            TIMESTAMP '2023-02-01 10:00:00',
-            'profiles/alex.jpg',
-            'regular',
-            'Software Developer | AI Enthusiast | Coffee Lover',
-            'Coding something cool',
-            15,
-            12,
-            interest_table_type(
-                interest_type(1, 'Software Development'),
-                interest_type(2, 'Artificial Intelligence'),
-                interest_type(3, 'Coffee')
-            )
+--user 1 (tech focused)
+INSERT INTO Users VALUES (
+    RegularUserType (
+        user_id_seq.NEXTVAL,
+        'tech_guru_alex',
+        'alex@email.com',
+        'hashed_pwd_1',
+        TIMESTAMP '2023-02-01 10:00:00',
+        'profiles/alex.jpg',
+        'regular',
+        'Software Developer | AI Enthusiast | Coffee Lover',
+        'Coding something cool',
+        15,
+        12,
+        interest_table_type(
+            interest_type(1, 'Technology and Gadgets'),
+            interest_type(4, 'Education and Learning'),
+            interest_type(5, 'Arts and Entertainment')
         )
-    );
+    )
+);
 
---user 2
-INSERT INTO
-    Users
-VALUES
-    (
-        RegularUserType (
-            user_id_seq.NEXTVAL,
-            'fitness_jane',
-            'jane@email.com',
-            'hashed_pwd_2',
-            TIMESTAMP '2023-02-02 11:00:00',
-            'profiles/jane.jpg',
-            'regular',
-            'Personal Trainer | Nutrition Expert',
-            'At the gym 💪',
-            18,
-            15,
-            interest_table_type()
+--user 2 (fitness focused)
+INSERT INTO Users VALUES (
+    RegularUserType (
+        user_id_seq.NEXTVAL,
+        'fitness_jane',
+        'jane@email.com',
+        'hashed_pwd_2',
+        TIMESTAMP '2023-02-02 11:00:00',
+        'profiles/jane.jpg',
+        'regular',
+        'Personal Trainer | Nutrition Expert',
+        'At the gym 💪',
+        18,
+        15,
+        interest_table_type(
+            interest_type(3, 'Health and Fitness'),
+            interest_type(6, 'Food and Cooking'),
+            interest_type(4, 'Education and Learning')
         )
-    );
+    )
+);
 
---user 3
-INSERT INTO
-    Users
-VALUES
-    (
-        RegularUserType (
-            user_id_seq.NEXTVAL,
-            'foodie_mark',
-            'mark@email.com',
-            'hashed_pwd_3',
-            TIMESTAMP '2023-02-03 12:00:00',
-            'profiles/mark.jpg',
-            'regular',
-            'Food Blogger | Chef | Restaurant Explorer',
-            'Cooking up something special',
-            20,
-            17,
-            interest_table_type()
+--user 3 (food focused)
+INSERT INTO Users VALUES (
+    RegularUserType (
+        user_id_seq.NEXTVAL,
+        'foodie_mark',
+        'mark@email.com',
+        'hashed_pwd_3',
+        TIMESTAMP '2023-02-03 12:00:00',
+        'profiles/mark.jpg',
+        'regular',
+        'Food Blogger | Chef | Restaurant Explorer',
+        'Cooking up something special',
+        20,
+        17,
+        interest_table_type(
+            interest_type(6, 'Food and Cooking'),
+            interest_type(2, 'Travel and Adventure'),
+            interest_type(5, 'Arts and Entertainment')
         )
-    );
+    )
+);
 
---user 4
-INSERT INTO
-    Users
-VALUES
-    (
-        RegularUserType (
-            user_id_seq.NEXTVAL,
-            'artist_lisa',
-            'lisa@email.com',
-            'hashed_pwd_4',
-            TIMESTAMP '2023-02-04 13:00:00',
-            'profiles/lisa.jpg',
-            'regular',
-            'Digital Artist | Illustrator',
-            'Creating new artwork',
-            16,
-            14,
-            interest_table_type()
+--user 4 (artist focused)
+INSERT INTO Users VALUES (
+    RegularUserType (
+        user_id_seq.NEXTVAL,
+        'artist_lisa',
+        'lisa@email.com',
+        'hashed_pwd_4',
+        TIMESTAMP '2023-02-04 13:00:00',
+        'profiles/lisa.jpg',
+        'regular',
+        'Digital Artist | Illustrator',
+        'Creating new artwork',
+        16,
+        14,
+        interest_table_type(
+            interest_type(5, 'Arts and Entertainment'),
+            interest_type(1, 'Technology and Gadgets'),
+            interest_type(4, 'Education and Learning')
         )
-    );
+    )
+);
 
---user 5
-INSERT INTO
-    Users
-VALUES
-    (
-        RegularUserType (
-            user_id_seq.NEXTVAL,
-            'travel_mike',
-            'mike@email.com',
-            'hashed_pwd_5',
-            TIMESTAMP '2023-02-05 14:00:00',
-            'profiles/mike.jpg',
-            'regular',
-            'World Traveler | Photographer',
-            'Exploring new places',
-            19,
-            16,
-            interest_table_type()
+--user 5 (travel focused)
+INSERT INTO Users VALUES (
+    RegularUserType (
+        user_id_seq.NEXTVAL,
+        'travel_mike',
+        'mike@email.com',
+        'hashed_pwd_5',
+        TIMESTAMP '2023-02-05 14:00:00',
+        'profiles/mike.jpg',
+        'regular',
+        'World Traveler | Photographer',
+        'Exploring new places',
+        19,
+        16,
+        interest_table_type(
+            interest_type(2, 'Travel and Adventure'),
+            interest_type(5, 'Arts and Entertainment'),
+            interest_type(7, 'Finance and Investment')
         )
-    );
+    )
+);
 
---user 6
-INSERT INTO
-    Users
-VALUES
-    (
-        RegularUserType (
-            user_id_seq.NEXTVAL,
-            'gamer_sam',
-            'sam@email.com',
-            'hashed_pwd_6',
-            TIMESTAMP '2023-02-06 15:00:00',
-            'profiles/sam.jpg',
-            'regular',
-            'Professional Gamer | Streamer',
-            'Live streaming now!',
-            20,
-            18,
-            interest_table_type()
+--user 6 (gamer focused)
+INSERT INTO Users VALUES (
+    RegularUserType (
+        user_id_seq.NEXTVAL,
+        'gamer_sam',
+        'sam@email.com',
+        'hashed_pwd_6',
+        TIMESTAMP '2023-02-06 15:00:00',
+        'profiles/sam.jpg',
+        'regular',
+        'Professional Gamer | Streamer',
+        'Live streaming now!',
+        20,
+        18,
+        interest_table_type(
+            interest_type(1, 'Technology and Gadgets'),
+            interest_type(5, 'Arts and Entertainment'),
+            interest_type(7, 'Finance and Investment')
         )
-    );
+    )
+);
 
---user 7
-INSERT INTO
-    Users
-VALUES
-    (
-        RegularUserType (
-            user_id_seq.NEXTVAL,
-            'music_rachel',
-            'rachel@email.com',
-            'hashed_pwd_7',
-            TIMESTAMP '2023-02-07 16:00:00',
-            'profiles/rachel.jpg',
-            'regular',
-            'Singer | Songwriter | Producer',
-            'Making music 🎵',
-            17,
-            15,
-            interest_table_type()
+--user 7 (music focused)
+INSERT INTO Users VALUES (
+    RegularUserType (
+        user_id_seq.NEXTVAL,
+        'music_rachel',
+        'rachel@email.com',
+        'hashed_pwd_7',
+        TIMESTAMP '2023-02-07 16:00:00',
+        'profiles/rachel.jpg',
+        'regular',
+        'Singer | Songwriter | Producer',
+        'Making music 🎵',
+        17,
+        15,
+        interest_table_type(
+            interest_type(5, 'Arts and Entertainment'),
+            interest_type(4, 'Education and Learning'),
+            interest_type(2, 'Travel and Adventure')
         )
-    );
+    )
+);
 
---user 8
-INSERT INTO
-    Users
-VALUES
-    (
-        RegularUserType (
-            user_id_seq.NEXTVAL,
-            'eco_peter',
-            'peter@email.com',
-            'hashed_pwd_8',
-            TIMESTAMP '2023-02-08 17:00:00',
-            'profiles/peter.jpg',
-            'regular',
-            'Environmental Activist | Sustainable Living',
-            'Saving the planet 🌍',
-            14,
-            12,
-            interest_table_type()
+--user 8 (eco focused)
+INSERT INTO Users VALUES (
+    RegularUserType (
+        user_id_seq.NEXTVAL,
+        'eco_peter',
+        'peter@email.com',
+        'hashed_pwd_8',
+        TIMESTAMP '2023-02-08 17:00:00',
+        'profiles/peter.jpg',
+        'regular',
+        'Environmental Activist | Sustainable Living',
+        'Saving the planet 🌍',
+        14,
+        12,
+        interest_table_type(
+            interest_type(4, 'Education and Learning'),
+            interest_type(2, 'Travel and Adventure'),
+            interest_type(3, 'Health and Fitness')
         )
-    );
+    )
+);
 
---user 9
-INSERT INTO
-    Users
-VALUES
-    (
-        RegularUserType (
-            user_id_seq.NEXTVAL,
-            'fashion_nina',
-            'nina@email.com',
-            'hashed_pwd_9',
-            TIMESTAMP '2023-02-09 18:00:00',
-            'profiles/nina.jpg',
-            'regular',
-            'Fashion Blogger | Style Consultant',
-            'Fashion week ready',
-            20,
-            16,
-            interest_table_type()
+--user 9 (fashion focused)
+INSERT INTO Users VALUES (
+    RegularUserType (
+        user_id_seq.NEXTVAL,
+        'fashion_nina',
+        'nina@email.com',
+        'hashed_pwd_9',
+        TIMESTAMP '2023-02-09 18:00:00',
+        'profiles/nina.jpg',
+        'regular',
+        'Fashion Blogger | Style Consultant',
+        'Fashion week ready',
+        20,
+        16,
+        interest_table_type(
+            interest_type(5, 'Arts and Entertainment'),
+            interest_type(2, 'Travel and Adventure'),
+            interest_type(7, 'Finance and Investment')
         )
-    );
+    )
+);
 
---user 10
-INSERT INTO
-    Users
-VALUES
-    (
-        RegularUserType (
-            user_id_seq.NEXTVAL,
-            'chef_carlos',
-            'carlos@email.com',
-            'hashed_pwd_10',
-            TIMESTAMP '2023-02-10 19:00:00',
-            'profiles/carlos.jpg',
-            'regular',
-            'Professional Chef | Food Photography',
-            'In the kitchen',
-            18,
-            15,
-            interest_table_type()
+--user 10 (chef focused)
+INSERT INTO Users VALUES (
+    RegularUserType (
+        user_id_seq.NEXTVAL,
+        'chef_carlos',
+        'carlos@email.com',
+        'hashed_pwd_10',
+        TIMESTAMP '2023-02-10 19:00:00',
+        'profiles/carlos.jpg',
+        'regular',
+        'Professional Chef | Food Photography',
+        'In the kitchen',
+        18,
+        15,
+        interest_table_type(
+            interest_type(6, 'Food and Cooking'),
+            interest_type(5, 'Arts and Entertainment'),
+            interest_type(4, 'Education and Learning')
         )
-    );
+    )
+);
 
---user 11
-INSERT INTO
-    Users
-VALUES
-    (
-        RegularUserType (
-            user_id_seq.NEXTVAL,
-            'yoga_emma',
-            'emma.y@email.com',
-            'hashed_pwd_11',
-            TIMESTAMP '2023-02-11 20:00:00',
-            'profiles/emma_y.jpg',
-            'regular',
-            'Yoga Instructor | Mindfulness Coach',
-            'Namaste 🧘‍♀️',
-            16,
-            13,
-            interest_table_type()
+--user 11 (yoga focused)
+INSERT INTO Users VALUES (
+    RegularUserType (
+        user_id_seq.NEXTVAL,
+        'yoga_emma',
+        'emma.y@email.com',
+        'hashed_pwd_11',
+        TIMESTAMP '2023-02-11 20:00:00',
+        'profiles/emma_y.jpg',
+        'regular',
+        'Yoga Instructor | Mindfulness Coach',
+        'Namaste 🧘‍♀️',
+        16,
+        13,
+        interest_table_type(
+            interest_type(3, 'Health and Fitness'),
+            interest_type(4, 'Education and Learning'),
+            interest_type(5, 'Arts and Entertainment')
         )
-    );
+    )
+);
 
---user 12
-INSERT INTO
-    Users
-VALUES
-    (
-        RegularUserType (
-            user_id_seq.NEXTVAL,
-            'photographer_tom',
-            'tom@email.com',
-            'hashed_pwd_12',
-            TIMESTAMP '2023-02-12 21:00:00',
-            'profiles/tom.jpg',
-            'regular',
-            'Professional Photographer | Nature Lover',
-            'Capturing moments',
-            19,
-            17,
-            interest_table_type()
+--user 12 (photographer focused)
+INSERT INTO Users VALUES (
+    RegularUserType (
+        user_id_seq.NEXTVAL,
+        'photographer_tom',
+        'tom@email.com',
+        'hashed_pwd_12',
+        TIMESTAMP '2023-02-12 21:00:00',
+        'profiles/tom.jpg',
+        'regular',
+        'Professional Photographer | Nature Lover',
+        'Capturing moments',
+        19,
+        17,
+        interest_table_type(
+            interest_type(5, 'Arts and Entertainment'),
+            interest_type(2, 'Travel and Adventure'),
+            interest_type(1, 'Technology and Gadgets')
         )
-    );
+    )
+);
 
---user 13
-INSERT INTO
-    Users
-VALUES
-    (
-        RegularUserType (
-            user_id_seq.NEXTVAL,
-            'writer_sophia',
-            'sophia@email.com',
-            'hashed_pwd_13',
-            TIMESTAMP '2023-02-13 22:00:00',
-            'profiles/sophia.jpg',
-            'regular',
-            'Author | Book Reviewer | Coffee Addict',
-            'Writing my next novel',
-            15,
-            14,
-            interest_table_type()
+--user 13 (writer focused)
+INSERT INTO Users VALUES (
+    RegularUserType (
+        user_id_seq.NEXTVAL,
+        'writer_sophia',
+        'sophia@email.com',
+        'hashed_pwd_13',
+        TIMESTAMP '2023-02-13 22:00:00',
+        'profiles/sophia.jpg',
+        'regular',
+        'Author | Book Reviewer | Coffee Addict',
+        'Writing my next novel',
+        15,
+        14,
+        interest_table_type(
+            interest_type(5, 'Arts and Entertainment'),
+            interest_type(4, 'Education and Learning'),
+            interest_type(6, 'Food and Cooking')
         )
-    );
+    )
+);
 
---user 14
-INSERT INTO
-    Users
-VALUES
-    (
-        RegularUserType (
-            user_id_seq.NEXTVAL,
-            'startup_ryan',
-            'ryan@email.com',
-            'hashed_pwd_14',
-            TIMESTAMP '2023-02-14 23:00:00',
-            'profiles/ryan.jpg',
-            'regular',
-            'Entrepreneur | Tech Startup Founder',
-            'Building the future',
-            20,
-            15,
-            interest_table_type()
+--user 14 (startup focused)
+INSERT INTO Users VALUES (
+    RegularUserType (
+        user_id_seq.NEXTVAL,
+        'startup_ryan',
+        'ryan@email.com',
+        'hashed_pwd_14',
+        TIMESTAMP '2023-02-14 23:00:00',
+        'profiles/ryan.jpg',
+        'regular',
+        'Entrepreneur | Tech Startup Founder',
+        'Building the future',
+        20,
+        15,
+        interest_table_type(
+            interest_type(1, 'Technology and Gadgets'),
+            interest_type(7, 'Finance and Investment'),
+            interest_type(4, 'Education and Learning')
         )
-    );
+    )
+);
 
---user 15
-INSERT INTO
-    Users
-VALUES
-    (
-        RegularUserType (
-            user_id_seq.NEXTVAL,
-            'dancer_maria',
-            'maria@email.com',
-            'hashed_pwd_15',
-            TIMESTAMP '2023-02-15 00:00:00',
-            'profiles/maria.jpg',
-            'regular',
-            'Professional Dancer | Dance Instructor',
-            'Dancing through life 💃',
-            18,
-            16,
-            interest_table_type()
+--user 15 (dancer focused)
+INSERT INTO Users VALUES (
+    RegularUserType (
+        user_id_seq.NEXTVAL,
+        'dancer_maria',
+        'maria@email.com',
+        'hashed_pwd_15',
+        TIMESTAMP '2023-02-15 00:00:00',
+        'profiles/maria.jpg',
+        'regular',
+        'Professional Dancer | Dance Instructor',
+        'Dancing through life 💃',
+        18,
+        16,
+        interest_table_type(
+            interest_type(5, 'Arts and Entertainment'),
+            interest_type(3, 'Health and Fitness'),
+            interest_type(4, 'Education and Learning')
         )
-    );
+    )
+);
 
---user 16
-INSERT INTO
-    Users
-VALUES
-    (
-        RegularUserType (
-            user_id_seq.NEXTVAL,
-            'scientist_alan',
-            'alan@email.com',
-            'hashed_pwd_16',
-            TIMESTAMP '2023-02-16 01:00:00',
-            'profiles/alan.jpg',
-            'regular',
-            'Research Scientist | Physics Enthusiast',
-            'Exploring the universe',
-            13,
-            11,
-            interest_table_type()
+--user 16 (scientist focused)
+INSERT INTO Users VALUES (
+    RegularUserType (
+        user_id_seq.NEXTVAL,
+        'scientist_alan',
+        'alan@email.com',
+        'hashed_pwd_16',
+        TIMESTAMP '2023-02-16 01:00:00',
+        'profiles/alan.jpg',
+        'regular',
+        'Research Scientist | Physics Enthusiast',
+        'Exploring the universe',
+        13,
+        11,
+        interest_table_type(
+            interest_type(1, 'Technology and Gadgets'),
+            interest_type(4, 'Education and Learning'),
+            interest_type(7, 'Finance and Investment')
         )
-    );
+    )
+);
 
---user 17
-INSERT INTO
-    Users
-VALUES
-    (
-        RegularUserType (
-            user_id_seq.NEXTVAL,
-            'diy_hannah',
-            'hannah@email.com',
-            'hashed_pwd_17',
-            TIMESTAMP '2023-02-17 02:00:00',
-            'profiles/hannah.jpg',
-            'regular',
-            'DIY Expert | Home Improvement',
-            'Creating something new',
-            17,
-            14,
-            interest_table_type()
+--user 17 (DIY focused)
+INSERT INTO Users VALUES (
+    RegularUserType (
+        user_id_seq.NEXTVAL,
+        'diy_hannah',
+        'hannah@email.com',
+        'hashed_pwd_17',
+        TIMESTAMP '2023-02-17 02:00:00',
+        'profiles/hannah.jpg',
+        'regular',
+        'DIY Expert | Home Improvement',
+        'Creating something new',
+        17,
+        14,
+        interest_table_type(
+            interest_type(5, 'Arts and Entertainment'),
+            interest_type(1, 'Technology and Gadgets'),
+            interest_type(6, 'Food and Cooking')
         )
-    );
+    )
+);
 
---user 18
-INSERT INTO
-    Users
-VALUES
-    (
-        RegularUserType (
-            user_id_seq.NEXTVAL,
-            'comedian_jack',
-            'jack@email.com',
-            'hashed_pwd_18',
-            TIMESTAMP '2023-02-18 03:00:00',
-            'profiles/jack.jpg',
-            'regular',
-            'Stand-up Comedian | Content Creator',
-            'Making people laugh 😂',
-            20,
-            18,
-            interest_table_type()
+--user 18 (comedian focused)
+INSERT INTO Users VALUES (
+    RegularUserType (
+        user_id_seq.NEXTVAL,
+        'comedian_jack',
+        'jack@email.com',
+        'hashed_pwd_18',
+        TIMESTAMP '2023-02-18 03:00:00',
+        'profiles/jack.jpg',
+        'regular',
+        'Stand-up Comedian | Content Creator',
+        'Making people laugh 😂',
+        20,
+        18,
+        interest_table_type(
+            interest_type(5, 'Arts and Entertainment'),
+            interest_type(2, 'Travel and Adventure'),
+            interest_type(7, 'Finance and Investment')
         )
-    );
+    )
+);
 
---user 19
-INSERT INTO
-    Users
-VALUES
-    (
-        RegularUserType (
-            user_id_seq.NEXTVAL,
-            'pet_lover_lucy',
-            'lucy@email.com',
-            'hashed_pwd_19',
-            TIMESTAMP '2023-02-19 04:00:00',
-            'profiles/lucy.jpg',
-            'regular',
-            'Pet Influencer | Animal Rescue Advocate',
-            'Playing with puppies 🐕',
-            19,
-            16,
-            interest_table_type()
+--user 19 (pet focused)
+INSERT INTO Users VALUES (
+    RegularUserType (
+        user_id_seq.NEXTVAL,
+        'pet_lover_lucy',
+        'lucy@email.com',
+        'hashed_pwd_19',
+        TIMESTAMP '2023-02-19 04:00:00',
+        'profiles/lucy.jpg',
+        'regular',
+        'Pet Influencer | Animal Rescue Advocate',
+        'Playing with puppies 🐕',
+        19,
+        16,
+        interest_table_type(
+            interest_type(3, 'Health and Fitness'),
+            interest_type(5, 'Arts and Entertainment'),
+            interest_type(2, 'Travel and Adventure')
         )
-    );
+    )
+);
 
---user 20
-INSERT INTO
-    Users
-VALUES
-    (
-        RegularUserType (
-            user_id_seq.NEXTVAL,
-            'sports_coach_ben',
-            'ben@email.com',
-            'hashed_pwd_20',
-            TIMESTAMP '2023-02-20 05:00:00',
-            'profiles/ben.jpg',
-            'regular',
-            'Sports Coach | Fitness Expert',
-            'Training champions',
-            17,
-            15,
-            interest_table_type()
+--user 20 (sports focused)
+INSERT INTO Users VALUES (
+    RegularUserType (
+        user_id_seq.NEXTVAL,
+        'sports_coach_ben',
+        'ben@email.com',
+        'hashed_pwd_20',
+        TIMESTAMP '2023-02-20 05:00:00',
+        'profiles/ben.jpg',
+        'regular',
+        'Sports Coach | Fitness Expert',
+        'Training champions',
+        17,
+        15,
+        interest_table_type(
+            interest_type(3, 'Health and Fitness'),
+            interest_type(4, 'Education and Learning'),
+            interest_type(7, 'Finance and Investment')
         )
-    );
+    )
+);
 
 COMMIT;
 
