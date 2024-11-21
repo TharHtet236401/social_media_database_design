@@ -999,6 +999,48 @@ db.likes.insertMany([
         post: { $ref: "posts", $id: db.posts.find({ post_id: 14 }).toArray()[0]._id },
         user: { $ref: "users", $id: user_1020_id },
         created_at: new Date("2024-03-15T18:25:00Z")
+    },
+    {
+        like_id: 37,
+        post: { $ref: "posts", $id: db.posts.find({ post_id: 11 }).toArray()[0]._id },
+        user: { $ref: "users", $id: user_1020_id },
+        created_at: new Date("2024-03-15T18:25:00Z")
+    },
+    {
+        like_id: 38,
+        post: { $ref: "posts", $id: db.posts.find({ post_id: 12 }).toArray()[0]._id },
+        user: { $ref: "users", $id: user_1020_id },
+        created_at: new Date("2024-03-15T18:25:00Z")
+    },
+    {
+        like_id: 39,
+        post: { $ref: "posts", $id: db.posts.find({ post_id: 13 }).toArray()[0]._id },
+        user: { $ref: "users", $id: user_1020_id },
+        created_at: new Date("2024-03-15T18:25:00Z")
+    },
+    {
+        like_id: 40,
+        post: { $ref: "posts", $id: db.posts.find({ post_id: 14 }).toArray()[0]._id },
+        user: { $ref: "users", $id: user_1020_id },
+        created_at: new Date("2024-03-15T18:25:00Z")
+    },
+    {
+        like_id: 41,
+        post: { $ref: "posts", $id: db.posts.find({ post_id: 1 }).toArray()[0]._id },
+        user: { $ref: "users", $id: user_1020_id },
+        created_at: new Date("2024-03-15T18:25:00Z")
+    },
+    {
+        like_id: 42,
+        post: { $ref: "posts", $id: db.posts.find({ post_id: 2 }).toArray()[0]._id },
+        user: { $ref: "users", $id: user_1020_id },
+        created_at: new Date("2024-03-15T18:25:00Z")
+    },
+    {
+        like_id: 43,
+        post: { $ref: "posts", $id: db.posts.find({ post_id: 4 }).toArray()[0]._id },
+        user: { $ref: "users", $id: user_1020_id },
+        created_at: new Date("2024-03-15T18:25:00Z")
     }
 ]);
 

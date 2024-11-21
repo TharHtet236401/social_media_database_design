@@ -1939,6 +1939,78 @@ VALUES (
     )
 );
 
+INSERT INTO Likes
+VALUES (
+    LikeType(
+        like_id_seq.NEXTVAL,
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1020),  
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 11),  
+        TIMESTAMP '2024-03-15 12:01:00'
+    )
+);
+
+INSERT INTO Likes
+VALUES (
+    LikeType(
+        like_id_seq.NEXTVAL,
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1020),  
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 12),  
+        TIMESTAMP '2024-03-15 12:02:00'
+    )
+);
+
+INSERT INTO Likes
+VALUES (
+    LikeType(
+        like_id_seq.NEXTVAL,
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1020),  
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 13),  
+        TIMESTAMP '2024-03-15 12:03:00'
+    )
+);
+
+INSERT INTO Likes
+VALUES (
+    LikeType(
+        like_id_seq.NEXTVAL,
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1020),  
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 14),  
+        TIMESTAMP '2024-03-15 12:04:00'
+    )
+);
+
+INSERT INTO Likes
+VALUES (
+    LikeType(
+        like_id_seq.NEXTVAL,
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1020),  
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 1),  
+        TIMESTAMP '2024-03-15 12:05:00'
+    )
+);
+
+INSERT INTO Likes
+VALUES (
+    LikeType(
+        like_id_seq.NEXTVAL,
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1020),  
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 2),  
+        TIMESTAMP '2024-03-15 12:06:00'
+    )
+);
+
+INSERT INTO Likes
+VALUES (
+    LikeType(
+        like_id_seq.NEXTVAL,
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1020),  
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 4),  
+        TIMESTAMP '2024-03-15 12:07:00'
+    )
+);
+
+
+
 COMMIT;
 
 INSERT INTO Comments

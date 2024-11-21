@@ -221,7 +221,7 @@ GROUP BY
     DEREF(l.user_ref).username,
     DEREF(l.user_ref).user_type
 HAVING 
-    COUNT(l.like_id) > 3
+    COUNT(l.like_id) > 5
 
 MINUS
 
@@ -269,7 +269,7 @@ GROUP BY
     DEREF(l.user_ref).username,
     DEREF(l.user_ref).user_type
 HAVING 
-    COUNT(l.like_id) > 3
+    COUNT(l.like_id) > 5
 
 ORDER BY 
     username ASC;
