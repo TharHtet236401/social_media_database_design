@@ -276,3 +276,115 @@ HAVING
 ORDER BY 
     username ASC;
 
+-- Query 1: See all users (both admin and regular) with their type-specific attributes
+SELECT 
+    u.user_id,
+    u.username,
+    u.email,
+    u.user_type,
+    u.created_at,
+    CASE 
+        WHEN VALUE(u) IS OF TYPE (AdminType) THEN
+            TREAT(VALUE(u) AS AdminType).admin_level
+        ELSE
+            NULL
+    END as admin_level,
+    CASE 
+        WHEN VALUE(u) IS OF TYPE (RegularUserType) THEN
+            TREAT(VALUE(u) AS RegularUserType).bio
+        ELSE
+            NULL
+    END as bio,
+    CASE 
+        WHEN VALUE(u) IS OF TYPE (RegularUserType) THEN
+            TREAT(VALUE(u) AS RegularUserType).followers
+        ELSE
+            NULL
+    END as followers,
+    CASE 
+        WHEN VALUE(u) IS OF TYPE (RegularUserType) THEN
+            TREAT(VALUE(u) AS RegularUserType).following
+        ELSE
+            NULL
+    END as following
+FROM Users u
+ORDER BY u.user_id;
+
+-- Query 2: See regular users with their interests (one row per user-interest combination)
+SELECT 
+    r.user_id,
+    r.username,
+    r.email,
+    r.bio,
+    r.user_status,
+    r.followers,
+    r.following,
+    i.interest_id,
+    i.interest_name
+FROM Users r, TABLE(TREAT(VALUE(r) AS RegularUserType).interests) i
+WHERE VALUE(r) IS OF TYPE (RegularUserType)
+ORDER BY r.user_id, i.interest_id;
+
+-- Query 3: See admin users with their specific attributes
+SELECT 
+    a.user_id,
+    a.username,
+    a.email,
+    TREAT(VALUE(a) AS AdminType).admin_id,
+    TREAT(VALUE(a) AS AdminType).admin_level,
+    TREAT(VALUE(a) AS AdminType).report_viewed,
+    TREAT(VALUE(a) AS AdminType).last_login
+FROM Users a
+WHERE VALUE(a) IS OF TYPE (AdminType)
+ORDER BY a.user_id;
+
+-- Query 4: Summary statistics of interests per user
+SELECT 
+    r.username,
+    COUNT(i.interest_id) as interest_count,
+    LISTAGG(i.interest_name, ', ') WITHIN GROUP (ORDER BY i.interest_id) as interests
+FROM Users r, TABLE(TREAT(VALUE(r) AS RegularUserType).interests) i
+WHERE VALUE(r) IS OF TYPE (RegularUserType)
+GROUP BY r.username
+ORDER BY r.username;
+
+-- Query 5: Count users by type
+SELECT 
+    user_type,
+    COUNT(*) as user_count
+FROM Users
+GROUP BY user_type
+ORDER BY user_type;
+
+-- Simple query to see all users data
+SELECT *
+FROM Users;
+
+-- Or a more readable format showing user details based on their type
+SELECT 
+    u.user_id,
+    u.username,
+    u.email,
+    u.user_type,
+    u.created_at,
+    u.profile_picture,
+    CASE 
+        WHEN VALUE(u) IS OF TYPE (AdminType) THEN
+            'Admin Level: ' || TREAT(VALUE(u) AS AdminType).admin_level || 
+            ', Reports: ' || TREAT(VALUE(u) AS AdminType).report_viewed
+        WHEN VALUE(u) IS OF TYPE (RegularUserType) THEN
+            'Followers: ' || TREAT(VALUE(u) AS RegularUserType).followers || 
+            ', Following: ' || TREAT(VALUE(u) AS RegularUserType).following
+    END as additional_info,
+    CASE 
+        WHEN VALUE(u) IS OF TYPE (RegularUserType) THEN
+            (
+                SELECT LISTAGG(i.interest_name, ', ') WITHIN GROUP (ORDER BY i.interest_id)
+                FROM TABLE(TREAT(VALUE(u) AS RegularUserType).interests) i
+            )
+        ELSE
+            NULL
+    END as interests
+FROM Users u
+ORDER BY u.user_id;
+
