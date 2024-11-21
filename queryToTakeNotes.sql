@@ -205,6 +205,8 @@ ORDER BY
     engagement_total DESC,  
     p.created_at DESC;
 
+
+--QUERY 2
 -- Query to compare user engagement patterns using set operators
 -- Shows users who are either very active in liking posts or commenting, but not both
 -- This helps identify users with distinct engagement preferences
@@ -273,72 +275,4 @@ HAVING
 
 ORDER BY 
     username ASC;
-
--- Query to identify different user behavior patterns using INTERSECT and UNION
--- Compares content creators vs engagers and finds interesting user segments
-
--- Active content creators (users with multiple posts in last 30 days)
-SELECT 
-    DEREF(p.user_ref).username AS username,
-    DEREF(p.user_ref).user_type AS user_type,
-    COUNT(p.post_id) AS activity_count,
-    CAST('Active Creator' AS VARCHAR2(20)) AS behavior_type
-FROM 
-    Posts p
-WHERE 
-    p.created_at >= SYSTIMESTAMP - INTERVAL '30' DAY
-GROUP BY 
-    DEREF(p.user_ref).username,
-    DEREF(p.user_ref).user_type
-HAVING 
-    COUNT(p.post_id) >= 3
-
-INTERSECT
-
--- Active engagers (users who both like and comment frequently)
-SELECT 
-    u.username,
-    u.user_type,
-    COUNT(DISTINCT l.like_id) + COUNT(DISTINCT c.comment_id),
-    CAST('Active Creator' AS VARCHAR2(20))
-FROM 
-    Users u
-    LEFT JOIN Likes l ON REF(u) = l.user_ref
-    LEFT JOIN Comments c ON REF(u) = c.user_ref
-WHERE 
-    l.created_at >= SYSTIMESTAMP - INTERVAL '30' DAY
-    OR c.created_at >= SYSTIMESTAMP - INTERVAL '30' DAY
-GROUP BY 
-    u.username,
-    u.user_type
-HAVING 
-    COUNT(DISTINCT l.like_id) >= 5
-    AND COUNT(DISTINCT c.comment_id) >= 3
-
-UNION
-
--- Silent creators (users who post but rarely engage)
-SELECT 
-    DEREF(p.user_ref).username,
-    DEREF(p.user_ref).user_type,
-    COUNT(p.post_id),
-    CAST('Silent Creator' AS VARCHAR2(20))
-FROM 
-    Posts p
-    LEFT JOIN Likes l ON l.user_ref = p.user_ref
-    LEFT JOIN Comments c ON c.user_ref = p.user_ref
-WHERE 
-    p.created_at >= SYSTIMESTAMP - INTERVAL '30' DAY
-GROUP BY 
-    DEREF(p.user_ref).username,
-    DEREF(p.user_ref).user_type
-HAVING 
-    COUNT(p.post_id) >= 3
-    AND COUNT(l.like_id) + COUNT(c.comment_id) <= 2
-
-ORDER BY 
-    behavior_type,
-    activity_count DESC,
-    username;
-
 

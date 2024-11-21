@@ -379,3 +379,83 @@ db.posts.createIndex({ created_at: 1 });
 db.posts.createIndex({ "user.$id": 1 });
 db.likes.createIndex({ "post.$id": 1, "user.$id": 1 });
 db.comments.createIndex({ "post.$id": 1, "user.$id": 1 });
+
+// QUERY 2
+// Query to compare user engagement patterns
+// Shows users who are either very active in liking posts or commenting, but not both
+db.users.aggregate([
+  // First, get all user interactions
+  {
+    $lookup: {
+      from: "likes",
+      localField: "_id",
+      foreignField: "user.$id",
+      as: "user_likes"
+    }
+  },
+  {
+    $lookup: {
+      from: "comments",
+      localField: "_id",
+      foreignField: "user.$id",
+      as: "user_comments"
+    }
+  },
+  // Calculate like and comment counts
+  {
+    $project: {
+      username: 1,
+      user_type: 1,
+      like_count: { $size: "$user_likes" },
+      comment_count: { $size: "$user_comments" }
+    }
+  },
+  // Filter for users who are either active likers OR active commenters (but not both)
+  {
+    $match: {
+      $or: [
+        // Users who frequently like posts (>5 likes) but don't comment much (≤3 comments)
+        {
+          like_count: { $gt: 5 },
+          comment_count: { $lte: 3 }
+        },
+        // Users who frequently comment (>3 comments) but don't like much (≤5 likes)
+        {
+          comment_count: { $gt: 3 },
+          like_count: { $lte: 5 }
+        }
+      ]
+    }
+  },
+  // Add engagement type field
+  {
+    $project: {
+      username: 1,
+      user_type: 1,
+      engagement_count: {
+        $cond: {
+          if: { $gt: ["$like_count", 5] },
+          then: "$like_count",
+          else: "$comment_count"
+        }
+      },
+      engagement_type: {
+        $cond: {
+          if: { $gt: ["$like_count", 5] },
+          then: "Primarily Likes Posts",
+          else: "Primarily Comments"
+        }
+      }
+    }
+  },
+  // Sort by username
+  {
+    $sort: { username: 1 }
+  }
+]);
+
+// Create indexes to improve performance
+db.likes.createIndex({ "user.$id": 1 });
+db.comments.createIndex({ "user.$id": 1 });
+
+
