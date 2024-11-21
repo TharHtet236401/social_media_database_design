@@ -1887,8 +1887,8 @@ INSERT INTO Likes
 VALUES (
     LikeType(
         like_id_seq.NEXTVAL,
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 1007),  -- fitness_jane
-        (SELECT REF(p) FROM Posts p WHERE p.post_id = 40),  -- comedy show post
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1007), 
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 40),  
         TIMESTAMP '2024-03-16 00:15:00'
     )
 );
@@ -1898,8 +1898,8 @@ INSERT INTO Likes
 VALUES (
     LikeType(
         like_id_seq.NEXTVAL,
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 1014),  -- fashion_nina
-        (SELECT REF(p) FROM Posts p WHERE p.post_id = 41),  -- adoption day post
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1014),  
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 41),  
         TIMESTAMP '2024-03-15 19:00:00'
     )
 );
@@ -1911,8 +1911,8 @@ INSERT INTO Likes
 VALUES (
     LikeType(
         like_id_seq.NEXTVAL,
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 1009),  -- artist_lisa
-        (SELECT REF(p) FROM Posts p WHERE p.post_id = 1),  -- AI project post
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1009),  
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 1), 
         TIMESTAMP '2024-03-15 09:20:00'
     )
 );
@@ -1922,8 +1922,8 @@ INSERT INTO Likes
 VALUES (
     LikeType(
         like_id_seq.NEXTVAL,
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 1011),  -- gamer_sam
-        (SELECT REF(p) FROM Posts p WHERE p.post_id = 40),  -- comedy show post
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1011),  
+        (SELECT REF(p) FROM Posts p WHERE p.post_id = 40),  
         TIMESTAMP '2024-03-15 23:45:00'
     )
 );
@@ -2390,9 +2390,6 @@ VALUES (
 COMMIT;
 
 --insert messages
-
--- Insert messages with varied content and patterns
--- Tech support conversations
 INSERT INTO Messages
 VALUES (
     MessageType(
@@ -2410,20 +2407,20 @@ VALUES (
         message_id_seq.NEXTVAL,
         'That would be great! I could use help with the deep learning architecture. When are you free to discuss?',
         TIMESTAMP '2024-03-15 10:15:00',
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 1006), -- tech_guru_alex
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 1016)  -- scientist_alan
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1006), 
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1016)  
     )
 );
 
--- Fitness collaboration messages
+
 INSERT INTO Messages
 VALUES (
     MessageType(
         message_id_seq.NEXTVAL,
         'Would you be interested in doing a joint workout session for our followers?',
         TIMESTAMP '2024-03-15 08:30:00',
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 1007), -- fitness_jane
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 1020)  -- sports_coach_ben
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1007), 
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1020)  
     )
 );
 
@@ -2433,8 +2430,8 @@ VALUES (
         message_id_seq.NEXTVAL,
         'Absolutely! We could combine HIIT with strength training. How about next week?',
         TIMESTAMP '2024-03-15 09:45:00',
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 1020), -- sports_coach_ben
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 1007)  -- fitness_jane
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1020), 
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1007) 
     )
 );
 
@@ -2445,72 +2442,69 @@ VALUES (
         message_id_seq.NEXTVAL,
         'Your food photography is amazing! Want to collab on a cookbook?',
         TIMESTAMP '2024-03-15 11:30:00',
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 1008), -- foodie_mark
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 1012)  -- photographer_tom
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1008),
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1012)  
     )
 );
 
--- Artist collaboration request
+
 INSERT INTO Messages
 VALUES (
     MessageType(
         message_id_seq.NEXTVAL,
         'I love your digital art style! Would you be interested in designing my album cover?',
         TIMESTAMP '2024-03-15 13:20:00',
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 1012), -- music_rachel
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 1009)  -- artist_lisa
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1012), 
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1009)  
     )
 );
 
--- Travel photography discussion
 INSERT INTO Messages
 VALUES (
     MessageType(
         message_id_seq.NEXTVAL,
         'Which camera settings did you use for those night shots in Tokyo?',
         TIMESTAMP '2024-03-15 14:45:00',
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 1012), -- photographer_tom
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 1010)  -- travel_mike
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1012), 
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1010)  
     )
 );
 
--- Gaming stream coordination
 INSERT INTO Messages
 VALUES (
     MessageType(
         message_id_seq.NEXTVAL,
         'Up for a multiplayer stream tonight? My followers would love it!',
         TIMESTAMP '2024-03-15 16:00:00',
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 1011), -- gamer_sam
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 1018)  -- comedian_jack
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1011), 
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1018)  
     )
 );
 
--- Music collaboration
 INSERT INTO Messages
 VALUES (
     MessageType(
         message_id_seq.NEXTVAL,
         'Loved your latest track! Would you be interested in a collab?',
         TIMESTAMP '2024-03-15 17:30:00',
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 1012), -- music_rachel
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 1015)  -- dancer_maria
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1012), 
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1015)  
     )
 );
 
--- Environmental initiative
+
 INSERT INTO Messages
 VALUES (
     MessageType(
         message_id_seq.NEXTVAL,
         'Planning a beach cleanup next weekend. Would you help spread the word?',
         TIMESTAMP '2024-03-15 09:15:00',
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 1013), -- eco_peter
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 1014)  -- fashion_nina
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1013), 
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1014)  
     )
 );
 
--- Fashion collaboration
+
 INSERT INTO Messages
 VALUES (
     MessageType(
@@ -2522,75 +2516,75 @@ VALUES (
     )
 );
 
--- Dance choreography
+
 INSERT INTO Messages
 VALUES (
     MessageType(
         message_id_seq.NEXTVAL,
         'Would love to learn that choreography! Any chance for a workshop?',
         TIMESTAMP '2024-03-15 12:30:00',
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 1007), -- fitness_jane
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 1015)  -- dancer_maria
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1007), 
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1015)  
     )
 );
 
--- Scientific collaboration
+
 INSERT INTO Messages
 VALUES (
     MessageType(
         message_id_seq.NEXTVAL,
         'Your quantum computing paper was fascinating! Want to collaborate on research?',
         TIMESTAMP '2024-03-15 14:15:00',
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 1016), -- scientist_alan
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 1006)  -- tech_guru_alex
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1016), 
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1006)  
     )
 );
 
--- DIY project advice
+
 INSERT INTO Messages
 VALUES (
     MessageType(
         message_id_seq.NEXTVAL,
         'Any tips for upcycling vintage furniture? Love your latest project!',
         TIMESTAMP '2024-03-15 15:45:00',
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 1014), -- fashion_nina
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 1017)  -- diy_hannah
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1014), 
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1017) 
     )
 );
 
--- Comedy show invitation
+
 INSERT INTO Messages
 VALUES (
     MessageType(
         message_id_seq.NEXTVAL,
         'Would you like to do a stand-up set at my show next week?',
         TIMESTAMP '2024-03-15 17:00:00',
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 1018), -- comedian_jack
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 1011)  -- gamer_sam
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1018), 
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1011) 
     )
 );
 
--- Pet rescue coordination
+
 INSERT INTO Messages
 VALUES (
     MessageType(
         message_id_seq.NEXTVAL,
         'We have a new rescue dog that matches your adoption criteria!',
         TIMESTAMP '2024-03-15 18:30:00',
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 1019), -- pet_lover_lucy
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 1013)  -- eco_peter
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1019),
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1013)  
     )
 );
 
--- Sports training inquiry
+
 INSERT INTO Messages
 VALUES (
     MessageType(
         message_id_seq.NEXTVAL,
         'Interested in personal training sessions. What is your availability?',
         TIMESTAMP '2024-03-15 08:00:00',
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 1014), -- fashion_nina
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 1020)  -- sports_coach_ben
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1014), 
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1020) 
     )
 );
 
@@ -2601,24 +2595,24 @@ VALUES (
         message_id_seq.NEXTVAL,
         'Would you be interested in mentoring junior developers in our coding bootcamp?',
         TIMESTAMP '2024-03-15 11:00:00',
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 1006), -- tech_guru_alex
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 1016)  -- scientist_alan
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1006), 
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1016)  
     )
 );
 
--- Photography tips
+
 INSERT INTO Messages
 VALUES (
     MessageType(
         message_id_seq.NEXTVAL,
         'Could you share some tips on landscape photography? Your shots are amazing!',
         TIMESTAMP '2024-03-15 13:45:00',
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 1010), -- travel_mike
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 1012)  -- photographer_tom
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1010), 
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1012)  
     )
 );
 
--- Workout plan discussion
+
 INSERT INTO Messages
 VALUES (
     MessageType(
@@ -2630,7 +2624,7 @@ VALUES (
     )
 );
 
--- Event planning
+
 INSERT INTO Messages
 VALUES (
     MessageType(
@@ -2642,7 +2636,7 @@ VALUES (
     )
 );
 
--- Adding more messages with different timestamps and contexts
+
 INSERT INTO Messages
 VALUES (
     MessageType(
@@ -2654,9 +2648,7 @@ VALUES (
     )
 );
 
--- Continuing with more messages...
 
--- Late night gaming session planning
 INSERT INTO Messages
 VALUES (
     MessageType(
@@ -2668,7 +2660,7 @@ VALUES (
     )
 );
 
--- Early morning yoga coordination
+
 INSERT INTO Messages
 VALUES (
     MessageType(
@@ -2680,7 +2672,7 @@ VALUES (
     )
 );
 
--- Recipe exchange
+
 INSERT INTO Messages
 VALUES (
     MessageType(
@@ -2692,7 +2684,7 @@ VALUES (
     )
 );
 
--- Photography equipment advice
+
 INSERT INTO Messages
 VALUES (
     MessageType(
@@ -2704,7 +2696,7 @@ VALUES (
     )
 );
 
--- Startup mentoring
+
 INSERT INTO Messages
 VALUES (
     MessageType(
@@ -2716,7 +2708,7 @@ VALUES (
     )
 );
 
--- Dance collaboration follow-up
+
 INSERT INTO Messages
 VALUES (
     MessageType(
@@ -2728,7 +2720,7 @@ VALUES (
     )
 );
 
--- Tech troubleshooting
+
 INSERT INTO Messages
 VALUES (
     MessageType(
@@ -2740,7 +2732,7 @@ VALUES (
     )
 );
 
--- Fashion week planning
+
 INSERT INTO Messages
 VALUES (
     MessageType(
@@ -2752,7 +2744,7 @@ VALUES (
     )
 );
 
--- Comedy writing collaboration
+
 INSERT INTO Messages
 VALUES (
     MessageType(
@@ -2764,7 +2756,7 @@ VALUES (
     )
 );
 
--- Pet adoption follow-up
+
 INSERT INTO Messages
 VALUES (
     MessageType(
@@ -2776,7 +2768,7 @@ VALUES (
     )
 );
 
--- Workout progress update
+
 INSERT INTO Messages
 VALUES (
     MessageType(
@@ -2788,7 +2780,7 @@ VALUES (
     )
 );
 
--- Book review request
+
 INSERT INTO Messages
 VALUES (
     MessageType(
@@ -2800,7 +2792,7 @@ VALUES (
     )
 );
 
--- Environmental project coordination
+
 INSERT INTO Messages
 VALUES (
     MessageType(
@@ -2812,7 +2804,7 @@ VALUES (
     )
 );
 
--- Music festival planning
+
 INSERT INTO Messages
 VALUES (
     MessageType(
@@ -2824,7 +2816,7 @@ VALUES (
     )
 );
 
--- Tech conference speaking opportunity
+
 INSERT INTO Messages
 VALUES (
     MessageType(
@@ -2836,7 +2828,7 @@ VALUES (
     )
 );
 
--- Fitness challenge coordination
+
 INSERT INTO Messages
 VALUES (
     MessageType(
@@ -2848,7 +2840,7 @@ VALUES (
     )
 );
 
--- Photography workshop planning
+
 INSERT INTO Messages
 VALUES (
     MessageType(
@@ -2860,7 +2852,6 @@ VALUES (
     )
 );
 
--- Cooking class coordination
 INSERT INTO Messages
 VALUES (
     MessageType(
@@ -2872,7 +2863,6 @@ VALUES (
     )
 );
 
--- Art commission discussion
 INSERT INTO Messages
 VALUES (
     MessageType(
@@ -2885,67 +2875,66 @@ VALUES (
 );
 
 
--- Gaming tournament organization
 INSERT INTO Messages
 VALUES (
     MessageType(
         message_id_seq.NEXTVAL,
         'Want to organize an indie game tournament next month? Prize pool looking good! 🏆',
         TIMESTAMP '2024-03-13 19:15:00',
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 1011), -- gamer_sam
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 1018)  -- comedian_jack
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1011), 
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1018) 
     )
 );
 
--- Podcast collaboration
+
 INSERT INTO Messages
 VALUES (
     MessageType(
         message_id_seq.NEXTVAL,
         'Loved being on your podcast! The episode about tech startups got amazing feedback 🎙️',
         TIMESTAMP '2024-03-13 16:45:00',
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 1006), -- tech_guru_alex
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 1014)  -- startup_ryan
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1006), 
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1014)  
     )
 );
 
--- Wellness retreat planning
+
 INSERT INTO Messages
 VALUES (
     MessageType(
         message_id_seq.NEXTVAL,
         'Planning a wellness retreat in Bali - want to lead the morning yoga sessions? 🌴',
         TIMESTAMP '2024-03-13 15:20:00',
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 1007), -- fitness_jane
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 1015)  -- dancer_maria
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1007), 
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1015)  
     )
 );
 
--- Photography exhibition
+
 INSERT INTO Messages
 VALUES (
     MessageType(
         message_id_seq.NEXTVAL,
         'The gallery loved your nature series! They want to feature it next month 📸',
         TIMESTAMP '2024-03-13 14:30:00',
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 1012), -- photographer_tom
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 1010)  -- travel_mike
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1012), 
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1010)  
     )
 );
 
--- Sustainable fashion project
+
 INSERT INTO Messages
 VALUES (
     MessageType(
         message_id_seq.NEXTVAL,
         'Found an amazing eco-friendly fabric supplier in Thailand. Want to check out the samples? 🧵',
         TIMESTAMP '2024-03-13 13:15:00',
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 1014), -- fashion_nina
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 1013)  -- eco_peter
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1014), 
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1013)  
     )
 );
 
--- Charity event planning
+
 INSERT INTO Messages
 VALUES (
     MessageType(
@@ -2957,31 +2946,31 @@ VALUES (
     )
 );
 
--- Tech workshop coordination
+
 INSERT INTO Messages
 VALUES (
     MessageType(
         message_id_seq.NEXTVAL,
         'Students loved your last workshop! Ready for another machine learning session? 🤖',
         TIMESTAMP '2024-03-13 11:25:00',
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 1016), -- scientist_alan
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 1006)  -- tech_guru_alex
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1016), 
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1006)  
     )
 );
 
--- Recipe testing
+
 INSERT INTO Messages
 VALUES (
     MessageType(
         message_id_seq.NEXTVAL,
         'Tried your fusion recipe - the miso pasta is incredible! Mind if I feature it? 🍝',
         TIMESTAMP '2024-03-13 10:50:00',
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 1008), -- foodie_mark
-        (SELECT REF(u) FROM Users u WHERE u.user_id = 1015)  -- dancer_maria
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1008), 
+        (SELECT REF(u) FROM Users u WHERE u.user_id = 1015)  
     )
 );
 
--- Art project collaboration
+
 INSERT INTO Messages
 VALUES (
     MessageType(
@@ -2993,7 +2982,7 @@ VALUES (
     )
 );
 
--- Fitness app development
+
 INSERT INTO Messages
 VALUES (
     MessageType(
@@ -3005,7 +2994,7 @@ VALUES (
     )
 );
 
--- Comedy show preparation
+
 INSERT INTO Messages
 VALUES (
     MessageType(
@@ -3017,7 +3006,7 @@ VALUES (
     )
 );
 
--- Dance video collaboration
+
 INSERT INTO Messages
 VALUES (
     MessageType(
@@ -3029,7 +3018,7 @@ VALUES (
     )
 );
 
--- Environmental campaign
+
 INSERT INTO Messages
 VALUES (
     MessageType(
@@ -3041,7 +3030,7 @@ VALUES (
     )
 );
 
--- Fashion show preparation
+
 INSERT INTO Messages
 VALUES (
     MessageType(
@@ -3053,7 +3042,7 @@ VALUES (
     )
 );
 
--- Pet adoption event
+
 INSERT INTO Messages
 VALUES (
     MessageType(
@@ -3065,7 +3054,7 @@ VALUES (
     )
 );
 
--- Startup mentoring session
+
 INSERT INTO Messages
 VALUES (
     MessageType(
@@ -3077,7 +3066,7 @@ VALUES (
     )
 );
 
--- Fitness challenge update
+
 INSERT INTO Messages
 VALUES (
     MessageType(
@@ -3089,7 +3078,7 @@ VALUES (
     )
 );
 
--- Tech conference planning
+
 INSERT INTO Messages
 VALUES (
     MessageType(
@@ -3101,7 +3090,6 @@ VALUES (
     )
 );
 
--- Cooking show collaboration
 INSERT INTO Messages
 VALUES (
     MessageType(
@@ -3126,7 +3114,7 @@ VALUES (
     )
 );
 
--- Gaming strategy discussion
+
 INSERT INTO Messages
 VALUES (
     MessageType(
@@ -3138,7 +3126,7 @@ VALUES (
     )
 );
 
--- Tech support follow-up
+
 INSERT INTO Messages
 VALUES (
     MessageType(
@@ -3150,7 +3138,7 @@ VALUES (
     )
 );
 
--- Fitness meal planning
+
 INSERT INTO Messages
 VALUES (
     MessageType(
@@ -3162,7 +3150,7 @@ VALUES (
     )
 );
 
--- Art commission update
+
 INSERT INTO Messages
 VALUES (
     MessageType(
@@ -3174,7 +3162,7 @@ VALUES (
     )
 );
 
--- Environmental project
+
 INSERT INTO Messages
 VALUES (
     MessageType(
@@ -3186,7 +3174,7 @@ VALUES (
     )
 );
 
--- Photography feedback
+
 INSERT INTO Messages
 VALUES (
     MessageType(
@@ -3198,7 +3186,7 @@ VALUES (
     )
 );
 
--- Recipe collaboration
+
 INSERT INTO Messages
 VALUES (
     MessageType(
@@ -3210,7 +3198,7 @@ VALUES (
     )
 );
 
--- Startup advice
+
 INSERT INTO Messages
 VALUES (
     MessageType(
@@ -3222,7 +3210,7 @@ VALUES (
     )
 );
 
--- Dance workshop planning
+
 INSERT INTO Messages
 VALUES (
     MessageType(
@@ -3234,7 +3222,7 @@ VALUES (
     )
 );
 
--- Comedy show feedback
+
 INSERT INTO Messages
 VALUES (
     MessageType(
@@ -3246,7 +3234,6 @@ VALUES (
     )
 );
 
--- Pet photoshoot planning
 INSERT INTO Messages
 VALUES (
     MessageType(
@@ -3258,7 +3245,6 @@ VALUES (
     )
 );
 
--- Music video concept
 INSERT INTO Messages
 VALUES (
     MessageType(
@@ -3270,7 +3256,7 @@ VALUES (
     )
 );
 
--- Fashion sustainability
+
 INSERT INTO Messages
 VALUES (
     MessageType(
@@ -3282,7 +3268,7 @@ VALUES (
     )
 );
 
--- Gaming charity event
+
 INSERT INTO Messages
 VALUES (
     MessageType(
@@ -3294,7 +3280,7 @@ VALUES (
     )
 );
 
--- Tech mentorship check-in
+
 INSERT INTO Messages
 VALUES (
     MessageType(
@@ -3306,7 +3292,7 @@ VALUES (
     )
 );
 
--- Workout video planning
+
 INSERT INTO Messages
 VALUES (
     MessageType(
@@ -3318,7 +3304,7 @@ VALUES (
     )
 );
 
--- Book promotion
+
 INSERT INTO Messages
 VALUES (
     MessageType(
@@ -3330,7 +3316,7 @@ VALUES (
     )
 );
 
--- DIY workshop planning
+
 INSERT INTO Messages
 VALUES (
     MessageType(
@@ -3342,7 +3328,7 @@ VALUES (
     )
 );
 
--- Travel photography tips
+
 INSERT INTO Messages
 VALUES (
     MessageType(
@@ -3354,7 +3340,7 @@ VALUES (
     )
 );
 
--- Cooking collaboration
+
 INSERT INTO Messages
 VALUES (
     MessageType(
@@ -3366,7 +3352,7 @@ VALUES (
     )
 );
 
--- Dance performance
+
 INSERT INTO Messages
 VALUES (
     MessageType(
@@ -3378,7 +3364,7 @@ VALUES (
     )
 );
 
--- Tech project update
+
 INSERT INTO Messages
 VALUES (
     MessageType(
@@ -3390,7 +3376,7 @@ VALUES (
     )
 );
 
--- Fashion show rehearsal
+
 INSERT INTO Messages
 VALUES (
     MessageType(
@@ -3402,7 +3388,6 @@ VALUES (
     )
 );
 
--- Gaming tournament update
 INSERT INTO Messages
 VALUES (
     MessageType(
@@ -3414,7 +3399,6 @@ VALUES (
     )
 );
 
--- Podcast equipment
 INSERT INTO Messages
 VALUES (
     MessageType(
@@ -3426,7 +3410,6 @@ VALUES (
     )
 );
 
--- Pet adoption success
 INSERT INTO Messages
 VALUES (
     MessageType(
@@ -3438,7 +3421,7 @@ VALUES (
     )
 );
 
--- Fitness app feedback
+
 INSERT INTO Messages
 VALUES (
     MessageType(
@@ -3450,7 +3433,6 @@ VALUES (
     )
 );
 
--- Art exhibition planning
 INSERT INTO Messages
 VALUES (
     MessageType(
@@ -3462,7 +3444,6 @@ VALUES (
     )
 );
 
--- Environmental campaign results
 INSERT INTO Messages
 VALUES (
     MessageType(
@@ -3476,39 +3457,6 @@ VALUES (
 
 COMMIT;
 
--- This query joins Posts, Likes, Comments and Users tables using different join types
--- It shows posts with their engagement metrics (likes and comments), including user information
--- The query focuses on posts from March 12-15, 2024 with engagement
-SELECT DISTINCT 
-    p.post_id,
-    DEREF(p.user_ref).username AS post_author,
-    SUBSTR(p.content, 1, 50) || '...' AS post_preview,  -- Showing first 50 chars for readability
-    p.created_at AS post_time,
-    COUNT(DISTINCT l.like_id) AS like_count,
-    COUNT(DISTINCT c.comment_id) AS comment_count,
-    LISTAGG(DISTINCT DEREF(l.user_ref).username, ', ') 
-        WITHIN GROUP (ORDER BY DEREF(l.user_ref).username) AS liking_users,
-    LISTAGG(DISTINCT DEREF(c.user_ref).username || ': ' || SUBSTR(c.content, 1, 30), ' | ')
-        WITHIN GROUP (ORDER BY c.created_at) AS recent_comments
-FROM 
-    Posts p
-    LEFT OUTER JOIN Likes l ON l.post_ref = REF(p)  -- Left join to include posts with no likes
-    FULL OUTER JOIN Comments c ON c.post_ref = REF(p)  -- Full join to include all engagement
-WHERE 
-    p.created_at BETWEEN TIMESTAMP '2024-03-12 00:00:00' 
-    AND TIMESTAMP '2024-03-15 23:59:59'
-GROUP BY 
-    p.post_id,
-    DEREF(p.user_ref).username,
-    p.content,
-    p.created_at
-HAVING 
-    COUNT(DISTINCT l.like_id) >= 1  -- Posts with at least 1 like
-    OR COUNT(DISTINCT c.comment_id) >= 1  -- or at least 1 comment
-ORDER BY 
-    like_count DESC,
-    comment_count DESC,
-    p.created_at DESC;
 
 
 
