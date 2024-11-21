@@ -175,6 +175,8 @@ SELECT
     p.created_at AS post_time,
     COUNT(DISTINCT l.like_id) AS like_count,
     COUNT(DISTINCT c.comment_id) AS comment_count,
+    COUNT(DISTINCT l.like_id) + COUNT(DISTINCT c.comment_id) AS engagement_total,
+    
     LISTAGG(DISTINCT DEREF(l.user_ref).username, ', ') 
         WITHIN GROUP (ORDER BY DEREF(l.user_ref).username) AS users_who_liked,
     LISTAGG(DISTINCT DEREF(c.user_ref).username || ': ' || SUBSTR(c.content, 1, 50), ' | ')
@@ -199,5 +201,5 @@ HAVING
     COUNT(DISTINCT l.like_id) > 0  
     OR COUNT(DISTINCT c.comment_id) > 0
 ORDER BY 
-    like_count + comment_count DESC,  
+    engagement_total DESC,  
     p.created_at DESC;
