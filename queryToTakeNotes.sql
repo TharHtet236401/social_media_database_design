@@ -405,6 +405,7 @@ ORDER BY num_users DESC;
 SELECT 
     r.username,
     r.user_type,
+    COUNT(i.interest_id) as interest_count,
     LISTAGG(i.interest_name, ', ') WITHIN GROUP (ORDER BY i.interest_name) as interests
 FROM 
     Users r,

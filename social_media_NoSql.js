@@ -74,6 +74,17 @@ db.createCollection("users", {
                         },
                         following: {
                             bsonType: "number"
+                        },
+                        interests: {
+                            bsonType: "array",
+                            items: {
+                                bsonType: "object",
+                                required: ["interest_id", "interest_name"],
+                                properties: {
+                                    interest_id: { bsonType: "int" },
+                                    interest_name: { bsonType: "string" }
+                                }
+                            }
                         }
                     }
                 }
@@ -178,7 +189,12 @@ db.users.insertMany([
             bio: "Software Developer | AI Enthusiast | Coffee Lover",
             user_status: "Coding something cool",
             followers: 15,
-            following: 12
+            following: 12,
+            interests: [
+                { interest_id: 1, interest_name: "Technology and Gadgets" },
+                { interest_id: 4, interest_name: "Education and Learning" },
+                { interest_id: 5, interest_name: "Arts and Entertainment" }
+            ]
         }
     },
     {
@@ -193,7 +209,12 @@ db.users.insertMany([
             bio: "Personal Trainer | Nutrition Expert",
             user_status: "At the gym 💪",
             followers: 18,
-            following: 15
+            following: 15,
+            interests: [
+                { interest_id: 3, interest_name: "Health and Fitness" },
+                { interest_id: 6, interest_name: "Food and Cooking" },
+                { interest_id: 4, interest_name: "Education and Learning" }
+            ]
         }
     },
     {
@@ -208,7 +229,12 @@ db.users.insertMany([
             bio: "Food Blogger | Chef | Restaurant Explorer",
             user_status: "Cooking up something special",
             followers: 20,
-            following: 17
+            following: 17,
+            interests: [
+                { interest_id: 6, interest_name: "Food and Cooking" },
+                { interest_id: 2, interest_name: "Travel and Adventure" },
+                { interest_id: 5, interest_name: "Arts and Entertainment" }
+            ]
         }
     },
     {   
@@ -467,6 +493,228 @@ db.users.insertMany([
         }
     }
 ]);
+
+// Update remaining users with their interests
+db.users.updateOne(
+    { username: "artist_lisa" },
+    { 
+        $set: { 
+            "regular_user.interests": [
+                { interest_id: 5, interest_name: "Arts and Entertainment" },
+                { interest_id: 1, interest_name: "Technology and Gadgets" },
+                { interest_id: 4, interest_name: "Education and Learning" }
+            ]
+        }
+    }
+);
+
+db.users.updateOne(
+    { username: "travel_mike" },
+    { 
+        $set: { 
+            "regular_user.interests": [
+                { interest_id: 2, interest_name: "Travel and Adventure" },
+                { interest_id: 5, interest_name: "Arts and Entertainment" },
+                { interest_id: 7, interest_name: "Finance and Investment" }
+            ]
+        }
+    }
+);
+
+db.users.updateOne(
+    { username: "gamer_sam" },
+    { 
+        $set: { 
+            "regular_user.interests": [
+                { interest_id: 1, interest_name: "Technology and Gadgets" },
+                { interest_id: 5, interest_name: "Arts and Entertainment" },
+                { interest_id: 7, interest_name: "Finance and Investment" }
+            ]
+        }
+    }
+);
+
+db.users.updateOne(
+    { username: "music_rachel" },
+    { 
+        $set: { 
+            "regular_user.interests": [
+                { interest_id: 5, interest_name: "Arts and Entertainment" },
+                { interest_id: 4, interest_name: "Education and Learning" },
+                { interest_id: 2, interest_name: "Travel and Adventure" }
+            ]
+        }
+    }
+);
+
+db.users.updateOne(
+    { username: "eco_peter" },
+    { 
+        $set: { 
+            "regular_user.interests": [
+                { interest_id: 4, interest_name: "Education and Learning" },
+                { interest_id: 2, interest_name: "Travel and Adventure" },
+                { interest_id: 3, interest_name: "Health and Fitness" }
+            ]
+        }
+    }
+);
+
+db.users.updateOne(
+    { username: "fashion_nina" },
+    { 
+        $set: { 
+            "regular_user.interests": [
+                { interest_id: 5, interest_name: "Arts and Entertainment" },
+                { interest_id: 2, interest_name: "Travel and Adventure" },
+                { interest_id: 7, interest_name: "Finance and Investment" }
+            ]
+        }
+    }
+);
+
+db.users.updateOne(
+    { username: "chef_carlos" },
+    { 
+        $set: { 
+            "regular_user.interests": [
+                { interest_id: 6, interest_name: "Food and Cooking" },
+                { interest_id: 5, interest_name: "Arts and Entertainment" },
+                { interest_id: 4, interest_name: "Education and Learning" }
+            ]
+        }
+    }
+);
+
+db.users.updateOne(
+    { username: "yoga_emma" },
+    { 
+        $set: { 
+            "regular_user.interests": [
+                { interest_id: 3, interest_name: "Health and Fitness" },
+                { interest_id: 4, interest_name: "Education and Learning" },
+                { interest_id: 5, interest_name: "Arts and Entertainment" }
+            ]
+        }
+    }
+);
+
+db.users.updateOne(
+    { username: "photographer_tom" },
+    { 
+        $set: { 
+            "regular_user.interests": [
+                { interest_id: 5, interest_name: "Arts and Entertainment" },
+                { interest_id: 2, interest_name: "Travel and Adventure" },
+                { interest_id: 1, interest_name: "Technology and Gadgets" }
+            ]
+        }
+    }
+);
+
+db.users.updateOne(
+    { username: "writer_sophia" },
+    { 
+        $set: { 
+            "regular_user.interests": [
+                { interest_id: 5, interest_name: "Arts and Entertainment" },
+                { interest_id: 4, interest_name: "Education and Learning" },
+                { interest_id: 6, interest_name: "Food and Cooking" }
+            ]
+        }
+    }
+);
+
+db.users.updateOne(
+    { username: "startup_ryan" },
+    { 
+        $set: { 
+            "regular_user.interests": [
+                { interest_id: 1, interest_name: "Technology and Gadgets" },
+                { interest_id: 7, interest_name: "Finance and Investment" },
+                { interest_id: 4, interest_name: "Education and Learning" }
+            ]
+        }
+    }
+);
+
+db.users.updateOne(
+    { username: "dancer_maria" },
+    { 
+        $set: { 
+            "regular_user.interests": [
+                { interest_id: 5, interest_name: "Arts and Entertainment" },
+                { interest_id: 3, interest_name: "Health and Fitness" },
+                { interest_id: 4, interest_name: "Education and Learning" }
+            ]
+        }
+    }
+);
+
+db.users.updateOne(
+    { username: "scientist_alan" },
+    { 
+        $set: { 
+            "regular_user.interests": [
+                { interest_id: 1, interest_name: "Technology and Gadgets" },
+                { interest_id: 4, interest_name: "Education and Learning" },
+                { interest_id: 7, interest_name: "Finance and Investment" }
+            ]
+        }
+    }
+);
+
+db.users.updateOne(
+    { username: "diy_hannah" },
+    { 
+        $set: { 
+            "regular_user.interests": [
+                { interest_id: 5, interest_name: "Arts and Entertainment" },
+                { interest_id: 1, interest_name: "Technology and Gadgets" },
+                { interest_id: 6, interest_name: "Food and Cooking" }
+            ]
+        }
+    }
+);
+
+db.users.updateOne(
+    { username: "comedian_jack" },
+    { 
+        $set: { 
+            "regular_user.interests": [
+                { interest_id: 5, interest_name: "Arts and Entertainment" },
+                { interest_id: 2, interest_name: "Travel and Adventure" },
+                { interest_id: 7, interest_name: "Finance and Investment" }
+            ]
+        }
+    }
+);
+
+db.users.updateOne(
+    { username: "pet_lover_lucy" },
+    { 
+        $set: { 
+            "regular_user.interests": [
+                { interest_id: 3, interest_name: "Health and Fitness" },
+                { interest_id: 5, interest_name: "Arts and Entertainment" },
+                { interest_id: 2, interest_name: "Travel and Adventure" }
+            ]
+        }
+    }
+);
+
+db.users.updateOne(
+    { username: "sports_coach_ben" },
+    { 
+        $set: { 
+            "regular_user.interests": [
+                { interest_id: 3, interest_name: "Health and Fitness" },
+                { interest_id: 4, interest_name: "Education and Learning" },
+                { interest_id: 7, interest_name: "Finance and Investment" }
+            ]
+        }
+    }
+);
 
 // First get all user references that we'll need
 var user_1006_id = db.users.find({ user_id: { $eq: 1006 }}).toArray()[0]._id;
@@ -770,7 +1018,7 @@ db.createCollection("likes", {
                 post: { bsonType: "object" },
                 user: { bsonType: "object" },
                 created_at: { bsonType: "date" }
-            }
+        }
         }
     }
 });
@@ -2044,6 +2292,7 @@ db.messages.insertMany([
 db.messages.createIndex({ "sent_at": 1 });
 db.messages.createIndex({ "sender.$id": 1, "sent_at": -1 });
 db.messages.createIndex({ "receiver.$id": 1, "sent_at": -1 });
+
 
 
 
