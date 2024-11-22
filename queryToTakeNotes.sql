@@ -388,3 +388,15 @@ SELECT
 FROM Users u
 ORDER BY u.user_id;
 
+-- Query to see how many users have each interest
+--Query 3 
+SELECT 
+    i.interest_id,
+    i.interest_name,
+    COUNT(DISTINCT r.user_id) as num_users
+FROM Users r,
+     TABLE(TREAT(VALUE(r) AS RegularUserType).interests) i
+WHERE VALUE(r) IS OF TYPE (RegularUserType)
+GROUP BY i.interest_id, i.interest_name
+ORDER BY num_users DESC;
+
