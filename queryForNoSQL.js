@@ -212,7 +212,7 @@ db.messages.aggregate([
 db.messages.countDocuments();
 
 
-//QUERY 1 
+//QUERY 1 for assignment
 //the post engagement between 2 dates
 db.posts.aggregate([
   // Match posts within the date range and by user type
@@ -380,7 +380,7 @@ db.posts.createIndex({ "user.$id": 1 });
 db.likes.createIndex({ "post.$id": 1, "user.$id": 1 });
 db.comments.createIndex({ "post.$id": 1, "user.$id": 1 });
 
-// QUERY 2
+// QUERY 2 for assignment
 // Query to compare user engagement patterns
 // Shows users who are either very active in liking posts or commenting, but not both
 db.users.aggregate([
@@ -517,6 +517,7 @@ db.users.aggregate([
     { $sort: { username: 1 } }
 ]);
 
+//Query 3 for assignment 
 // Query to see which interests have the most users
 db.users.aggregate([
     // Match only regular users

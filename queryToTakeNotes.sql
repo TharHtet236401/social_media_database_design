@@ -167,7 +167,7 @@ ORDER BY
 
 
 --new query with all joins 
--- QUERY 1
+-- QUERY 1 for assignment
 -- posts engagement between 14 and 15 march 2024
 SELECT 
     p.post_id,
@@ -185,7 +185,7 @@ SELECT
 FROM 
     Posts p
     INNER JOIN Users u ON REF(u) = p.user_ref  -- Get post authors
-    RIGHT OUTER JOIN Likes l ON l.post_ref = REF(p)  -- Exclude posts with no likes
+    LEFT OUTER JOIN Likes l ON l.post_ref = REF(p)  -- Exclude posts with no likes
     FULL OUTER JOIN Comments c ON c.post_ref = REF(p)  -- Include all engagement
 WHERE 
     p.created_at BETWEEN TIMESTAMP '2024-03-14 00:00:00' 
@@ -206,7 +206,7 @@ ORDER BY
     p.created_at DESC;
 
 
---QUERY 2
+--QUERY 2 for assignment
 -- Query to compare user engagement patterns using set operators
 -- Shows users who are either very active in liking posts or commenting, but not both
 -- This helps identify users with distinct engagement preferences
@@ -389,7 +389,7 @@ FROM Users u
 ORDER BY u.user_id;
 
 -- Query to see how many users have each interest
---Query 3 for testing 
+--Query 3 for assignment
 SELECT 
     i.interest_id,
     i.interest_name,
