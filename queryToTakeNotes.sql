@@ -276,7 +276,7 @@ HAVING
 ORDER BY 
     username ASC;
 
--- Query 1: See all users (both admin and regular) with their type-specific attributes
+---
 SELECT 
     u.user_id,
     u.username,
@@ -310,7 +310,7 @@ SELECT
 FROM Users u
 ORDER BY u.user_id;
 
--- Query 2: See regular users with their interests (one row per user-interest combination)
+-- QueryTesting 2: See regular users with their interests (one row per user-interest combination)
 SELECT 
     r.user_id,
     r.username,
@@ -325,7 +325,7 @@ FROM Users r, TABLE(TREAT(VALUE(r) AS RegularUserType).interests) i
 WHERE VALUE(r) IS OF TYPE (RegularUserType)
 ORDER BY r.user_id, i.interest_id;
 
--- Query 3: See admin users with their specific attributes
+-- QueryTesting 3: See admin users with their specific attributes
 SELECT 
     a.user_id,
     a.username,
@@ -338,7 +338,7 @@ FROM Users a
 WHERE VALUE(a) IS OF TYPE (AdminType)
 ORDER BY a.user_id;
 
--- Query 4: Summary statistics of interests per user
+-- QueryTesting 4: Summary statistics of interests per user
 SELECT 
     r.username,
     COUNT(i.interest_id) as interest_count,
@@ -389,7 +389,7 @@ FROM Users u
 ORDER BY u.user_id;
 
 -- Query to see how many users have each interest
---Query 3 
+--Query 3 for testing 
 SELECT 
     i.interest_id,
     i.interest_name,
@@ -400,3 +400,19 @@ WHERE VALUE(r) IS OF TYPE (RegularUserType)
 GROUP BY i.interest_id, i.interest_name
 ORDER BY num_users DESC;
 
+
+-- Query to see users and their interests in a more readable format
+SELECT 
+    r.username,
+    r.user_type,
+    LISTAGG(i.interest_name, ', ') WITHIN GROUP (ORDER BY i.interest_name) as interests
+FROM 
+    Users r,
+    TABLE(TREAT(VALUE(r) AS RegularUserType).interests) i
+WHERE 
+    VALUE(r) IS OF TYPE (RegularUserType)
+GROUP BY
+    r.username,
+    r.user_type
+ORDER BY 
+    r.username;
