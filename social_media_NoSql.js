@@ -1304,10 +1304,7 @@ db.createCollection("comments", {
 });
 
 
-// Clear any existing comments data
-db.comments.drop();
-
-// Insert comments in exact same order as Oracle database
+// Insert comments 
 db.comments.insertMany([
     {
         comment_id: 1,
@@ -1612,10 +1609,7 @@ db.createCollection("messages", {
 db.messages.createIndex({ "message_id": 1 }, { unique: true });
 db.messages.createIndex({ "sender.$id": 1, "receiver.$id": 1 });
 
-// Clear any existing messages data
-db.messages.drop();
-
-// Insert messages in exact same order as Oracle database
+// Insert messages
 db.messages.insertMany([
     {
         message_id: 1,
@@ -1876,12 +1870,7 @@ db.messages.insertMany([
         sent_at: new Date("2024-03-14T14:30:00Z"),
         sender: { $ref: "users", $id: user_1012_id },
         receiver: { $ref: "users", $id: user_1018_id }
-    }
-    // ... Continue with the rest of the messages
-]);
-
-// Continue inserting messages...
-db.messages.insertMany([
+    },
     {
         message_id: 37,
         content: "Would you be interested in speaking about AI ethics at TechCon 2024? 🤖",
@@ -2215,12 +2204,7 @@ db.messages.insertMany([
         sent_at: new Date("2024-03-12T17:30:00Z"),
         sender: { $ref: "users", $id: user_1015_id },
         receiver: { $ref: "users", $id: user_1012_id }
-    }
-    // ... Continue with the rest of the messages
-]);
-
-// Continue with the final batch of messages...
-db.messages.insertMany([
+    },
     {
         message_id: 83,
         content: "AI model accuracy reached 95%! Ready to deploy to production? 🚀",

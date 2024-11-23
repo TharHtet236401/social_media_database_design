@@ -211,7 +211,6 @@ db.messages.aggregate([
 
 db.messages.countDocuments();
 
-
 //QUERY 1 for assignment
 //the post engagement between 2 dates
 db.posts.aggregate([
@@ -340,8 +339,8 @@ db.posts.aggregate([
                     },
                   },
                   ": ",
-                  { 
-                    $substrCP: ["$$comment.content", 0, 50] 
+                  {
+                    $substrCP: ["$$comment.content", 0, 50],
                   },
                 ],
               },
@@ -390,16 +389,16 @@ db.users.aggregate([
       from: "likes",
       localField: "_id",
       foreignField: "user.$id",
-      as: "user_likes"
-    }
+      as: "user_likes",
+    },
   },
   {
     $lookup: {
       from: "comments",
       localField: "_id",
       foreignField: "user.$id",
-      as: "user_comments"
-    }
+      as: "user_comments",
+    },
   },
   // Calculate like and comment counts
   {
@@ -407,8 +406,8 @@ db.users.aggregate([
       username: 1,
       user_type: 1,
       like_count: { $size: "$user_likes" },
-      comment_count: { $size: "$user_comments" }
-    }
+      comment_count: { $size: "$user_comments" },
+    },
   },
   // Filter for users who are either active likers OR active commenters (but not both)
   {
@@ -417,15 +416,15 @@ db.users.aggregate([
         // Users who frequently like posts (>5 likes) but don't comment much (≤3 comments)
         {
           like_count: { $gt: 5 },
-          comment_count: { $lte: 3 }
+          comment_count: { $lte: 3 },
         },
         // Users who frequently comment (>3 comments) but don't like much (≤5 likes)
         {
           comment_count: { $gt: 3 },
-          like_count: { $lte: 5 }
-        }
-      ]
-    }
+          like_count: { $lte: 5 },
+        },
+      ],
+    },
   },
   // Add engagement type field
   {
@@ -436,22 +435,22 @@ db.users.aggregate([
         $cond: {
           if: { $gt: ["$like_count", 5] },
           then: "$like_count",
-          else: "$comment_count"
-        }
+          else: "$comment_count",
+        },
       },
       engagement_type: {
         $cond: {
           if: { $gt: ["$like_count", 5] },
           then: "Primarily Likes Posts",
-          else: "Primarily Comments"
-        }
-      }
-    }
+          else: "Primarily Comments",
+        },
+      },
+    },
   },
   // Sort by username
   {
-    $sort: { username: 1 }
-  }
+    $sort: { username: 1 },
+  },
 ]);
 
 // Create indexes to improve performance
@@ -459,105 +458,103 @@ db.likes.createIndex({ "user.$id": 1 });
 db.comments.createIndex({ "user.$id": 1 });
 
 // Query to see all users with their interests
-db.users.find(
+db.users
+  .find(
     { user_type: "regular" },
     {
-        username: 1,
-        "regular_user.interests": 1,
-        _id: 0
+      username: 1,
+      "regular_user.interests": 1,
+      _id: 0,
     }
-).sort({ username: 1 });
+  )
+  .sort({ username: 1 });
 
 // Query to count how many users have each interest
 db.users.aggregate([
-    { $match: { user_type: "regular" } },
-    { $unwind: "$regular_user.interests" },
-    {
-        $group: {
-            _id: {
-                interest_id: "$regular_user.interests.interest_id",
-                interest_name: "$regular_user.interests.interest_name"
-            },
-            count: { $sum: 1 }
-        }
+  { $match: { user_type: "regular" } },
+  { $unwind: "$regular_user.interests" },
+  {
+    $group: {
+      _id: {
+        interest_id: "$regular_user.interests.interest_id",
+        interest_name: "$regular_user.interests.interest_name",
+      },
+      count: { $sum: 1 },
     },
-    { $sort: { "_id.interest_id": 1 } },
-    {
-        $project: {
-            _id: 0,
-            interest_id: "$_id.interest_id",
-            interest_name: "$_id.interest_name",
-            user_count: "$count"
-        }
-    }
+  },
+  { $sort: { "_id.interest_id": 1 } },
+  {
+    $project: {
+      _id: 0,
+      interest_id: "$_id.interest_id",
+      interest_name: "$_id.interest_name",
+      user_count: "$count",
+    },
+  },
 ]);
 
 // Query to see number of interests per user
 db.users.aggregate([
-    { $match: { user_type: "regular" } },
-    {
-        $project: {
-            username: 1,
-            interest_count: { $size: { $ifNull: ["$regular_user.interests", []] } },
-            interests: {
-                $reduce: {
-                    input: "$regular_user.interests",
-                    initialValue: "",
-                    in: {
-                        $concat: [
-                            "$$value",
-                            { $cond: [{ $eq: ["$$value", ""] }, "", ", "] },
-                            "$$this.interest_name"
-                        ]
-                    }
-                }
-            }
-        }
+  { $match: { user_type: "regular" } },
+  {
+    $project: {
+      username: 1,
+      interest_count: { $size: { $ifNull: ["$regular_user.interests", []] } },
+      interests: {
+        $reduce: {
+          input: "$regular_user.interests",
+          initialValue: "",
+          in: {
+            $concat: [
+              "$$value",
+              { $cond: [{ $eq: ["$$value", ""] }, "", ", "] },
+              "$$this.interest_name",
+            ],
+          },
+        },
+      },
     },
-    { $sort: { username: 1 } }
+  },
+  { $sort: { username: 1 } },
 ]);
 
-//Query 3 for assignment 
+//Query 3 for assignment
 // Query to see which interests have the most users
 db.users.aggregate([
-    // Match only regular users
-    { 
-        $match: { 
-            user_type: "regular" 
-        } 
+  // Match only regular users
+  {
+    $match: {
+      user_type: "regular",
     },
-    // Unwind the interests array to create one document per interest
-    { 
-        $unwind: "$regular_user.interests" 
+  },
+  // Unwind the interests array to create one document per interest
+  {
+    $unwind: "$regular_user.interests",
+  },
+  // Group by interest to count users
+  {
+    $group: {
+      _id: {
+        interest_id: "$regular_user.interests.interest_id",
+        interest_name: "$regular_user.interests.interest_name",
+      },
+      num_users: { $sum: 1 },
     },
-    // Group by interest to count users
-    {
-        $group: {
-            _id: {
-                interest_id: "$regular_user.interests.interest_id",
-                interest_name: "$regular_user.interests.interest_name"
-            },
-            num_users: { $sum: 1 }
-        }
+  },
+  // Project the final format
+  {
+    $project: {
+      _id: 0,
+      interest_id: "$_id.interest_id",
+      interest_name: "$_id.interest_name",
+      num_users: 1,
     },
-    // Project the final format
-    {
-        $project: {
-            _id: 0,
-            interest_id: "$_id.interest_id",
-            interest_name: "$_id.interest_name",
-            num_users: 1,
-        }
+  },
+  // Sort by number of users in descending order
+  {
+    $sort: {
+      num_users: -1,
+      interest_id: 1,
     },
-    // Sort by number of users in descending order
-    { 
-        $sort: { 
-            num_users: -1,
-            interest_id: 1
-        } 
-    }
+  },
 ]);
-
-
-
-
