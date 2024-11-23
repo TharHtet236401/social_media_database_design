@@ -547,17 +547,6 @@ db.users.aggregate([
             interest_id: "$_id.interest_id",
             interest_name: "$_id.interest_name",
             num_users: 1,
-            percentage: {
-                $multiply: [
-                    {
-                        $divide: [
-                            "$num_users",
-                            { $literal: 20 } // Total number of regular users
-                        ]
-                    },
-                    100
-                ]
-            }
         }
     },
     // Sort by number of users in descending order

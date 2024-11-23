@@ -276,7 +276,7 @@ HAVING
 ORDER BY 
     username ASC;
 
----
+------------
 SELECT 
     u.user_id,
     u.username,
