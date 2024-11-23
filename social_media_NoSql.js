@@ -1303,9 +1303,6 @@ db.createCollection("comments", {
     }
 });
 
-// Create indexes for comments
-db.comments.createIndex({ "comment_id": 1 }, { unique: true });
-db.comments.createIndex({ "post.$id": 1, "user.$id": 1 });
 
 // Clear any existing comments data
 db.comments.drop();
