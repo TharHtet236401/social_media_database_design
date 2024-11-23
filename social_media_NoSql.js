@@ -1023,12 +1023,6 @@ db.createCollection("likes", {
     }
 });
 
-// Create indexes for likes - ensure uniqueness on like_id and combination of post/user
-db.likes.createIndex({ "like_id": 1 }, { unique: true });
-db.likes.createIndex({ "post.$id": 1, "user.$id": 1 }, { unique: true });
-
-// Clear any existing likes data
-db.likes.drop();
 
 // Insert likes in exact same order as Oracle database
 db.likes.insertMany([
