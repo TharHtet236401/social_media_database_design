@@ -3617,6 +3617,30 @@ VALUES (
 COMMIT;
 
 
+---Qurey 4 for assignment
+-- Temporal query to analyze peak messaging times
+SELECT 
+    CASE 
+        WHEN TO_CHAR(m.sent_at, 'HH24:MI') BETWEEN '06:00' AND '11:59' THEN 'Morning'
+        WHEN TO_CHAR(m.sent_at, 'HH24:MI') BETWEEN '12:00' AND '16:59' THEN 'Afternoon'
+        WHEN TO_CHAR(m.sent_at, 'HH24:MI') BETWEEN '17:00' AND '20:59' THEN 'Evening'
+        ELSE 'Night'
+    END AS time_of_day,
+    COUNT(*) as message_count,
+    ROUND((COUNT(*) * 100.0) / SUM(COUNT(*)) OVER (), 2) as percentage_of_total
+FROM Messages m
+WHERE m.sent_at BETWEEN TIMESTAMP '2024-03-12 00:00:00' 
+                   AND TIMESTAMP '2024-03-15 23:59:59'
+GROUP BY 
+    CASE 
+        WHEN TO_CHAR(m.sent_at, 'HH24:MI') BETWEEN '06:00' AND '11:59' THEN 'Morning'
+        WHEN TO_CHAR(m.sent_at, 'HH24:MI') BETWEEN '12:00' AND '16:59' THEN 'Afternoon'
+        WHEN TO_CHAR(m.sent_at, 'HH24:MI') BETWEEN '17:00' AND '20:59' THEN 'Evening'
+        ELSE 'Night'
+    END
+ORDER BY message_count DESC;
+
+
 
 
 
