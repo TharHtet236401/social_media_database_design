@@ -495,7 +495,61 @@ db.users.insertMany([
 ]);
 
 // Update remaining users with their interests
-db.users.updateOne(
+db.user.updateOne(
+    {username:"admin_sarah"},
+    {$set: {
+        "regular_user.interests": [
+            { interest_id: 1, interest_name: "Technology and Gadgets" },
+            { interest_id: 2, interest_name: "Travel and Adventure" },
+            {interest_id: 3, interest_name: "Health and Fitness"}
+        ]
+    }}
+)
+
+db.user.updateOne(
+    {username: "admin_michael"},
+    {$set: {
+        "regular_user.interests": [
+            { interest_id: 4, interest_name: "Education and Learning" },
+            { interest_id: 5, interest_name: "Arts and Entertainment" },
+            { interest_id: 6, interest_name: "Food and Cooking" }
+        ]
+    }}
+)
+
+db.user.updateOne(
+    {username: "admin_jessica"},
+    {$set: {
+        "regular_user.interests": [
+            { interest_id: 7, interest_name: "Finance and Investment" },
+            { interest_id: 1, interest_name: "Technology and Gadgets" },
+            { interest_id: 2, interest_name: "Travel and Adventure" },
+        ]
+    }}
+)
+
+db.user.updateOne(
+    {username: "admin_david"},
+    {$set: {
+        "regular_user.interests": [
+            { interest_id: 3, interest_name: "Health and Fitness" },
+            { interest_id: 4, interest_name: "Education and Learning" },
+            { interest_id: 5, interest_name: "Arts and Entertainment" },
+        ]
+    }}
+)
+
+db.user.updateOne(
+    {username:"admin_emma"},
+    {$set: {
+        "regular_user.interests": [
+            { interest_id: 6, interest_name: "Food and Cooking" },
+            { interest_id: 7, interest_name: "Finance and Investment" },
+        ]
+    }}
+)
+
+db.user.updateOne(
     { username: "artist_lisa" },
     { 
         $set: { 
