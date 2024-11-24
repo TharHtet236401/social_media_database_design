@@ -495,7 +495,7 @@ db.users.insertMany([
 ]);
 
 // Update remaining users with their interests
-db.user.updateOne(
+db.users.updateOne(
     {username:"admin_sarah"},
     {$set: {
         "regular_user.interests": [
@@ -506,7 +506,7 @@ db.user.updateOne(
     }}
 )
 
-db.user.updateOne(
+db.users.updateOne(
     {username: "admin_michael"},
     {$set: {
         "regular_user.interests": [
@@ -517,7 +517,7 @@ db.user.updateOne(
     }}
 )
 
-db.user.updateOne(
+db.users.updateOne(
     {username: "admin_jessica"},
     {$set: {
         "regular_user.interests": [
@@ -528,7 +528,7 @@ db.user.updateOne(
     }}
 )
 
-db.user.updateOne(
+db.users.updateOne(
     {username: "admin_david"},
     {$set: {
         "regular_user.interests": [
@@ -539,7 +539,7 @@ db.user.updateOne(
     }}
 )
 
-db.user.updateOne(
+db.users.updateOne(
     {username:"admin_emma"},
     {$set: {
         "regular_user.interests": [
@@ -549,7 +549,7 @@ db.user.updateOne(
     }}
 )
 
-db.user.updateOne(
+db.users.updateOne(
     { username: "artist_lisa" },
     { 
         $set: { 
