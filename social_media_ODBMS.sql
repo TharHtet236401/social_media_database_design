@@ -211,6 +211,11 @@ VALUES
             TIMESTAMP '2023-01-01 09:00:00',
             'admin_profiles/sarah.jpg',
             'admin',
+            interest_table_type(
+                interest_type(1, 'Technology and Gadgets'),
+                interest_type(2, 'Travel and Adventure'),
+                interest_type(3, 'Health and Fitness')
+            ),
             1001,
             250,
             TIMESTAMP '2024-03-15 14:30:00',
@@ -231,6 +236,11 @@ VALUES
             TIMESTAMP '2023-01-02 10:00:00',
             'admin_profiles/michael.jpg',
             'admin',
+            interest_table_type(
+                interest_type(4, 'Education and Learning'),
+                interest_type(5, 'Arts and Entertainment'),
+                interest_type(6, 'Food and Cooking')
+            ),
             1002,
             180,
             TIMESTAMP '2024-03-15 16:45:00',
@@ -251,6 +261,11 @@ VALUES
             TIMESTAMP '2023-01-03 11:00:00',
             'admin_profiles/jessica.jpg',
             'admin',
+            interest_table_type(
+                interest_type(7, 'Finance and Investment'),
+                interest_type(1, 'Technology and Gadgets'),
+                interest_type(2, 'Travel and Adventure')
+            ),
             1003,
             320,
             TIMESTAMP '2024-03-15 15:20:00',
@@ -271,6 +286,11 @@ VALUES
             TIMESTAMP '2023-01-04 12:00:00',
             'admin_profiles/david.jpg',
             'admin',
+            interest_table_type(
+                interest_type(3, 'Health and Fitness'),
+                interest_type(4, 'Education and Learning'),
+                interest_type(5, 'Arts and Entertainment')
+            ),
             1004,
             290,
             TIMESTAMP '2024-03-15 17:10:00',
@@ -291,6 +311,10 @@ VALUES
             TIMESTAMP '2023-01-05 13:00:00',
             'admin_profiles/emma.jpg',
             'admin',
+            interest_table_type(
+                interest_type(6, 'Food and Cooking'),
+                interest_type(7, 'Finance and Investment')
+            ),
             1005,
             275,
             TIMESTAMP '2024-03-15 18:00:00',
@@ -308,15 +332,15 @@ INSERT INTO Users VALUES (
         TIMESTAMP '2023-02-01 10:00:00',
         'profiles/alex.jpg',
         'regular',
-        'Software Developer | AI Enthusiast | Coffee Lover',
-        'Coding something cool',
-        15,
-        12,
         interest_table_type(
             interest_type(1, 'Technology and Gadgets'),
             interest_type(4, 'Education and Learning'),
             interest_type(5, 'Arts and Entertainment')
-        )
+        ),
+        'Software Developer | AI Enthusiast | Coffee Lover',
+        'Coding something cool',
+        15,
+        12
     )
 );
 
@@ -330,15 +354,15 @@ INSERT INTO Users VALUES (
         TIMESTAMP '2023-02-02 11:00:00',
         'profiles/jane.jpg',
         'regular',
-        'Personal Trainer | Nutrition Expert',
-        'At the gym 💪',
-        18,
-        15,
         interest_table_type(
             interest_type(3, 'Health and Fitness'),
             interest_type(6, 'Food and Cooking'),
             interest_type(4, 'Education and Learning')
-        )
+        ),
+        'Personal Trainer | Nutrition Expert',
+        'At the gym 💪',
+        18,
+        15
     )
 );
 
@@ -352,15 +376,15 @@ INSERT INTO Users VALUES (
         TIMESTAMP '2023-02-03 12:00:00',
         'profiles/mark.jpg',
         'regular',
-        'Food Blogger | Chef | Restaurant Explorer',
-        'Cooking up something special',
-        20,
-        17,
         interest_table_type(
             interest_type(6, 'Food and Cooking'),
             interest_type(2, 'Travel and Adventure'),
             interest_type(5, 'Arts and Entertainment')
-        )
+        ),
+        'Food Blogger | Chef | Restaurant Explorer',
+        'Cooking up something special',
+        20,
+        17
     )
 );
 
@@ -374,15 +398,15 @@ INSERT INTO Users VALUES (
         TIMESTAMP '2023-02-04 13:00:00',
         'profiles/lisa.jpg',
         'regular',
-        'Digital Artist | Illustrator',
-        'Creating new artwork',
-        16,
-        14,
         interest_table_type(
             interest_type(5, 'Arts and Entertainment'),
             interest_type(1, 'Technology and Gadgets'),
             interest_type(4, 'Education and Learning')
-        )
+        ),
+        'Digital Artist | Illustrator',
+        'Creating new artwork',
+        16,
+        14
     )
 );
 
@@ -396,15 +420,15 @@ INSERT INTO Users VALUES (
         TIMESTAMP '2023-02-05 14:00:00',
         'profiles/mike.jpg',
         'regular',
-        'World Traveler | Photographer',
-        'Exploring new places',
-        19,
-        16,
         interest_table_type(
             interest_type(2, 'Travel and Adventure'),
             interest_type(5, 'Arts and Entertainment'),
             interest_type(7, 'Finance and Investment')
-        )
+        ),
+        'World Traveler | Photographer',
+        'Exploring new places',
+        19,
+        16
     )
 );
 
@@ -418,15 +442,15 @@ INSERT INTO Users VALUES (
         TIMESTAMP '2023-02-06 15:00:00',
         'profiles/sam.jpg',
         'regular',
-        'Professional Gamer | Streamer',
-        'Live streaming now!',
-        20,
-        18,
         interest_table_type(
             interest_type(1, 'Technology and Gadgets'),
             interest_type(5, 'Arts and Entertainment'),
             interest_type(7, 'Finance and Investment')
-        )
+        ),
+        'Professional Gamer | Streamer',
+        'Live streaming now!',
+        20,
+        18
     )
 );
 
@@ -440,15 +464,15 @@ INSERT INTO Users VALUES (
         TIMESTAMP '2023-02-07 16:00:00',
         'profiles/rachel.jpg',
         'regular',
-        'Singer | Songwriter | Producer',
-        'Making music 🎵',
-        17,
-        15,
         interest_table_type(
             interest_type(5, 'Arts and Entertainment'),
             interest_type(4, 'Education and Learning'),
             interest_type(2, 'Travel and Adventure')
-        )
+        ),
+        'Singer | Songwriter | Producer',
+        'Making music 🎵',
+        17,
+        15
     )
 );
 
@@ -462,15 +486,15 @@ INSERT INTO Users VALUES (
         TIMESTAMP '2023-02-08 17:00:00',
         'profiles/peter.jpg',
         'regular',
-        'Environmental Activist | Sustainable Living',
-        'Saving the planet 🌍',
-        14,
-        12,
         interest_table_type(
             interest_type(4, 'Education and Learning'),
             interest_type(2, 'Travel and Adventure'),
             interest_type(3, 'Health and Fitness')
-        )
+        ),
+        'Environmental Activist | Sustainable Living',
+        'Saving the planet 🌍',
+        14,
+        12
     )
 );
 
@@ -484,15 +508,15 @@ INSERT INTO Users VALUES (
         TIMESTAMP '2023-02-09 18:00:00',
         'profiles/nina.jpg',
         'regular',
-        'Fashion Blogger | Style Consultant',
-        'Fashion week ready',
-        20,
-        16,
         interest_table_type(
             interest_type(5, 'Arts and Entertainment'),
             interest_type(2, 'Travel and Adventure'),
             interest_type(7, 'Finance and Investment')
-        )
+        ),
+        'Fashion Blogger | Style Consultant',
+        'Fashion week ready',
+        20,
+        16
     )
 );
 
@@ -506,15 +530,16 @@ INSERT INTO Users VALUES (
         TIMESTAMP '2023-02-10 19:00:00',
         'profiles/carlos.jpg',
         'regular',
-        'Professional Chef | Food Photography',
-        'In the kitchen',
-        18,
-        15,
-        interest_table_type(
+         interest_table_type(
             interest_type(6, 'Food and Cooking'),
             interest_type(5, 'Arts and Entertainment'),
             interest_type(4, 'Education and Learning')
-        )
+        ),
+        'Professional Chef | Food Photography',
+        'In the kitchen',
+        18,
+        15
+       
     )
 );
 
@@ -528,15 +553,15 @@ INSERT INTO Users VALUES (
         TIMESTAMP '2023-02-11 20:00:00',
         'profiles/emma_y.jpg',
         'regular',
-        'Yoga Instructor | Mindfulness Coach',
-        'Namaste 🧘‍♀️',
-        16,
-        13,
         interest_table_type(
             interest_type(3, 'Health and Fitness'),
             interest_type(4, 'Education and Learning'),
             interest_type(5, 'Arts and Entertainment')
-        )
+        ),
+        'Yoga Instructor | Mindfulness Coach',
+        'Namaste 🧘‍♀️',
+        16,
+        13
     )
 );
 
@@ -550,15 +575,16 @@ INSERT INTO Users VALUES (
         TIMESTAMP '2023-02-12 21:00:00',
         'profiles/tom.jpg',
         'regular',
-        'Professional Photographer | Nature Lover',
-        'Capturing moments',
-        19,
-        17,
-        interest_table_type(
+         interest_table_type(
             interest_type(5, 'Arts and Entertainment'),
             interest_type(2, 'Travel and Adventure'),
             interest_type(1, 'Technology and Gadgets')
-        )
+        ),
+        'Professional Photographer | Nature Lover',
+        'Capturing moments',
+        19,
+        17
+       
     )
 );
 
@@ -572,15 +598,15 @@ INSERT INTO Users VALUES (
         TIMESTAMP '2023-02-13 22:00:00',
         'profiles/sophia.jpg',
         'regular',
-        'Author | Book Reviewer | Coffee Addict',
-        'Writing my next novel',
-        15,
-        14,
         interest_table_type(
             interest_type(5, 'Arts and Entertainment'),
             interest_type(4, 'Education and Learning'),
             interest_type(6, 'Food and Cooking')
-        )
+        ),
+        'Author | Book Reviewer | Coffee Addict',
+        'Writing my next novel',
+        15,
+        14
     )
 );
 
@@ -594,15 +620,16 @@ INSERT INTO Users VALUES (
         TIMESTAMP '2023-02-14 23:00:00',
         'profiles/ryan.jpg',
         'regular',
-        'Entrepreneur | Tech Startup Founder',
-        'Building the future',
-        20,
-        15,
         interest_table_type(
             interest_type(1, 'Technology and Gadgets'),
             interest_type(7, 'Finance and Investment'),
             interest_type(4, 'Education and Learning')
-        )
+        ),
+        'Entrepreneur | Tech Startup Founder',
+        'Building the future',
+        20,
+        15
+        
     )
 );
 
@@ -616,15 +643,16 @@ INSERT INTO Users VALUES (
         TIMESTAMP '2023-02-15 00:00:00',
         'profiles/maria.jpg',
         'regular',
-        'Professional Dancer | Dance Instructor',
-        'Dancing through life 💃',
-        18,
-        16,
-        interest_table_type(
+         interest_table_type(
             interest_type(5, 'Arts and Entertainment'),
             interest_type(3, 'Health and Fitness'),
             interest_type(4, 'Education and Learning')
-        )
+        ),
+        'Professional Dancer | Dance Instructor',
+        'Dancing through life 💃',
+        18,
+        16
+       
     )
 );
 
@@ -638,15 +666,16 @@ INSERT INTO Users VALUES (
         TIMESTAMP '2023-02-16 01:00:00',
         'profiles/alan.jpg',
         'regular',
-        'Research Scientist | Physics Enthusiast',
-        'Exploring the universe',
-        13,
-        11,
-        interest_table_type(
+         interest_table_type(
             interest_type(1, 'Technology and Gadgets'),
             interest_type(4, 'Education and Learning'),
             interest_type(7, 'Finance and Investment')
-        )
+        ),
+        'Research Scientist | Physics Enthusiast',
+        'Exploring the universe',
+        13,
+        11
+       
     )
 );
 
@@ -660,15 +689,16 @@ INSERT INTO Users VALUES (
         TIMESTAMP '2023-02-17 02:00:00',
         'profiles/hannah.jpg',
         'regular',
-        'DIY Expert | Home Improvement',
-        'Creating something new',
-        17,
-        14,
         interest_table_type(
             interest_type(5, 'Arts and Entertainment'),
             interest_type(1, 'Technology and Gadgets'),
             interest_type(6, 'Food and Cooking')
-        )
+        ),
+        'DIY Expert | Home Improvement',
+        'Creating something new',
+        17,
+        14
+        
     )
 );
 
@@ -682,15 +712,16 @@ INSERT INTO Users VALUES (
         TIMESTAMP '2023-02-18 03:00:00',
         'profiles/jack.jpg',
         'regular',
-        'Stand-up Comedian | Content Creator',
-        'Making people laugh 😂',
-        20,
-        18,
         interest_table_type(
             interest_type(5, 'Arts and Entertainment'),
             interest_type(2, 'Travel and Adventure'),
             interest_type(7, 'Finance and Investment')
-        )
+        ),
+        'Stand-up Comedian | Content Creator',
+        'Making people laugh 😂',
+        20,
+        18
+        
     )
 );
 
@@ -704,15 +735,16 @@ INSERT INTO Users VALUES (
         TIMESTAMP '2023-02-19 04:00:00',
         'profiles/lucy.jpg',
         'regular',
-        'Pet Influencer | Animal Rescue Advocate',
-        'Playing with puppies 🐕',
-        19,
-        16,
         interest_table_type(
             interest_type(3, 'Health and Fitness'),
             interest_type(5, 'Arts and Entertainment'),
             interest_type(2, 'Travel and Adventure')
-        )
+        ),
+        'Pet Influencer | Animal Rescue Advocate',
+        'Playing with puppies 🐕',
+        19,
+        16
+        
     )
 );
 
@@ -726,15 +758,16 @@ INSERT INTO Users VALUES (
         TIMESTAMP '2023-02-20 05:00:00',
         'profiles/ben.jpg',
         'regular',
-        'Sports Coach | Fitness Expert',
-        'Training champions',
-        17,
-        15,
         interest_table_type(
             interest_type(3, 'Health and Fitness'),
             interest_type(4, 'Education and Learning'),
             interest_type(7, 'Finance and Investment')
-        )
+        ),
+        'Sports Coach | Fitness Expert',
+        'Training champions',
+        17,
+        15
+        
     )
 );
 
