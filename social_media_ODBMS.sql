@@ -41,6 +41,7 @@ DROP TYPE interest_table_type FORCE;
 -- Then drop the interest type
 DROP TYPE interest_type FORCE;
 
+COMMIT;
 
 CREATE OR REPLACE TYPE interest_type AS OBJECT (
     interest_id NUMBER,
@@ -58,7 +59,8 @@ OR REPLACE TYPE UserType AS OBJECT (
     password_hash VARCHAR2 (255),
     created_at TIMESTAMP,
     profile_picture VARCHAR2 (500),
-    user_type VARCHAR2 (255)
+    user_type VARCHAR2 (255),
+    interests interest_table_type
 ) NOT FINAL;
 /
 -- Admin object type inheriting from UserType
@@ -77,8 +79,7 @@ OR REPLACE TYPE RegularUserType UNDER UserType (
     bio VARCHAR2 (4000),
     user_status VARCHAR2 (255),
     followers NUMBER,
-    following NUMBER,
-    interests interest_table_type
+    following NUMBER
 );
 
 /
@@ -133,8 +134,8 @@ CREATE TABLE Users OF UserType (
     username UNIQUE NOT NULL,
     email UNIQUE NOT NULL,
     password_hash NOT NULL,
-    user_type NOT NULL
-);
+    user_type NOT NULL,
+)NESTED TABLE interests STORE AS interest_table
 
 -- Posts table (Object table of PostType)
 CREATE TABLE
