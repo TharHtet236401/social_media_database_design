@@ -558,3 +558,109 @@ db.users.aggregate([
     },
   },
 ]);
+
+// Query 4 for assignment
+// Temporal query to analyze peak messaging times
+db.messages.aggregate([
+  // Match messages within the date range
+  {
+    $match: {
+      sent_at: {
+        $gte: new Date("2024-03-12T00:00:00Z"),
+        $lte: new Date("2024-03-15T23:59:59Z")
+      }
+    }
+  },
+  // Add a field for time of day categorization
+  {
+    $addFields: {
+      hour: { $hour: "$sent_at" },
+      time_of_day: {
+        $switch: {
+          branches: [
+            {
+              case: {
+                $and: [
+                  { $gte: [{ $hour: "$sent_at" }, 6] },
+                  { $lt: [{ $hour: "$sent_at" }, 12] }
+                ]
+              },
+              then: "Morning"
+            },
+            {
+              case: {
+                $and: [
+                  { $gte: [{ $hour: "$sent_at" }, 12] },
+                  { $lt: [{ $hour: "$sent_at" }, 17] }
+                ]
+              },
+              then: "Afternoon"
+            },
+            {
+              case: {
+                $and: [
+                  { $gte: [{ $hour: "$sent_at" }, 17] },
+                  { $lt: [{ $hour: "$sent_at" }, 21] }
+                ]
+              },
+              then: "Evening"
+            }
+          ],
+          default: "Night"
+        }
+      }
+    }
+  },
+  // Group by time of day to get counts
+  {
+    $group: {
+      _id: "$time_of_day",
+      message_count: { $sum: 1 }
+    }
+  },
+  // Calculate total messages for percentage
+  {
+    $facet: {
+      time_periods: [{ $match: {} }],
+      total_count: [
+        {
+          $group: {
+            _id: null,
+            total: { $sum: "$message_count" }
+          }
+        }
+      ]
+    }
+  },
+  // Unwind and calculate percentages
+  {
+    $unwind: "$total_count"
+  },
+  {
+    $unwind: "$time_periods"
+  },
+  {
+    $project: {
+      _id: 0,
+      time_of_day: "$time_periods._id",
+      message_count: "$time_periods.message_count",
+      percentage_of_total: {
+        $round: [
+          {
+            $multiply: [
+              { $divide: ["$time_periods.message_count", "$total_count.total"] },
+              100
+            ]
+          },
+          2
+        ]
+      }
+    }
+  },
+  // Sort by message count descending
+  {
+    $sort: { message_count: -1 }
+  }
+]);
+
+
