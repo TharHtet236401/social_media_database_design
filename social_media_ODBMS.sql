@@ -134,8 +134,8 @@ CREATE TABLE Users OF UserType (
     username UNIQUE NOT NULL,
     email UNIQUE NOT NULL,
     password_hash NOT NULL,
-    user_type NOT NULL,
-)NESTED TABLE interests STORE AS interest_table
+    user_type NOT NULL
+)NESTED TABLE interests STORE AS interest_table;
 
 -- Posts table (Object table of PostType)
 CREATE TABLE
