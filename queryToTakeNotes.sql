@@ -310,7 +310,7 @@ SELECT
 FROM Users u
 ORDER BY u.user_id;
 
--- QueryTesting 2: See regular users with their interests (one row per user-interest combination)
+-- QueryTesting 2: See regular users with their categories (one row per user-categorie combination)
 SELECT 
     r.user_id,
     r.username,
@@ -319,11 +319,11 @@ SELECT
     r.user_status,
     r.followers,
     r.following,
-    i.interest_id,
-    i.interest_name
-FROM Users r, TABLE(TREAT(VALUE(r) AS RegularUserType).interests) i
+    i.categorie_id,
+    i.categorie_name
+FROM Users r, TABLE(TREAT(VALUE(r) AS RegularUserType).categories) i
 WHERE VALUE(r) IS OF TYPE (RegularUserType)
-ORDER BY r.user_id, i.interest_id;
+ORDER BY r.user_id, i.categorie_id;
 
 -- QueryTesting 3: See admin users with their specific attributes
 SELECT 
@@ -338,12 +338,12 @@ FROM Users a
 WHERE VALUE(a) IS OF TYPE (AdminType)
 ORDER BY a.user_id;
 
--- QueryTesting 4: Summary statistics of interests per user
+-- QueryTesting 4: Summary statistics of categories per user
 SELECT 
     r.username,
-    COUNT(i.interest_id) as interest_count,
-    LISTAGG(i.interest_name, ', ') WITHIN GROUP (ORDER BY i.interest_id) as interests
-FROM Users r, TABLE(TREAT(VALUE(r) AS RegularUserType).interests) i
+    COUNT(i.categorie_id) as categorie_count,
+    LISTAGG(i.categorie_name, ', ') WITHIN GROUP (ORDER BY i.categorie_id) as categories
+FROM Users r, TABLE(TREAT(VALUE(r) AS RegularUserType).categories) i
 WHERE VALUE(r) IS OF TYPE (RegularUserType)
 GROUP BY r.username
 ORDER BY r.username;
@@ -379,37 +379,37 @@ SELECT
     CASE 
         WHEN VALUE(u) IS OF TYPE (RegularUserType) THEN
             (
-                SELECT LISTAGG(i.interest_name, ', ') WITHIN GROUP (ORDER BY i.interest_id)
-                FROM TABLE(TREAT(VALUE(u) AS RegularUserType).interests) i
+                SELECT LISTAGG(i.categorie_name, ', ') WITHIN GROUP (ORDER BY i.categorie_id)
+                FROM TABLE(TREAT(VALUE(u) AS RegularUserType).categories) i
             )
         ELSE
             NULL
-    END as interests
+    END as categories
 FROM Users u
 ORDER BY u.user_id;
 
--- Query to see how many users have each interest
+-- Query to see how many users have each categorie
 --Query 3 for assignment
 SELECT 
-    i.interest_id,
-    i.interest_name,
+    i.category_id,
+    i.category_name,
     COUNT(DISTINCT r.user_id) as num_users
 FROM Users r,
-     TABLE(TREAT(VALUE(r) AS RegularUserType).interests) i
+     TABLE(TREAT(VALUE(r) AS RegularUserType).categories) i
 WHERE VALUE(r) IS OF TYPE (RegularUserType)
-GROUP BY i.interest_id, i.interest_name
+GROUP BY i.category_id, i.category_name
 ORDER BY num_users DESC;
 
 
--- Query to see users and their interests in a more readable format
+-- Query to see users and their categories in a more readable format
 SELECT 
     r.username,
     r.user_type,
-    COUNT(i.interest_id) as interest_count,
-    LISTAGG(i.interest_name, ', ') WITHIN GROUP (ORDER BY i.interest_name) as interests
+    COUNT(i.category_id) as category_count,
+    LISTAGG(i.category_name, ', ') WITHIN GROUP (ORDER BY i.category_name) as categories
 FROM 
     Users r,
-    TABLE(TREAT(VALUE(r) AS RegularUserType).interests) i
+    TABLE(TREAT(VALUE(r) AS RegularUserType).categories) i
 WHERE 
     VALUE(r) IS OF TYPE (RegularUserType)
 GROUP BY

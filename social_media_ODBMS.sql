@@ -36,20 +36,20 @@ DROP TYPE AdminType FORCE;
 DROP TYPE UserType FORCE;
 
 -- First drop the nested table type
-DROP TYPE interest_table_type FORCE;
+DROP TYPE category_table_type FORCE;
 
--- Then drop the interest type
-DROP TYPE interest_type FORCE;
+-- Then drop the category type
+DROP TYPE category_type FORCE;
 
 COMMIT;
 
-CREATE OR REPLACE TYPE interest_type AS OBJECT (
-    interest_id NUMBER,
-    interest_name VARCHAR2(255)
+CREATE OR REPLACE TYPE category_type AS OBJECT (
+    category_id NUMBER,
+    category_name VARCHAR2(255)
 );
 /
 
-CREATE OR REPLACE TYPE interest_table_type AS TABLE OF interest_type;
+CREATE OR REPLACE TYPE category_table_type AS TABLE OF category_type;
 /
 CREATE
 OR REPLACE TYPE UserType AS OBJECT (
@@ -60,7 +60,7 @@ OR REPLACE TYPE UserType AS OBJECT (
     created_at TIMESTAMP,
     profile_picture VARCHAR2 (500),
     user_type VARCHAR2 (255),
-    interests interest_table_type
+    categories category_table_type
 ) NOT FINAL;
 /
 -- Admin object type inheriting from UserType
@@ -135,7 +135,7 @@ CREATE TABLE Users OF UserType (
     email UNIQUE NOT NULL,
     password_hash NOT NULL,
     user_type NOT NULL
-)NESTED TABLE interests STORE AS interest_table;
+)NESTED TABLE categories STORE AS category_table;
 
 -- Posts table (Object table of PostType)
 CREATE TABLE
@@ -211,10 +211,10 @@ VALUES
             TIMESTAMP '2023-01-01 09:00:00',
             'admin_profiles/sarah.jpg',
             'admin',
-            interest_table_type(
-                interest_type(1, 'Technology and Gadgets'),
-                interest_type(2, 'Travel and Adventure'),
-                interest_type(3, 'Health and Fitness')
+            category_table_type(
+                category_type(1, 'Technology and Gadgets'),
+                category_type(2, 'Travel and Adventure'),
+                category_type(3, 'Health and Fitness')
             ),
             1001,
             250,
@@ -236,10 +236,10 @@ VALUES
             TIMESTAMP '2023-01-02 10:00:00',
             'admin_profiles/michael.jpg',
             'admin',
-            interest_table_type(
-                interest_type(4, 'Education and Learning'),
-                interest_type(5, 'Arts and Entertainment'),
-                interest_type(6, 'Food and Cooking')
+            category_table_type(
+                category_type(4, 'Education and Learning'),
+                category_type(5, 'Arts and Entertainment'),
+                category_type(6, 'Food and Cooking')
             ),
             1002,
             180,
@@ -261,10 +261,10 @@ VALUES
             TIMESTAMP '2023-01-03 11:00:00',
             'admin_profiles/jessica.jpg',
             'admin',
-            interest_table_type(
-                interest_type(7, 'Finance and Investment'),
-                interest_type(1, 'Technology and Gadgets'),
-                interest_type(2, 'Travel and Adventure')
+            category_table_type(
+                category_type(7, 'Finance and Investment'),
+                category_type(1, 'Technology and Gadgets'),
+                category_type(2, 'Travel and Adventure')
             ),
             1003,
             320,
@@ -286,10 +286,10 @@ VALUES
             TIMESTAMP '2023-01-04 12:00:00',
             'admin_profiles/david.jpg',
             'admin',
-            interest_table_type(
-                interest_type(3, 'Health and Fitness'),
-                interest_type(4, 'Education and Learning'),
-                interest_type(5, 'Arts and Entertainment')
+            category_table_type(
+                category_type(3, 'Health and Fitness'),
+                category_type(4, 'Education and Learning'),
+                category_type(5, 'Arts and Entertainment')
             ),
             1004,
             290,
@@ -311,9 +311,9 @@ VALUES
             TIMESTAMP '2023-01-05 13:00:00',
             'admin_profiles/emma.jpg',
             'admin',
-            interest_table_type(
-                interest_type(6, 'Food and Cooking'),
-                interest_type(7, 'Finance and Investment')
+            category_table_type(
+                category_type(6, 'Food and Cooking'),
+                category_type(7, 'Finance and Investment')
             ),
             1005,
             275,
@@ -332,10 +332,10 @@ INSERT INTO Users VALUES (
         TIMESTAMP '2023-02-01 10:00:00',
         'profiles/alex.jpg',
         'regular',
-        interest_table_type(
-            interest_type(1, 'Technology and Gadgets'),
-            interest_type(4, 'Education and Learning'),
-            interest_type(5, 'Arts and Entertainment')
+        category_table_type(
+            category_type(1, 'Technology and Gadgets'),
+            category_type(4, 'Education and Learning'),
+            category_type(5, 'Arts and Entertainment')
         ),
         'Software Developer | AI Enthusiast | Coffee Lover',
         'Coding something cool',
@@ -354,10 +354,10 @@ INSERT INTO Users VALUES (
         TIMESTAMP '2023-02-02 11:00:00',
         'profiles/jane.jpg',
         'regular',
-        interest_table_type(
-            interest_type(3, 'Health and Fitness'),
-            interest_type(6, 'Food and Cooking'),
-            interest_type(4, 'Education and Learning')
+        category_table_type(
+            category_type(3, 'Health and Fitness'),
+            category_type(6, 'Food and Cooking'),
+            category_type(4, 'Education and Learning')
         ),
         'Personal Trainer | Nutrition Expert',
         'At the gym 💪',
@@ -376,10 +376,10 @@ INSERT INTO Users VALUES (
         TIMESTAMP '2023-02-03 12:00:00',
         'profiles/mark.jpg',
         'regular',
-        interest_table_type(
-            interest_type(6, 'Food and Cooking'),
-            interest_type(2, 'Travel and Adventure'),
-            interest_type(5, 'Arts and Entertainment')
+        category_table_type(
+            category_type(6, 'Food and Cooking'),
+            category_type(2, 'Travel and Adventure'),
+            category_type(5, 'Arts and Entertainment')
         ),
         'Food Blogger | Chef | Restaurant Explorer',
         'Cooking up something special',
@@ -398,10 +398,10 @@ INSERT INTO Users VALUES (
         TIMESTAMP '2023-02-04 13:00:00',
         'profiles/lisa.jpg',
         'regular',
-        interest_table_type(
-            interest_type(5, 'Arts and Entertainment'),
-            interest_type(1, 'Technology and Gadgets'),
-            interest_type(4, 'Education and Learning')
+        category_table_type(
+            category_type(5, 'Arts and Entertainment'),
+            category_type(1, 'Technology and Gadgets'),
+            category_type(4, 'Education and Learning')
         ),
         'Digital Artist | Illustrator',
         'Creating new artwork',
@@ -420,10 +420,10 @@ INSERT INTO Users VALUES (
         TIMESTAMP '2023-02-05 14:00:00',
         'profiles/mike.jpg',
         'regular',
-        interest_table_type(
-            interest_type(2, 'Travel and Adventure'),
-            interest_type(5, 'Arts and Entertainment'),
-            interest_type(7, 'Finance and Investment')
+        category_table_type(
+            category_type(2, 'Travel and Adventure'),
+            category_type(5, 'Arts and Entertainment'),
+            category_type(7, 'Finance and Investment')
         ),
         'World Traveler | Photographer',
         'Exploring new places',
@@ -442,10 +442,10 @@ INSERT INTO Users VALUES (
         TIMESTAMP '2023-02-06 15:00:00',
         'profiles/sam.jpg',
         'regular',
-        interest_table_type(
-            interest_type(1, 'Technology and Gadgets'),
-            interest_type(5, 'Arts and Entertainment'),
-            interest_type(7, 'Finance and Investment')
+        category_table_type(
+            category_type(1, 'Technology and Gadgets'),
+            category_type(5, 'Arts and Entertainment'),
+            category_type(7, 'Finance and Investment')
         ),
         'Professional Gamer | Streamer',
         'Live streaming now!',
@@ -464,10 +464,10 @@ INSERT INTO Users VALUES (
         TIMESTAMP '2023-02-07 16:00:00',
         'profiles/rachel.jpg',
         'regular',
-        interest_table_type(
-            interest_type(5, 'Arts and Entertainment'),
-            interest_type(4, 'Education and Learning'),
-            interest_type(2, 'Travel and Adventure')
+        category_table_type(
+            category_type(5, 'Arts and Entertainment'),
+            category_type(4, 'Education and Learning'),
+            category_type(2, 'Travel and Adventure')
         ),
         'Singer | Songwriter | Producer',
         'Making music 🎵',
@@ -486,10 +486,10 @@ INSERT INTO Users VALUES (
         TIMESTAMP '2023-02-08 17:00:00',
         'profiles/peter.jpg',
         'regular',
-        interest_table_type(
-            interest_type(4, 'Education and Learning'),
-            interest_type(2, 'Travel and Adventure'),
-            interest_type(3, 'Health and Fitness')
+        category_table_type(
+            category_type(4, 'Education and Learning'),
+            category_type(2, 'Travel and Adventure'),
+            category_type(3, 'Health and Fitness')
         ),
         'Environmental Activist | Sustainable Living',
         'Saving the planet 🌍',
@@ -508,10 +508,10 @@ INSERT INTO Users VALUES (
         TIMESTAMP '2023-02-09 18:00:00',
         'profiles/nina.jpg',
         'regular',
-        interest_table_type(
-            interest_type(5, 'Arts and Entertainment'),
-            interest_type(2, 'Travel and Adventure'),
-            interest_type(7, 'Finance and Investment')
+        category_table_type(
+            category_type(5, 'Arts and Entertainment'),
+            category_type(2, 'Travel and Adventure'),
+            category_type(7, 'Finance and Investment')
         ),
         'Fashion Blogger | Style Consultant',
         'Fashion week ready',
@@ -530,10 +530,10 @@ INSERT INTO Users VALUES (
         TIMESTAMP '2023-02-10 19:00:00',
         'profiles/carlos.jpg',
         'regular',
-         interest_table_type(
-            interest_type(6, 'Food and Cooking'),
-            interest_type(5, 'Arts and Entertainment'),
-            interest_type(4, 'Education and Learning')
+         category_table_type(
+            category_type(6, 'Food and Cooking'),
+            category_type(5, 'Arts and Entertainment'),
+            category_type(4, 'Education and Learning')
         ),
         'Professional Chef | Food Photography',
         'In the kitchen',
@@ -553,10 +553,10 @@ INSERT INTO Users VALUES (
         TIMESTAMP '2023-02-11 20:00:00',
         'profiles/emma_y.jpg',
         'regular',
-        interest_table_type(
-            interest_type(3, 'Health and Fitness'),
-            interest_type(4, 'Education and Learning'),
-            interest_type(5, 'Arts and Entertainment')
+        category_table_type(
+            category_type(3, 'Health and Fitness'),
+            category_type(4, 'Education and Learning'),
+            category_type(5, 'Arts and Entertainment')
         ),
         'Yoga Instructor | Mindfulness Coach',
         'Namaste 🧘‍♀️',
@@ -575,10 +575,10 @@ INSERT INTO Users VALUES (
         TIMESTAMP '2023-02-12 21:00:00',
         'profiles/tom.jpg',
         'regular',
-         interest_table_type(
-            interest_type(5, 'Arts and Entertainment'),
-            interest_type(2, 'Travel and Adventure'),
-            interest_type(1, 'Technology and Gadgets')
+         category_table_type(
+            category_type(5, 'Arts and Entertainment'),
+            category_type(2, 'Travel and Adventure'),
+            category_type(1, 'Technology and Gadgets')
         ),
         'Professional Photographer | Nature Lover',
         'Capturing moments',
@@ -598,10 +598,10 @@ INSERT INTO Users VALUES (
         TIMESTAMP '2023-02-13 22:00:00',
         'profiles/sophia.jpg',
         'regular',
-        interest_table_type(
-            interest_type(5, 'Arts and Entertainment'),
-            interest_type(4, 'Education and Learning'),
-            interest_type(6, 'Food and Cooking')
+        category_table_type(
+            category_type(5, 'Arts and Entertainment'),
+            category_type(4, 'Education and Learning'),
+            category_type(6, 'Food and Cooking')
         ),
         'Author | Book Reviewer | Coffee Addict',
         'Writing my next novel',
@@ -620,10 +620,10 @@ INSERT INTO Users VALUES (
         TIMESTAMP '2023-02-14 23:00:00',
         'profiles/ryan.jpg',
         'regular',
-        interest_table_type(
-            interest_type(1, 'Technology and Gadgets'),
-            interest_type(7, 'Finance and Investment'),
-            interest_type(4, 'Education and Learning')
+        category_table_type(
+            category_type(1, 'Technology and Gadgets'),
+            category_type(7, 'Finance and Investment'),
+            category_type(4, 'Education and Learning')
         ),
         'Entrepreneur | Tech Startup Founder',
         'Building the future',
@@ -643,10 +643,10 @@ INSERT INTO Users VALUES (
         TIMESTAMP '2023-02-15 00:00:00',
         'profiles/maria.jpg',
         'regular',
-         interest_table_type(
-            interest_type(5, 'Arts and Entertainment'),
-            interest_type(3, 'Health and Fitness'),
-            interest_type(4, 'Education and Learning')
+         category_table_type(
+            category_type(5, 'Arts and Entertainment'),
+            category_type(3, 'Health and Fitness'),
+            category_type(4, 'Education and Learning')
         ),
         'Professional Dancer | Dance Instructor',
         'Dancing through life 💃',
@@ -666,10 +666,10 @@ INSERT INTO Users VALUES (
         TIMESTAMP '2023-02-16 01:00:00',
         'profiles/alan.jpg',
         'regular',
-         interest_table_type(
-            interest_type(1, 'Technology and Gadgets'),
-            interest_type(4, 'Education and Learning'),
-            interest_type(7, 'Finance and Investment')
+         category_table_type(
+            category_type(1, 'Technology and Gadgets'),
+            category_type(4, 'Education and Learning'),
+            category_type(7, 'Finance and Investment')
         ),
         'Research Scientist | Physics Enthusiast',
         'Exploring the universe',
@@ -689,10 +689,10 @@ INSERT INTO Users VALUES (
         TIMESTAMP '2023-02-17 02:00:00',
         'profiles/hannah.jpg',
         'regular',
-        interest_table_type(
-            interest_type(5, 'Arts and Entertainment'),
-            interest_type(1, 'Technology and Gadgets'),
-            interest_type(6, 'Food and Cooking')
+        category_table_type(
+            category_type(5, 'Arts and Entertainment'),
+            category_type(1, 'Technology and Gadgets'),
+            category_type(6, 'Food and Cooking')
         ),
         'DIY Expert | Home Improvement',
         'Creating something new',
@@ -712,10 +712,10 @@ INSERT INTO Users VALUES (
         TIMESTAMP '2023-02-18 03:00:00',
         'profiles/jack.jpg',
         'regular',
-        interest_table_type(
-            interest_type(5, 'Arts and Entertainment'),
-            interest_type(2, 'Travel and Adventure'),
-            interest_type(7, 'Finance and Investment')
+        category_table_type(
+            category_type(5, 'Arts and Entertainment'),
+            category_type(2, 'Travel and Adventure'),
+            category_type(7, 'Finance and Investment')
         ),
         'Stand-up Comedian | Content Creator',
         'Making people laugh 😂',
@@ -735,10 +735,10 @@ INSERT INTO Users VALUES (
         TIMESTAMP '2023-02-19 04:00:00',
         'profiles/lucy.jpg',
         'regular',
-        interest_table_type(
-            interest_type(3, 'Health and Fitness'),
-            interest_type(5, 'Arts and Entertainment'),
-            interest_type(2, 'Travel and Adventure')
+        category_table_type(
+            category_type(3, 'Health and Fitness'),
+            category_type(5, 'Arts and Entertainment'),
+            category_type(2, 'Travel and Adventure')
         ),
         'Pet Influencer | Animal Rescue Advocate',
         'Playing with puppies 🐕',
@@ -758,10 +758,10 @@ INSERT INTO Users VALUES (
         TIMESTAMP '2023-02-20 05:00:00',
         'profiles/ben.jpg',
         'regular',
-        interest_table_type(
-            interest_type(3, 'Health and Fitness'),
-            interest_type(4, 'Education and Learning'),
-            interest_type(7, 'Finance and Investment')
+        category_table_type(
+            category_type(3, 'Health and Fitness'),
+            category_type(4, 'Education and Learning'),
+            category_type(7, 'Finance and Investment')
         ),
         'Sports Coach | Fitness Expert',
         'Training champions',
@@ -2576,7 +2576,7 @@ INSERT INTO Messages
 VALUES (
     MessageType(
         message_id_seq.NEXTVAL,
-        'Would you be interested in doing a joint workout session for our followers?',
+        'Would you be categoryed in doing a joint workout session for our followers?',
         TIMESTAMP '2024-03-15 08:30:00',
         (SELECT REF(u) FROM Users u WHERE u.user_id = 1007), 
         (SELECT REF(u) FROM Users u WHERE u.user_id = 1020)  
@@ -2611,7 +2611,7 @@ INSERT INTO Messages
 VALUES (
     MessageType(
         message_id_seq.NEXTVAL,
-        'I love your digital art style! Would you be interested in designing my album cover?',
+        'I love your digital art style! Would you be categoryed in designing my album cover?',
         TIMESTAMP '2024-03-15 13:20:00',
         (SELECT REF(u) FROM Users u WHERE u.user_id = 1012), 
         (SELECT REF(u) FROM Users u WHERE u.user_id = 1009)  
@@ -2644,7 +2644,7 @@ INSERT INTO Messages
 VALUES (
     MessageType(
         message_id_seq.NEXTVAL,
-        'Loved your latest track! Would you be interested in a collab?',
+        'Loved your latest track! Would you be categoryed in a collab?',
         TIMESTAMP '2024-03-15 17:30:00',
         (SELECT REF(u) FROM Users u WHERE u.user_id = 1012), 
         (SELECT REF(u) FROM Users u WHERE u.user_id = 1015)  
@@ -2752,7 +2752,7 @@ INSERT INTO Messages
 VALUES (
     MessageType(
         message_id_seq.NEXTVAL,
-        'Would you be interested in mentoring junior developers in our coding bootcamp?',
+        'Would you be categoryed in mentoring junior developers in our coding bootcamp?',
         TIMESTAMP '2024-03-15 11:00:00',
         (SELECT REF(u) FROM Users u WHERE u.user_id = 1006), 
         (SELECT REF(u) FROM Users u WHERE u.user_id = 1016)  
@@ -2788,7 +2788,7 @@ INSERT INTO Messages
 VALUES (
     MessageType(
         message_id_seq.NEXTVAL,
-        'Would you be interested in performing at our charity fundraiser?',
+        'Would you be categoryed in performing at our charity fundraiser?',
         TIMESTAMP '2024-03-15 15:00:00',
         (SELECT REF(u) FROM Users u WHERE u.user_id = 1013), 
         (SELECT REF(u) FROM Users u WHERE u.user_id = 1012)  
@@ -2944,7 +2944,7 @@ INSERT INTO Messages
 VALUES (
     MessageType(
         message_id_seq.NEXTVAL,
-        'Would you be interested in reviewing my new novel before publication? 📚',
+        'Would you be categoryed in reviewing my new novel before publication? 📚',
         TIMESTAMP '2024-03-14 16:15:00',
         (SELECT REF(u) FROM Users u WHERE u.user_id = 1013), 
         (SELECT REF(u) FROM Users u WHERE u.user_id = 1009)  
@@ -2980,7 +2980,7 @@ INSERT INTO Messages
 VALUES (
     MessageType(
         message_id_seq.NEXTVAL,
-        'Would you be interested in speaking about AI ethics at TechCon 2024? 🤖',
+        'Would you be categoryed in speaking about AI ethics at TechCon 2024? 🤖',
         TIMESTAMP '2024-03-14 13:20:00',
         (SELECT REF(u) FROM Users u WHERE u.user_id = 1016), 
         (SELECT REF(u) FROM Users u WHERE u.user_id = 1006)  
