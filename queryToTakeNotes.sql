@@ -442,6 +442,7 @@ GROUP BY
     END
 ORDER BY message_count DESC;
 
+--Query 5 for assignment
 -- Simple OLAP Query: Analyze user engagement by date and time period
 SELECT 
     -- Date dimension (NULL becomes 'All Dates')
