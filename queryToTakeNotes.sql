@@ -165,6 +165,25 @@ ORDER BY
     like_count DESC,
     p.created_at DESC;
 
+--stored function to get engagement total for a specific post for query 1
+-- First, create a function to get engagement total for a specific post
+CREATE OR REPLACE FUNCTION get_post_engagement_total(
+    p_post_id IN NUMBER
+) RETURN NUMBER IS
+    v_engagement_total NUMBER;
+BEGIN
+    SELECT 
+        COUNT(DISTINCT l.like_id) + COUNT(DISTINCT c.comment_id)
+    INTO v_engagement_total
+    FROM Posts p
+    LEFT OUTER JOIN Likes l ON l.post_ref = REF(p)
+    LEFT OUTER JOIN Comments c ON c.post_ref = REF(p)
+    WHERE p.post_id = p_post_id;
+    
+    RETURN v_engagement_total;
+END;
+/
+
 
 --new query with all joins 
 -- QUERY 1 for assignment
@@ -176,7 +195,7 @@ SELECT
     p.created_at AS post_time,
     COUNT(DISTINCT l.like_id) AS like_count,
     COUNT(DISTINCT c.comment_id) AS comment_count,
-    COUNT(DISTINCT l.like_id) + COUNT(DISTINCT c.comment_id) AS engagement_total,
+    get_post_engagement_total(p.post_id) AS engagement_total,
     
     LISTAGG(DISTINCT DEREF(l.user_ref).username, ', ') 
         WITHIN GROUP (ORDER BY DEREF(l.user_ref).username) AS users_who_liked,
@@ -494,3 +513,60 @@ ORDER BY
         WHEN time_period = 'Evening' THEN 4
         ELSE 5
     END;
+
+
+-- Create a procedure to get engagement totals for all posts in a date range
+CREATE OR REPLACE PROCEDURE get_posts_engagement(
+    p_start_date IN TIMESTAMP,
+    p_end_date IN TIMESTAMP
+) IS
+    -- Declare a cursor to hold the results
+    CURSOR c_post_engagement IS
+        SELECT 
+            p.post_id,
+            DEREF(p.user_ref).username AS post_author,
+            p.content AS post_content,
+            p.created_at AS post_time,
+            COUNT(DISTINCT l.like_id) AS like_count,
+            COUNT(DISTINCT c.comment_id) AS comment_count,
+            COUNT(DISTINCT l.like_id) + COUNT(DISTINCT c.comment_id) AS engagement_total
+        FROM Posts p
+        LEFT OUTER JOIN Likes l ON l.post_ref = REF(p)
+        LEFT OUTER JOIN Comments c ON c.post_ref = REF(p)
+        WHERE p.created_at BETWEEN p_start_date AND p_end_date
+        GROUP BY 
+            p.post_id,
+            DEREF(p.user_ref).username,
+            p.content,
+            p.created_at
+        ORDER BY 
+            COUNT(DISTINCT l.like_id) + COUNT(DISTINCT c.comment_id) DESC;
+    
+    -- Record type to match cursor
+    r_engagement c_post_engagement%ROWTYPE;
+BEGIN
+    OPEN c_post_engagement;
+    LOOP
+        FETCH c_post_engagement INTO r_engagement;
+        EXIT WHEN c_post_engagement%NOTFOUND;
+        
+        -- Output the results
+        DBMS_OUTPUT.PUT_LINE(
+            'Post ID: ' || r_engagement.post_id || 
+            ' | Author: ' || r_engagement.post_author ||
+            ' | Engagement Total: ' || r_engagement.engagement_total
+        );
+    END LOOP;
+    CLOSE c_post_engagement;
+END;
+/
+
+-- Example usage:
+-- Get engagement total for a specific post
+SELECT get_post_engagement_total(123) FROM DUAL;
+
+-- Get engagement totals for all posts in a date range
+EXEC get_posts_engagement(
+    TIMESTAMP '2024-03-14 00:00:00',
+    TIMESTAMP '2024-03-15 23:59:59'
+);
