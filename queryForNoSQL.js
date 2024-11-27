@@ -660,6 +660,7 @@ db.messages.aggregate([
   // Add before the final sort:
 ]);
 
+//query 5 for assignment
 db.posts.aggregate([
     // Match posts within date range and by regular users
     {
