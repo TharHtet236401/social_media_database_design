@@ -441,3 +441,55 @@ GROUP BY
         ELSE 'Night'
     END
 ORDER BY message_count DESC;
+
+-- Simple OLAP Query: Analyze user engagement by date and time period
+SELECT 
+    -- Date dimension (NULL becomes 'All Dates')
+    COALESCE(TO_CHAR(p.created_at, 'YYYY-MM-DD'), 'All Dates') AS post_date,
+    
+    -- Time period dimension (NULL becomes 'All Times')
+    COALESCE(
+        CASE 
+            WHEN TO_CHAR(p.created_at, 'HH24:MI') BETWEEN '06:00' AND '11:59' THEN 'Morning'
+            WHEN TO_CHAR(p.created_at, 'HH24:MI') BETWEEN '12:00' AND '16:59' THEN 'Afternoon'
+            WHEN TO_CHAR(p.created_at, 'HH24:MI') BETWEEN '17:00' AND '20:59' THEN 'Evening'
+            ELSE 'Night'
+        END,
+        'All Times'
+    ) AS time_period,
+    
+    -- Basic metrics
+    COUNT(DISTINCT p.post_id) as total_posts,
+    COUNT(DISTINCT l.like_id) as total_likes,
+    
+    -- Average likes per post
+    ROUND(
+        COUNT(DISTINCT l.like_id) * 1.0 / 
+        NULLIF(COUNT(DISTINCT p.post_id), 0),
+    2) as avg_likes_per_post
+FROM 
+    Posts p
+    LEFT JOIN Likes l ON REF(p) = l.post_ref
+WHERE 
+    p.created_at BETWEEN TIMESTAMP '2024-03-12 00:00:00' 
+                    AND TIMESTAMP '2024-03-15 23:59:59'
+    AND DEREF(p.user_ref).user_type = 'regular'
+GROUP BY 
+    ROLLUP (
+        TO_CHAR(p.created_at, 'YYYY-MM-DD'),
+        CASE 
+            WHEN TO_CHAR(p.created_at, 'HH24:MI') BETWEEN '06:00' AND '11:59' THEN 'Morning'
+            WHEN TO_CHAR(p.created_at, 'HH24:MI') BETWEEN '12:00' AND '16:59' THEN 'Afternoon'
+            WHEN TO_CHAR(p.created_at, 'HH24:MI') BETWEEN '17:00' AND '20:59' THEN 'Evening'
+            ELSE 'Night'
+        END
+    )
+ORDER BY 
+    CASE WHEN post_date = 'All Dates' THEN '9999-12-31' ELSE post_date END,
+    CASE 
+        WHEN time_period = 'All Times' THEN 1
+        WHEN time_period = 'Morning' THEN 2
+        WHEN time_period = 'Afternoon' THEN 3
+        WHEN time_period = 'Evening' THEN 4
+        ELSE 5
+    END;
