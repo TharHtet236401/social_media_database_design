@@ -183,7 +183,31 @@ BEGIN
     RETURN v_engagement_total;
 END;
 /
+CREATE or REPLACE FUNCTION get_like_count_total(
+    p_post_id IN NUMBER
+) RETURN NUMBER IS
+    v_like_count NUMBER;
+BEGIN
+    SELECT COUNT(DISTINCT l.like_id)
+    INTO v_like_count
+    FROM Posts p
+    LEFT OUTER JOIN Likes l ON (l.post_ref = REF(p) AND p.post_id = p_post_id);
+    RETURN NVL(v_like_count, 0);
+END;
+/
 
+CREATE OR REPLACE FUNCTION get_comment_count_total(
+    p_post_id IN NUMBER
+) RETURN NUMBER IS
+    c_comment_count NUMBER;
+BEGIN
+    SELECT COUNT(DISTINCT c.comment_id)
+    INTO c_comment_count
+    FROM Posts p
+    LEFT OUTER JOIN Comments c ON c.post_ref = REF(p) AND p.post_id = p_post_id;
+    RETURN NVL(c_comment_count, 0);
+END;
+/
 
 --new query with all joins 
 -- QUERY 1 for assignment
@@ -193,8 +217,8 @@ SELECT
     DEREF(p.user_ref).username AS post_author,
     p.content AS post_content,
     p.created_at AS post_time,
-    COUNT(DISTINCT l.like_id) AS like_count,
-    COUNT(DISTINCT c.comment_id) AS comment_count,
+    get_like_count_total(p.post_id) AS like_count,
+    get_comment_count_total(p.post_id) AS comment_count,
     get_post_engagement_total(p.post_id) AS engagement_total,
     
     LISTAGG(DISTINCT DEREF(l.user_ref).username, ', ') 
