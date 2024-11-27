@@ -663,4 +663,245 @@ db.messages.aggregate([
   }
 ]);
 
+db.posts.aggregate([
+    // Match posts within date range and by regular users
+    {
+        $match: {
+            created_at: {
+                $gte: new Date("2024-03-12T00:00:00Z"),
+                $lte: new Date("2024-03-15T23:59:59Z")
+            }
+        }
+    },
+    {
+        $lookup: {
+            from: "users",
+            localField: "user.$id",
+            foreignField: "_id",
+            as: "user_info"
+        }
+    },
+    {
+        $match: {
+            "user_info.user_type": "regular"
+        }
+    },
+    // Lookup likes for each post
+    {
+        $lookup: {
+            from: "likes",
+            localField: "_id",
+            foreignField: "post.$id",
+            as: "post_likes"
+        }
+    },
+    // Add fields for date and time period
+    {
+        $addFields: {
+            post_date: {
+                $dateToString: { format: "%Y-%m-%d", date: "$created_at" }
+            },
+            hour: { $hour: "$created_at" },
+            time_period: {
+                $switch: {
+                    branches: [
+                        {
+                            case: { 
+                                $and: [
+                                    { $gte: [ { $hour: "$created_at" }, 6 ] },
+                                    { $lt: [ { $hour: "$created_at" }, 12 ] }
+                                ]
+                            },
+                            then: "Morning"
+                        },
+                        {
+                            case: { 
+                                $and: [
+                                    { $gte: [ { $hour: "$created_at" }, 12 ] },
+                                    { $lt: [ { $hour: "$created_at" }, 17 ] }
+                                ]
+                            },
+                            then: "Afternoon"
+                        },
+                        {
+                            case: { 
+                                $and: [
+                                    { $gte: [ { $hour: "$created_at" }, 17 ] },
+                                    { $lt: [ { $hour: "$created_at" }, 21 ] }
+                                ]
+                            },
+                            then: "Evening"
+                        }
+                    ],
+                    default: "Night"
+                }
+            }
+        }
+    },
+    // Group by date and time period with rollup
+    {
+        $group: {
+            _id: {
+                post_date: "$post_date",
+                time_period: "$time_period"
+            },
+            total_posts: { $count: {} },
+            total_likes: { $sum: { $size: "$post_likes" } }
+        }
+    },
+    // Add calculated fields
+    {
+        $addFields: {
+            avg_likes_per_post: {
+                $round: [{
+                    $divide: [
+                        { $toDouble: "$total_likes" },
+                        { $toDouble: "$total_posts" }
+                    ]
+                }, 2]
+            }
+        }
+    },
+    // Generate rollup rows
+    {
+        $unionWith: {
+            coll: "posts",
+            pipeline: [
+                // Same initial matches and lookups as above
+                {
+                    $match: {
+                        created_at: {
+                            $gte: new Date("2024-03-12T00:00:00Z"),
+                            $lte: new Date("2024-03-15T23:59:59Z")
+                        }
+                    }
+                },
+                {
+                    $lookup: {
+                        from: "users",
+                        localField: "user.$id",
+                        foreignField: "_id",
+                        as: "user_info"
+                    }
+                },
+                {
+                    $match: {
+                        "user_info.user_type": "regular"
+                    }
+                },
+                {
+                    $lookup: {
+                        from: "likes",
+                        localField: "_id",
+                        foreignField: "post.$id",
+                        as: "post_likes"
+                    }
+                },
+                // Group by date only for date rollup
+                {
+                    $group: {
+                        _id: {
+                            post_date: { $dateToString: { format: "%Y-%m-%d", date: "$created_at" } },
+                            time_period: "All Times"
+                        },
+                        total_posts: { $count: {} },
+                        total_likes: { $sum: { $size: "$post_likes" } }
+                    }
+                },
+                {
+                    $addFields: {
+                        avg_likes_per_post: {
+                            $round: [{
+                                $divide: [
+                                    { $toDouble: "$total_likes" },
+                                    { $toDouble: "$total_posts" }
+                                ]
+                            }, 2]
+                        }
+                    }
+                }
+            ]
+        }
+    },
+    // Add grand total
+    {
+        $unionWith: {
+            coll: "posts",
+            pipeline: [
+                // Same initial matches and lookups
+                {
+                    $match: {
+                        created_at: {
+                            $gte: new Date("2024-03-12T00:00:00Z"),
+                            $lte: new Date("2024-03-15T23:59:59Z")
+                        }
+                    }
+                },
+                {
+                    $lookup: {
+                        from: "users",
+                        localField: "user.$id",
+                        foreignField: "_id",
+                        as: "user_info"
+                    }
+                },
+                {
+                    $match: {
+                        "user_info.user_type": "regular"
+                    }
+                },
+                {
+                    $lookup: {
+                        from: "likes",
+                        localField: "_id",
+                        foreignField: "post.$id",
+                        as: "post_likes"
+                    }
+                },
+                // Group for grand total
+                {
+                    $group: {
+                        _id: {
+                            post_date: "All Dates",
+                            time_period: "All Times"
+                        },
+                        total_posts: { $count: {} },
+                        total_likes: { $sum: { $size: "$post_likes" } }
+                    }
+                },
+                {
+                    $addFields: {
+                        avg_likes_per_post: {
+                            $round: [{
+                                $divide: [
+                                    { $toDouble: "$total_likes" },
+                                    { $toDouble: "$total_posts" }
+                                ]
+                            }, 2]
+                        }
+                    }
+                }
+            ]
+        }
+    },
+    // Sort results
+    {
+        $sort: {
+            "_id.post_date": 1,
+            "_id.time_period": 1
+        }
+    },
+    // Project final format
+    {
+        $project: {
+            _id: 0,
+            post_date: "$_id.post_date",
+            time_period: "$_id.time_period",
+            total_posts: 1,
+            total_likes: 1,
+            avg_likes_per_post: 1
+        }
+    }
+]);
+
 
