@@ -393,7 +393,7 @@ ORDER BY u.user_id;
 SELECT 
     i.interest_id,
     i.interest_name,
-    COUNT(DISTINCT r.user_id) as num_users
+    COUNT(DISTINCT r.user_id) AS num_users
 FROM Users r,
      TABLE(TREAT(VALUE(r) AS RegularUserType).interests) i
 WHERE VALUE(r) IS OF TYPE (RegularUserType)
