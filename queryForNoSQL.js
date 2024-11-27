@@ -657,10 +657,7 @@ db.messages.aggregate([
       }
     }
   },
-  // Sort by message count descending
-  {
-    $sort: { message_count: -1 }
-  }
+  // Add before the final sort:
 ]);
 
 db.posts.aggregate([
@@ -901,6 +898,29 @@ db.posts.aggregate([
             total_likes: 1,
             avg_likes_per_post: 1
         }
+    },
+    {
+      $addFields: {
+        sortOrder: {
+          $switch: {
+            branches: [
+              { case: { $eq: ["$time_period", "All Times"] }, then: 0 },
+              { case: { $eq: ["$time_period", "Morning"] }, then: 1 },
+              { case: { $eq: ["$time_period", "Afternoon"] }, then: 2 },
+              { case: { $eq: ["$time_period", "Evening"] }, then: 3 },
+              { case: { $eq: ["$time_period", "Night"] }, then: 4 }
+            ],
+            default: 5
+          }
+        }
+      }
+    },
+    // Replace the existing sort with:
+    {
+      $sort: {
+        "post_date": 1,  // First sort by date
+        "sortOrder": 1   // Then sort by our custom order
+      }
     }
 ]);
 
